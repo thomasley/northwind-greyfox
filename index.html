@@ -6,9 +6,7 @@
 <title>NORTHWIND & GREYFOX</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -22,141 +20,111 @@ body {
   color: #f2f2f2;
 }
 
-/* ECHTES HINTERGRUNDBILD */
+/* DER SCHREIBTISCH – WIRD NICHT MEHR GEFRESSEN */
 .desk-background {
   position: fixed;
   z-index: 0;
-  top: 0;
-  left: 0;
-
+  inset: 0;
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   object-position: center top;
 }
 
-/* NUR LEICHTE ABDUNKLUNG */
 .shade {
   position: fixed;
   z-index: 1;
   inset: 0;
-
-  background: rgba(2, 8, 12, 0.16);
-
+  background: rgba(2, 8, 12, 0.08);
   pointer-events: none;
 }
 
 .page {
   position: relative;
   z-index: 2;
-
   min-height: 100vh;
-  padding: 38px 20px 70px;
+  padding: 26px 18px 55px;
 }
 
 .container {
   width: 100%;
-  max-width: 680px;
+  max-width: 620px;
   margin: 0 auto;
 }
 
+/* KOPF – DEUTLICH KOMPAKTER */
 .header {
-  padding: 19px 20px 22px;
-  margin-bottom: 24px;
-
-  background: rgba(3, 12, 19, 0.72);
+  padding: 15px 17px 17px;
+  margin-bottom: 14px;
+  background: rgba(3, 12, 19, 0.64);
   border-left: 3px solid #d8aa43;
-
-  box-shadow: 0 12px 35px rgba(0,0,0,0.38);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.30);
 }
 
 .agency {
   color: #d8aa43;
-
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 3px;
-  line-height: 1.5;
-
+  letter-spacing: 2.5px;
+  line-height: 1.4;
   text-transform: uppercase;
-
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 h1 {
   margin: 0;
-
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(31px, 8vw, 52px);
-  line-height: 1;
-
-  letter-spacing: 1px;
-
-  text-shadow: 0 3px 12px #000;
+  font-size: clamp(25px, 6.5vw, 38px);
+  line-height: 1.02;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px #000;
 }
 
+/* EINLEITUNG */
 .intro {
-  padding: 18px 20px;
-  margin-bottom: 28px;
-
-  background: rgba(3, 12, 19, 0.72);
+  padding: 13px 16px;
+  margin-bottom: 16px;
+  background: rgba(3, 12, 19, 0.62);
   border-left: 3px solid #d8aa43;
-
-  font-size: 17px;
-  line-height: 1.65;
-
-  box-shadow: 0 12px 35px rgba(0,0,0,0.38);
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.30);
 }
 
+/* IDENTITÄTSPRÜFUNG */
 .card {
-  padding: 25px 21px;
-
-  background: rgba(3, 13, 21, 0.84);
-
-  border: 1px solid rgba(215,224,230,0.60);
-
-  box-shadow: 0 16px 45px rgba(0,0,0,0.48);
+  padding: 18px 17px;
+  background: rgba(3, 13, 21, 0.76);
+  border: 1px solid rgba(215,224,230,0.55);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.38);
 }
 
 .label {
   color: #d8aa43;
-
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 3px;
-
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-
-  margin-bottom: 20px;
+  margin-bottom: 13px;
 }
 
 .question {
-  margin-bottom: 24px;
-
+  margin-bottom: 16px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 27px;
-  line-height: 1.35;
-
-  text-shadow: 0 2px 8px #000;
+  font-size: 20px;
+  line-height: 1.3;
+  text-shadow: 0 2px 7px #000;
 }
 
 input {
   width: 100%;
-
-  padding: 17px;
-
-  font-size: 18px;
-
+  padding: 13px 14px;
+  margin-bottom: 11px;
+  font-size: 16px;
   color: white;
-
-  background: rgba(0, 6, 10, 0.84);
-
+  background: rgba(0, 6, 10, 0.76);
   border: 1px solid #89949d;
-
   outline: none;
-
-  margin-bottom: 16px;
 }
 
 input::placeholder {
@@ -169,20 +137,14 @@ input:focus {
 
 button {
   width: 100%;
-
-  padding: 18px;
-
+  padding: 14px;
   border: none;
-
   background: #d8aa43;
   color: #080b0e;
-
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 2px;
-
   text-transform: uppercase;
-
   cursor: pointer;
 }
 
@@ -192,64 +154,50 @@ button:active {
 
 #error {
   display: none;
-
-  margin-top: 17px;
-  padding: 14px;
-
-  background: rgba(0,0,0,0.50);
-
+  margin-top: 12px;
+  padding: 11px;
+  background: rgba(0,0,0,0.45);
   border-left: 3px solid #d8aa43;
-
   color: #f0cf7c;
-
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
+/* AKTEN NACH RICHTIGER ANTWORT */
 #dossiers {
   display: none;
-
-  margin-top: 28px;
+  margin-top: 16px;
 }
 
 .access {
-  padding: 25px 21px;
-
-  background: rgba(3, 13, 21, 0.84);
-
-  border: 1px solid rgba(215,224,230,0.60);
-
-  box-shadow: 0 16px 45px rgba(0,0,0,0.48);
+  padding: 18px 17px;
+  background: rgba(3, 13, 21, 0.78);
+  border: 1px solid rgba(215,224,230,0.55);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.38);
 }
 
 .access-small {
   color: #d8aa43;
-
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 3px;
-
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 
 .access-title {
-  margin-bottom: 26px;
-
+  margin-bottom: 17px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 35px;
+  font-size: 27px;
   line-height: 1.05;
-
-  text-shadow: 0 2px 8px #000;
+  text-shadow: 0 2px 7px #000;
 }
 
 .dossier {
-  padding: 21px;
-  margin-bottom: 16px;
-
-  background: rgba(1, 8, 13, 0.83);
-
-  border: 1px solid rgba(215,224,230,0.48);
+  padding: 15px;
+  margin-bottom: 11px;
+  background: rgba(1, 8, 13, 0.76);
+  border: 1px solid rgba(215,224,230,0.45);
 }
 
 .dossier:last-child {
@@ -258,60 +206,45 @@ button:active {
 
 .code {
   color: #d8aa43;
-
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   line-height: 1.5;
 }
 
 .name {
-  margin: 13px 0 8px;
-
+  margin: 9px 0 5px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 29px;
+  font-size: 23px;
 }
 
 .status {
   color: #c1c7cc;
-
-  font-size: 13px;
+  font-size: 10px;
   letter-spacing: 1px;
 }
 
 .footer {
-  margin-top: 35px;
-
-  padding: 14px 16px;
-
-  background: rgba(2, 8, 12, 0.68);
-
-  color: rgba(240,240,240,0.78);
-
-  font-size: 10px;
-  letter-spacing: 2px;
-  line-height: 1.8;
-
+  margin-top: 18px;
+  padding: 10px 12px;
+  background: rgba(2, 8, 12, 0.55);
+  color: rgba(240,240,240,0.72);
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  line-height: 1.6;
   text-transform: uppercase;
 }
 
-@media (max-width: 600px) {
-
+@media (min-width: 700px) {
   .page {
-    padding: 25px 18px 55px;
+    padding-top: 40px;
   }
-
-  .header {
-    margin-top: 12px;
-  }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- DAS BILD LIEGT JETZT TATSÄCHLICH HINTER DER SEITE -->
 <img
   class="desk-background"
   src="E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png"
@@ -321,21 +254,17 @@ button:active {
 <div class="shade"></div>
 
 <div class="page">
-
   <div class="container">
 
     <div class="header">
-
       <div class="agency">
         Zentralstelle für besondere Lagen
       </div>
 
       <h1>
         REFERAT F –<br>
-        BESONDERE<br>
-        ERMITTLUNGEN
+        BESONDERE ERMITTLUNGEN
       </h1>
-
     </div>
 
     <div class="intro">
@@ -373,7 +302,6 @@ button:active {
     </div>
 
     <div id="dossiers">
-
       <div class="access">
 
         <div class="access-small">
@@ -381,44 +309,34 @@ button:active {
         </div>
 
         <div class="access-title">
-          AKTENZUGRIFF<br>
-          FREIGEGEBEN
+          AKTENZUGRIFF FREIGEGEBEN
         </div>
 
         <div class="dossier">
-
           <div class="code">
             F-01 // NORTHWIND // BERLIN DIVISION
           </div>
-
           <div class="name">
             NORTHWIND
           </div>
-
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
-
         </div>
 
         <div class="dossier">
-
           <div class="code">
             TJ-01 // GREYFOX // RHINELAND DIVISION
           </div>
-
           <div class="name">
             GREYFOX
           </div>
-
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
-
         </div>
 
       </div>
-
     </div>
 
     <div class="footer">
@@ -427,64 +345,45 @@ button:active {
     </div>
 
   </div>
-
 </div>
 
 <script>
-
 function checkAnswer() {
+  const answer = document
+    .getElementById("answer")
+    .value
+    .trim()
+    .toLowerCase();
 
-  const answer =
-    document
-      .getElementById("answer")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const error =
-    document.getElementById("error");
-
-  const dossiers =
-    document.getElementById("dossiers");
-
-  const loginCard =
-    document.getElementById("loginCard");
+  const error = document.getElementById("error");
+  const dossiers = document.getElementById("dossiers");
+  const loginCard = document.getElementById("loginCard");
 
   if (
     answer === "drachen" ||
     answer === "drache" ||
     answer === "die drachen"
   ) {
-
     error.style.display = "none";
-
     loginCard.style.display = "none";
-
     dossiers.style.display = "block";
 
     dossiers.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
-
   } else {
-
     error.style.display = "block";
-
   }
-
 }
 
 document
   .getElementById("answer")
   .addEventListener("keydown", function(event) {
-
     if (event.key === "Enter") {
       checkAnswer();
     }
-
   });
-
 </script>
 
 </body>
