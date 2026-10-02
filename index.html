@@ -14,6 +14,7 @@ html,body {
   width:100%;
   min-height:100%;
   background:#050c12;
+  overflow-x:hidden;
 }
 
 body {
@@ -248,16 +249,15 @@ button:active { transform:translateY(1px); }
 }
 
 
-/* =========================================================
-   NORTHWIND
-   FESTER STANDARD FÜR ALLE 4 SEITEN
-   ========================================================= */
+/* NORTHWIND VIEWER */
 
 #northwindViewer {
   display:none;
   position:fixed;
   z-index:20;
   inset:0;
+  width:100vw;
+  max-width:100vw;
   background:rgba(2,7,10,.97);
   overflow:hidden;
   touch-action:pan-y;
@@ -266,17 +266,18 @@ button:active { transform:translateY(1px); }
 .file-stage {
   position:absolute;
   inset:0;
+  width:100%;
+  height:100%;
   overflow:hidden;
 }
 
 /*
-   MITTELWEG:
-   größer als letzter kleiner Stand,
-   deutlich kleiner als ursprünglicher Vollbild-Stand.
+  GRÖSSE BLEIBT EXAKT WIE IM LETZTEN STAND.
+  NUR DIE GESAMTE AKTE RÜCKT NACH LINKS.
 */
 .folder-image {
   position:absolute;
-  left:50%;
+  left:38%;
   top:50%;
   width:92%;
   height:92%;
@@ -289,26 +290,20 @@ button:active { transform:translateY(1px); }
 }
 
 /*
-   DIESE GEOMETRIE GILT FÜR JEDE SEITE.
-   Seite 1, 2, 3 und 4 springen NICHT mehr
-   in Größe oder Position.
-
-   Das Blatt sitzt jetzt deutlich weiter links.
+  DOKUMENT:
+  EXAKT GLEICHE GRÖSSE WIE VORHER.
+  ES RÜCKT UM DENSELBEN BETRAG NACH LINKS
+  WIE DIE AKTE.
 */
 .paper-image {
   position:absolute;
-
-  left:44%;
+  left:32%;
   top:50%;
-
   width:50%;
   height:68%;
-
   object-fit:contain;
   object-position:center center;
-
   transform:translate(0,-46%);
-
   transform-origin:left center;
 
   filter:
@@ -343,38 +338,37 @@ button:active { transform:translateY(1px); }
 }
 
 @keyframes lockBump {
-  0% {
-    transform:translate(0,-46%);
-  }
-  35% {
-    transform:translate(-3%,-46%) rotate(-.35deg);
-  }
-  65% {
-    transform:translate(2%,-46%) rotate(.2deg);
-  }
-  100% {
-    transform:translate(0,-46%);
-  }
+  0%   { transform:translate(0,-46%); }
+  35%  { transform:translate(-3%,-46%) rotate(-.35deg); }
+  65%  { transform:translate(2%,-46%) rotate(.2deg); }
+  100% { transform:translate(0,-46%); }
 }
 
 
-/* BEDIENUNG */
+/* OBERE BEDIENUNG */
 
 .viewer-top {
   position:absolute;
   z-index:30;
   top:max(10px,env(safe-area-inset-top));
-  left:14px;
-  right:14px;
+  left:max(14px,env(safe-area-inset-left));
+  right:max(14px,env(safe-area-inset-right));
+  width:auto;
+  max-width:calc(100vw - 28px);
 
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:8px;
 
+  overflow:hidden;
   pointer-events:none;
 }
 
 .viewer-title {
+  min-width:0;
+  flex:1 1 auto;
+
   padding:5px 8px;
   background:rgba(2,8,12,.68);
   border-left:2px solid #d8aa43;
@@ -383,17 +377,25 @@ button:active { transform:translateY(1px); }
   font-weight:700;
   letter-spacing:1.2px;
   text-transform:uppercase;
+  white-space:nowrap;
 }
 
 .close-file {
+  flex:0 0 auto;
   width:auto;
+  max-width:42vw;
+  margin:0;
   padding:5px 7px;
+
   background:rgba(2,8,12,.72);
   border:1px solid rgba(255,255,255,.30);
   color:#fff;
+
   font-size:7px;
   font-weight:700;
   letter-spacing:.7px;
+  white-space:nowrap;
+
   pointer-events:auto;
 }
 
@@ -427,7 +429,6 @@ button:active { transform:translateY(1px); }
   pointer-events:none;
 }
 
-
 @media (max-height:700px) {
   .page { padding-top:8px; }
 
@@ -459,7 +460,6 @@ button:active { transform:translateY(1px); }
     margin-bottom:13px;
   }
 }
-
 </style>
 </head>
 
@@ -476,9 +476,6 @@ button:active { transform:translateY(1px); }
 <div class="page">
 <div class="container">
 
-
-<!-- EINGANG -->
-
 <div id="entrance">
 
   <div class="header">
@@ -491,13 +488,11 @@ button:active { transform:translateY(1px); }
     </h1>
   </div>
 
-
   <div class="intro">
     Eine neue Übertragung wurde registriert.<br>
     Identitätsprüfung erforderlich.<br>
     Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
   </div>
-
 
   <div class="card">
 
@@ -529,7 +524,6 @@ button:active { transform:translateY(1px); }
 
   </div>
 
-
   <div class="footer">
     FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
     CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
@@ -537,9 +531,6 @@ button:active { transform:translateY(1px); }
 
 </div>
 
-
-
-<!-- AKTENAUSWAHL -->
 
 <div id="dossiers">
 
@@ -553,7 +544,6 @@ button:active { transform:translateY(1px); }
       AKTENZUGRIFF<br>
       FREIGEGEBEN
     </div>
-
 
     <div class="dossier" id="northwindDossier">
 
@@ -571,7 +561,6 @@ button:active { transform:translateY(1px); }
 
     </div>
 
-
     <div class="dossier" id="greyfoxDossier">
 
       <div class="code">
@@ -588,7 +577,6 @@ button:active { transform:translateY(1px); }
 
     </div>
 
-
     <div class="access-footer">
       FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
       CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
@@ -601,9 +589,6 @@ button:active { transform:translateY(1px); }
 </div>
 </div>
 
-
-
-<!-- NORTHWIND VIEWER -->
 
 <div id="northwindViewer">
 
@@ -625,7 +610,6 @@ button:active { transform:translateY(1px); }
 
   </div>
 
-
   <div class="viewer-top">
 
     <div class="viewer-title">
@@ -638,7 +622,6 @@ button:active { transform:translateY(1px); }
 
   </div>
 
-
   <div class="swipe-hint">
     ← ZURÜCK &nbsp; WISCHEN &nbsp; WEITER →
   </div>
@@ -650,13 +633,9 @@ button:active { transform:translateY(1px); }
 </div>
 
 
-
 <script>
 
-/* =========================================================
-   AUDIO
-   UNVERÄNDERT AUS DER FUNKTIONIERENDEN VERSION
-   ========================================================= */
+/* AUDIO – UNVERÄNDERT */
 
 let audioCtx = null;
 
@@ -681,9 +660,6 @@ async function ensureAudio() {
 
   return audioCtx.state === "running";
 }
-
-
-/* TASTENKLICK */
 
 function keyClick() {
 
@@ -719,9 +695,6 @@ function keyClick() {
   osc.start(now);
   osc.stop(now + 0.03);
 }
-
-
-/* BUTTON-KLACK */
 
 function buttonClick() {
 
@@ -760,9 +733,6 @@ function buttonClick() {
   osc.start(now);
   osc.stop(now + 0.075);
 }
-
-
-/* ZUGANG BESTÄTIGT */
 
 function grantedSound() {
 
@@ -804,9 +774,6 @@ function grantedSound() {
 
   });
 }
-
-
-/* PAPIERGERÄUSCH */
 
 function pageSound() {
 
@@ -863,9 +830,6 @@ function pageSound() {
   source.start();
 }
 
-
-/* GESPERRT */
-
 function lockedSound() {
 
   if (!audioCtx || audioCtx.state !== "running") return;
@@ -905,16 +869,13 @@ function lockedSound() {
 }
 
 
-/* =========================================================
-   IDENTITÄT
-   ========================================================= */
+/* IDENTITÄT */
 
 const answerField =
   document.getElementById("answer");
 
 const accessButton =
   document.getElementById("accessButton");
-
 
 answerField.addEventListener(
   "touchstart",
@@ -954,7 +915,6 @@ answerField.addEventListener(
   }
 );
 
-
 async function checkAnswer() {
 
   await ensureAudio();
@@ -975,7 +935,6 @@ async function checkAnswer() {
 
   const dossiers =
     document.getElementById("dossiers");
-
 
   if (
     answer === "drachen" ||
@@ -1005,7 +964,6 @@ async function checkAnswer() {
   }
 }
 
-
 accessButton.addEventListener(
   "touchstart",
   function() {
@@ -1026,7 +984,6 @@ accessButton.addEventListener(
   checkAnswer
 );
 
-
 answerField.addEventListener(
   "keydown",
   function(event) {
@@ -1042,9 +999,7 @@ answerField.addEventListener(
 );
 
 
-/* =========================================================
-   NORTHWIND
-   ========================================================= */
+/* NORTHWIND */
 
 const northwindViewer =
   document.getElementById("northwindViewer");
@@ -1070,13 +1025,11 @@ const paperImage =
 const pageIndicator =
   document.getElementById("pageIndicator");
 
-
 const folderFirst =
   "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
 
 const folderTurned =
   "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
-
 
 const northwindPages = [
 
@@ -1090,10 +1043,8 @@ const northwindPages = [
 
 ];
 
-
 let currentPage = 0;
 let changingPage = false;
-
 
 northwindDossier.addEventListener(
   "touchstart",
@@ -1102,7 +1053,6 @@ northwindDossier.addEventListener(
   },
   {passive:true}
 );
-
 
 northwindDossier.addEventListener(
   "click",
@@ -1131,7 +1081,6 @@ northwindDossier.addEventListener(
   }
 );
 
-
 greyfoxDossier.addEventListener(
   "touchstart",
   function() {
@@ -1139,7 +1088,6 @@ greyfoxDossier.addEventListener(
   },
   {passive:true}
 );
-
 
 greyfoxDossier.addEventListener(
   "click",
@@ -1151,7 +1099,6 @@ greyfoxDossier.addEventListener(
   }
 );
 
-
 closeFile.addEventListener(
   "touchstart",
   function() {
@@ -1159,7 +1106,6 @@ closeFile.addEventListener(
   },
   {passive:true}
 );
-
 
 closeFile.addEventListener(
   "click",
@@ -1175,7 +1121,6 @@ closeFile.addEventListener(
   }
 );
 
-
 function updateIndicator() {
 
   pageIndicator.textContent =
@@ -1186,16 +1131,13 @@ function updateIndicator() {
 }
 
 
-/* =========================================================
-   BLÄTTERN
-   ========================================================= */
+/* BLÄTTERN */
 
 async function nextPage() {
 
   if (changingPage) return;
 
   await ensureAudio();
-
 
   if (
     currentPage ===
@@ -1217,7 +1159,6 @@ async function nextPage() {
     return;
   }
 
-
   changingPage = true;
 
   pageSound();
@@ -1226,16 +1167,10 @@ async function nextPage() {
     "turn-left"
   );
 
-
   setTimeout(function() {
 
     currentPage++;
 
-
-    /*
-       Nur die Aktenvorlage wechselt.
-       Größe und Position bleiben identisch.
-    */
     if (currentPage === 0) {
       folderImage.src = folderFirst;
     }
@@ -1243,13 +1178,11 @@ async function nextPage() {
       folderImage.src = folderTurned;
     }
 
-
     paperImage.src =
       northwindPages[currentPage];
 
     paperImage.className =
       "paper-image turn-right";
-
 
     requestAnimationFrame(function() {
 
@@ -1262,9 +1195,7 @@ async function nextPage() {
 
     });
 
-
     updateIndicator();
-
 
     setTimeout(function() {
 
@@ -1272,18 +1203,15 @@ async function nextPage() {
 
     },260);
 
-
   },210);
 
 }
-
 
 async function previousPage() {
 
   if (changingPage) return;
 
   await ensureAudio();
-
 
   if (currentPage === 0) {
 
@@ -1302,7 +1230,6 @@ async function previousPage() {
     return;
   }
 
-
   changingPage = true;
 
   pageSound();
@@ -1311,11 +1238,9 @@ async function previousPage() {
     "turn-right"
   );
 
-
   setTimeout(function() {
 
     currentPage--;
-
 
     if (currentPage === 0) {
       folderImage.src = folderFirst;
@@ -1324,13 +1249,11 @@ async function previousPage() {
       folderImage.src = folderTurned;
     }
 
-
     paperImage.src =
       northwindPages[currentPage];
 
     paperImage.className =
       "paper-image turn-left";
-
 
     requestAnimationFrame(function() {
 
@@ -1343,9 +1266,7 @@ async function previousPage() {
 
     });
 
-
     updateIndicator();
-
 
     setTimeout(function() {
 
@@ -1353,19 +1274,15 @@ async function previousPage() {
 
     },260);
 
-
   },210);
 
 }
 
 
-/* =========================================================
-   WISCHEN
-   ========================================================= */
+/* WISCHEN */
 
 let touchStartX = 0;
 let touchStartY = 0;
-
 
 fileStage.addEventListener(
   "touchstart",
@@ -1386,7 +1303,6 @@ fileStage.addEventListener(
   {passive:true}
 );
 
-
 fileStage.addEventListener(
   "touchend",
   function(event) {
@@ -1402,14 +1318,12 @@ fileStage.addEventListener(
       touch.clientY -
       touchStartY;
 
-
     if (
       Math.abs(diffX) < 45 ||
       Math.abs(diffX) < Math.abs(diffY)
     ) {
       return;
     }
-
 
     if (diffX < 0) {
 
