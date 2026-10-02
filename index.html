@@ -1,410 +1,338 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NORTHWIND // GREYFOX</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#05090b;
-    color:#eee;
-    font-family:Arial,Helvetica,sans-serif;
+  margin:0;width:100%;height:100%;overflow:hidden;
+  background:#050b0e;color:#eee;
+  font-family:Arial,Helvetica,sans-serif
 }
+body{min-height:100dvh}
+button,input{font:inherit}
 
-body{
-    min-height:100dvh;
-}
-
-button,input{
-    font:inherit;
-}
-
-/* =========================================================
-   HAUPTSEITE
-   ========================================================= */
+/* =========================
+   STARTSEITE
+   ========================= */
 
 #mainScreen{
-    position:fixed;
-    inset:0;
-    min-height:100dvh;
-    overflow:hidden;
-    background:
-        linear-gradient(rgba(2,7,9,.18),rgba(2,7,9,.34)),
-        url("E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png")
-        center center / cover no-repeat;
+  position:fixed;inset:0;min-height:100dvh;overflow:hidden;
+  background:
+    linear-gradient(rgba(2,7,9,.18),rgba(2,7,9,.34)),
+    url("E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png")
+    center/cover no-repeat
 }
 
 .top-panel{
-    position:absolute;
-    left:6%;
-    right:6%;
-    top:max(6%,env(safe-area-inset-top));
-    padding:14px 15px 13px;
-    border-left:3px solid #c79b3c;
-    background:rgba(4,10,12,.72);
-    backdrop-filter:blur(2px);
+  position:absolute;
+  left:6%;right:6%;
+  top:max(6%,env(safe-area-inset-top));
+  padding:14px 15px 13px;
+  border-left:3px solid #c79b3c;
+  background:rgba(4,10,12,.72)
 }
 
 .kicker{
-    color:#d4ad55;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:1.4px;
-    margin-bottom:5px;
+  color:#d4ad55;font-size:10px;font-weight:700;
+  letter-spacing:1.4px;margin-bottom:5px
 }
 
 .agency{
-    font-family:Georgia,"Times New Roman",serif;
-    font-size:19px;
-    line-height:1.05;
-    letter-spacing:.3px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;line-height:1.05
 }
 
 .intro{
-    margin-top:9px;
-    color:#d8d8d8;
-    font-size:10px;
-    line-height:1.4;
-    max-width:95%;
+  margin-top:9px;color:#d8d8d8;
+  font-size:10px;line-height:1.4
 }
 
 #gate{
-    position:absolute;
-    left:7%;
-    right:7%;
-    top:43%;
-    padding:16px 15px;
-    background:rgba(4,10,12,.86);
-    border:1px solid rgba(201,165,87,.48);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  position:absolute;
+  left:7%;right:7%;top:43%;
+  padding:16px 15px;
+  background:rgba(4,10,12,.86);
+  border:1px solid rgba(201,165,87,.48)
 }
 
 .gate-title{
-    color:#d4ad55;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:1.4px;
-    margin-bottom:10px;
+  color:#d4ad55;font-size:10px;font-weight:700;
+  letter-spacing:1.4px;margin-bottom:10px
 }
 
 .question{
-    font-family:Georgia,"Times New Roman",serif;
-    font-size:15px;
-    line-height:1.3;
-    margin-bottom:12px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px;line-height:1.3;margin-bottom:12px
 }
 
 #answer{
-    width:100%;
-    border:1px solid rgba(255,255,255,.28);
-    background:rgba(255,255,255,.07);
-    color:#fff;
-    padding:10px 11px;
-    outline:none;
-    border-radius:0;
-    font-size:16px;
-}
-
-#answer:focus{
-    border-color:#c9a557;
+  width:100%;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.07);
+  color:#fff;padding:10px 11px;
+  outline:none;border-radius:0;font-size:16px
 }
 
 #checkButton{
-    width:100%;
-    margin-top:10px;
-    padding:11px;
-    border:1px solid #c9a557;
-    background:#b58b34;
-    color:#080b0c;
-    font-weight:800;
-    font-size:10px;
-    letter-spacing:1px;
+  width:100%;margin-top:10px;padding:11px;
+  border:1px solid #c9a557;
+  background:#b58b34;color:#080b0c;
+  font-weight:800;font-size:10px;letter-spacing:1px
 }
 
 #error{
-    display:none;
-    margin-top:9px;
-    color:#d9b1a8;
-    font-size:9px;
-    line-height:1.35;
+  display:none;margin-top:9px;
+  color:#d9b1a8;font-size:9px
 }
 
 .footer{
-    position:absolute;
-    left:6%;
-    right:6%;
-    bottom:max(3%,env(safe-area-inset-bottom));
-    color:rgba(255,255,255,.62);
-    font-size:7px;
-    line-height:1.6;
-    letter-spacing:.7px;
+  position:absolute;
+  left:6%;right:6%;
+  bottom:max(3%,env(safe-area-inset-bottom));
+  color:rgba(255,255,255,.62);
+  font-size:7px;line-height:1.6;letter-spacing:.7px
 }
 
-/* =========================================================
-   AKTENAUSWAHL
-   ========================================================= */
+/* =========================
+   AUSWAHL
+   ========================= */
 
 #selection{
-    display:none;
-    position:absolute;
-    inset:0;
-    padding:
-        max(8vh,env(safe-area-inset-top))
-        7%
-        max(5vh,env(safe-area-inset-bottom));
-    background:rgba(2,7,9,.42);
+  display:none;position:absolute;inset:0;
+  padding:max(8vh,env(safe-area-inset-top)) 7%
+          max(5vh,env(safe-area-inset-bottom));
+  background:rgba(2,7,9,.42)
 }
 
 .confirmed{
-    margin-top:7vh;
-    padding:12px 13px;
-    border-left:3px solid #c79b3c;
-    background:rgba(4,10,12,.76);
+  margin-top:7vh;padding:12px 13px;
+  border-left:3px solid #c79b3c;
+  background:rgba(4,10,12,.76)
 }
 
 .confirmed .small{
-    color:#d4ad55;
-    font-size:9px;
-    font-weight:700;
-    letter-spacing:1.3px;
+  color:#d4ad55;font-size:9px;font-weight:700;
+  letter-spacing:1.3px
 }
 
 .confirmed .big{
-    margin-top:4px;
-    font-family:Georgia,"Times New Roman",serif;
-    font-size:18px;
+  margin-top:4px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px
 }
 
 .cards{
-    margin-top:20px;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+  margin-top:20px;
+  display:flex;flex-direction:column;gap:12px
 }
 
 .agent-card{
-    width:100%;
-    padding:16px 14px;
-    text-align:left;
-    border:1px solid rgba(201,165,87,.46);
-    background:rgba(4,10,12,.83);
-    color:#fff;
+  width:100%;padding:16px 14px;text-align:left;
+  border:1px solid rgba(201,165,87,.46);
+  background:rgba(4,10,12,.83);color:#fff
 }
 
 .agent-code{
-    color:#d4ad55;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1.4px;
+  color:#d4ad55;font-size:10px;font-weight:800;
+  letter-spacing:1.4px
 }
 
 .agent-name{
-    margin-top:5px;
-    font-family:Georgia,"Times New Roman",serif;
-    font-size:21px;
+  margin-top:5px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:21px
 }
 
 .agent-division{
-    margin-top:4px;
-    color:#aaa;
-    font-size:8px;
-    letter-spacing:.9px;
+  margin-top:4px;color:#aaa;
+  font-size:8px;letter-spacing:.9px
 }
 
-/* =========================================================
-   NORTHWIND DOSSIER
-   ========================================================= */
+/* ==========================================================
+   NORTHWIND
+   TEST 5 MASTER
+   Diese Geometrie stammt DIREKT aus Test 5.
+   ========================================================== */
 
 #northwindViewer{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:50;
-    overflow:hidden;
-    background:#050b0e;
+  display:none;
+  position:fixed;inset:0;z-index:50;
+  overflow:hidden;background:#050b0e
 }
 
 /*
-   MASTER-GEOMETRIE – TEST 4
-   Ordner + Dokument bleiben EINE gemeinsame Einheit.
+ TEST 5:
+ .unit {
+   width:92vw;
+   height:92vh;
+   left:38%;
+   top:50%;
+ }
 */
 #dossierUnit{
-    position:absolute;
-    width:92vw;
-    height:92vh;
-    left:38%;
-    top:50%;
-    transform:translate(-50%,-50%);
+  position:absolute;
+  width:92vw;
+  height:92vh;
+  left:38%;
+  top:50%;
+  transform:translate(-50%,-50%)
 }
 
-.folder-image{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    user-select:none;
-    pointer-events:none;
+.folder{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  pointer-events:none;
+  user-select:none
 }
 
-.paper-box{
-    position:absolute;
-    left:36.775%;
-    top:22.487%;
-    width:54.082%;
-    height:62.891%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
+/*
+ TEST 5 ORIGINALWERTE:
+
+ x0=351/1024
+ y0=307/1536
+ x1=956/1024
+ y1=1350/1536
+ pad=.025
+
+ Daraus:
+ left  = 36.77734375%
+ top   = 22.48697917%
+ width = 54.08203125%
+ height= 62.890625%
+*/
+.paperbox{
+  position:absolute;
+  left:36.77734375%;
+  top:22.48697917%;
+  width:54.08203125%;
+  height:62.890625%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:5
 }
 
-.paper-image{
-    display:block;
-    max-width:100%;
-    max-height:100%;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    user-select:none;
-    filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
+.paper{
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
+  pointer-events:none;
+  user-select:none
 }
+
+/* Bedienung UNABHÄNGIG von der Akte */
 
 .file-label{
-    position:fixed;
-    z-index:70;
-    top:max(12px,env(safe-area-inset-top));
-    left:max(12px,env(safe-area-inset-left));
-    padding:7px 9px;
-    border-left:2px solid #d8aa43;
-    background:rgba(2,8,12,.76);
-    color:#d8aa43;
-    font-size:8px;
-    font-weight:700;
-    letter-spacing:1px;
-    white-space:nowrap;
+  position:fixed;
+  z-index:80;
+  top:max(12px,env(safe-area-inset-top));
+  left:max(12px,env(safe-area-inset-left));
+  padding:7px 9px;
+  border-left:2px solid #d8aa43;
+  background:rgba(2,8,12,.76);
+  color:#d8aa43;
+  font-size:8px;font-weight:700;
+  letter-spacing:1px;
+  white-space:nowrap
 }
 
 .close-file{
-    position:fixed;
-    z-index:70;
-    top:max(12px,env(safe-area-inset-top));
-    right:max(12px,env(safe-area-inset-right));
-    width:auto;
-    margin:0;
-    padding:7px 9px;
-    border:1px solid rgba(255,255,255,.42);
-    background:rgba(2,8,12,.86);
-    color:#fff;
-    font-size:8px;
-    font-weight:700;
-    letter-spacing:.8px;
-    white-space:nowrap;
+  position:fixed;
+  z-index:80;
+  top:max(12px,env(safe-area-inset-top));
+  right:max(12px,env(safe-area-inset-right));
+  width:auto;
+  padding:7px 9px;
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(2,8,12,.86);
+  color:#fff;
+  font-size:8px;font-weight:700;
+  letter-spacing:.8px;
+  white-space:nowrap
 }
 
 .page-indicator{
-    position:fixed;
-    z-index:70;
-    left:50%;
-    bottom:max(13px,env(safe-area-inset-bottom));
-    transform:translateX(-50%);
-    padding:6px 9px;
-    background:rgba(2,8,12,.75);
-    color:rgba(255,255,255,.78);
-    font-size:7px;
-    letter-spacing:.8px;
-    white-space:nowrap;
+  position:fixed;
+  z-index:80;
+  left:50%;
+  bottom:max(13px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  padding:6px 9px;
+  background:rgba(2,8,12,.75);
+  color:#ddd;
+  font-size:7px;letter-spacing:.8px;
+  white-space:nowrap
 }
 
-.lock-bump{
-    animation:lockBump .18s ease-in-out 2;
-}
-
-@keyframes lockBump{
-    0%{transform:translate(-50%,-50%)}
-    50%{transform:translate(calc(-50% - 7px),-50%)}
-    100%{transform:translate(-50%,-50%)}
-}
-
-.page-turn-left{
-    animation:turnLeft .22s ease;
-}
-
-.page-turn-right{
-    animation:turnRight .22s ease;
-}
-
-@keyframes turnLeft{
-    0%{opacity:1;transform:translateX(0)}
-    48%{opacity:.25;transform:translateX(-12px)}
-    100%{opacity:1;transform:translateX(0)}
-}
-
-@keyframes turnRight{
-    0%{opacity:1;transform:translateX(0)}
-    48%{opacity:.25;transform:translateX(12px)}
-    100%{opacity:1;transform:translateX(0)}
-}
-
-/* =========================================================
-   LESEMODUS – TEST 5
-   ========================================================= */
+/* =========================
+   TEST 5 LESEMODUS
+   ========================= */
 
 #reader{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:200;
-    background:rgba(2,7,10,.98);
-    align-items:center;
-    justify-content:center;
-    padding:
-        max(62px,calc(env(safe-area-inset-top) + 48px))
-        10px
-        max(14px,env(safe-area-inset-bottom));
+  display:none;
+  position:fixed;
+  z-index:200;
+  inset:0;
+  background:rgba(2,7,10,.98);
+  align-items:center;
+  justify-content:center;
+  padding:62px 10px 14px
 }
 
 #reader.open{
-    display:flex;
+  display:flex
 }
 
 #readerImage{
-    display:block;
-    max-width:96vw;
-    max-height:calc(100dvh - 82px);
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    filter:drop-shadow(0 5px 18px rgba(0,0,0,.8));
+  display:block;
+  max-width:96vw;
+  max-height:calc(100dvh - 82px);
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 5px 18px #000)
 }
 
-.reader-close{
-    position:fixed;
-    z-index:250;
-    top:max(12px,env(safe-area-inset-top));
-    right:max(12px,env(safe-area-inset-right));
-    width:auto;
-    padding:9px 11px;
-    border:1px solid rgba(255,255,255,.5);
-    background:#071015;
-    color:#fff;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:.8px;
-    white-space:nowrap;
+/*
+ Eigenständiger Zurück-Button.
+ Nicht Bestandteil des Bildes.
+*/
+#readerClose{
+  position:fixed;
+  z-index:300;
+  top:max(12px,env(safe-area-inset-top));
+  right:max(12px,env(safe-area-inset-right));
+  width:auto;
+  padding:9px 11px;
+  border:1px solid rgba(255,255,255,.5);
+  background:#071015;
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.8px;
+  white-space:nowrap
 }
 
-/* GREYFOX bleibt vorerst nur Auswahl */
+.lock-bump{
+  animation:lockBump .18s ease-in-out 2
+}
+
+@keyframes lockBump{
+  0%{transform:translate(-50%,-50%)}
+  50%{transform:translate(calc(-50% - 7px),-50%)}
+  100%{transform:translate(-50%,-50%)}
+}
+
 </style>
 </head>
 
@@ -412,634 +340,819 @@ button,input{
 
 <div id="mainScreen">
 
-    <div class="top-panel" id="topPanel">
-        <div class="kicker">ZENTRALSTELLE FÜR BESONDERE LAGEN</div>
-        <div class="agency">REFERAT F – BESONDERE ERMITTLUNGEN</div>
-        <div class="intro">
-            Eine neue Übertragung wurde registriert.
-            Identitätsprüfung erforderlich.
-            Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
-        </div>
+  <div class="top-panel" id="topPanel">
+    <div class="kicker">
+      ZENTRALSTELLE FÜR BESONDERE LAGEN
     </div>
 
-    <div id="gate">
-        <div class="gate-title">IDENTITY VERIFICATION</div>
-
-        <div class="question">
-            Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
-        </div>
-
-        <input
-            id="answer"
-            type="text"
-            autocomplete="off"
-            autocapitalize="none"
-            spellcheck="false"
-            placeholder="Antwort eingeben"
-        >
-
-        <button id="checkButton">ZUGANG PRÜFEN</button>
-
-        <div id="error">
-            IDENTITÄT NICHT BESTÄTIGT // ERNEUTE PRÜFUNG ERFORDERLICH
-        </div>
+    <div class="agency">
+      REFERAT F – BESONDERE ERMITTLUNGEN
     </div>
 
-    <div id="selection">
+    <div class="intro">
+      Eine neue Übertragung wurde registriert.
+      Identitätsprüfung erforderlich.
+      Unbefugter Zugriff wird selbstverständlich
+      mit strengem Stirnrunzeln geahndet.
+    </div>
+  </div>
 
-        <div class="confirmed">
-            <div class="small">IDENTITÄT BESTÄTIGT</div>
-            <div class="big">AKTENZUGRIFF FREIGEGEBEN</div>
-        </div>
+  <div id="gate">
 
-        <div class="cards">
-
-            <button class="agent-card" id="northwindCard">
-                <div class="agent-code">F-01</div>
-                <div class="agent-name">NORTHWIND</div>
-                <div class="agent-division">BERLIN DIVISION</div>
-            </button>
-
-            <button class="agent-card" id="greyfoxCard">
-                <div class="agent-code">TJ-01</div>
-                <div class="agent-name">GREYFOX</div>
-                <div class="agent-division">RHINELAND DIVISION</div>
-            </button>
-
-        </div>
+    <div class="gate-title">
+      IDENTITY VERIFICATION
     </div>
 
-    <div class="footer">
-        FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
-        CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
+    <div class="question">
+      Welche Wesen wurden in der Berliner Außenstelle
+      zuletzt auf Kaffee eingestellt?
     </div>
+
+    <input
+      id="answer"
+      type="text"
+      autocomplete="off"
+      autocapitalize="none"
+      spellcheck="false"
+      placeholder="Antwort eingeben"
+    >
+
+    <button id="checkButton">
+      ZUGANG PRÜFEN
+    </button>
+
+    <div id="error">
+      IDENTITÄT NICHT BESTÄTIGT //
+      ERNEUTE PRÜFUNG ERFORDERLICH
+    </div>
+
+  </div>
+
+
+  <div id="selection">
+
+    <div class="confirmed">
+      <div class="small">
+        IDENTITÄT BESTÄTIGT
+      </div>
+
+      <div class="big">
+        AKTENZUGRIFF FREIGEGEBEN
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <button class="agent-card" id="northwindCard">
+        <div class="agent-code">F-01</div>
+        <div class="agent-name">NORTHWIND</div>
+        <div class="agent-division">
+          BERLIN DIVISION
+        </div>
+      </button>
+
+      <button class="agent-card" id="greyfoxCard">
+        <div class="agent-code">TJ-01</div>
+        <div class="agent-name">GREYFOX</div>
+        <div class="agent-division">
+          RHINELAND DIVISION
+        </div>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
+    CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
+  </div>
 
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      NORTHWIND VIEWER
-     ======================================================= -->
+     ========================= -->
 
 <div id="northwindViewer">
 
-    <div class="file-label">F-01 // NORTHWIND</div>
+  <div class="file-label">
+    F-01 // NORTHWIND
+  </div>
 
-    <button class="close-file" id="closeFile">
-        AKTE SCHLIESSEN
-    </button>
+  <button class="close-file" id="closeFile">
+    AKTE SCHLIESSEN
+  </button>
 
-    <div id="dossierUnit">
 
-        <img
-            id="folderImage"
-            class="folder-image"
-            src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
-            alt=""
-        >
+  <div id="dossierUnit">
 
-        <div class="paper-box" id="paperBox">
-            <img
-                id="paperImage"
-                class="paper-image"
-                src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
-                alt="NORTHWIND Dokument"
-            >
-        </div>
+    <img
+      id="folderImage"
+      class="folder"
+      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
+      alt=""
+    >
+
+    <div class="paperbox" id="paperBox">
+
+      <img
+        id="paperImage"
+        class="paper"
+        src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
+        alt="NORTHWIND Dokument"
+      >
 
     </div>
 
-    <div class="page-indicator" id="pageIndicator">
-        SEITE 1 / 4
-    </div>
+  </div>
+
+
+  <div class="page-indicator" id="pageIndicator">
+    SEITE 1 / 4
+  </div>
 
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      LESEMODUS
-     ======================================================= -->
+     ========================= -->
 
 <div id="reader">
 
-    <button class="reader-close" id="readerClose">
-        ZURÜCK ZUR AKTE
-    </button>
+  <button id="readerClose">
+    ZURÜCK ZUR AKTE
+  </button>
 
-    <img id="readerImage" src="" alt="Dokument Lesemodus">
+  <img
+    id="readerImage"
+    src=""
+    alt="Dokument Lesemodus"
+  >
 
 </div>
 
 
 <script>
 
-/* =========================================================
-   AUDIO – FUNKTIONIERENDER STAND
-   ========================================================= */
+/* ==========================================================
+   AUDIO
+   Der funktionierende Stand bleibt unverändert.
+   ========================================================== */
 
 let audioCtx=null;
 
 async function ensureAudio(){
-    const AudioContext=window.AudioContext||window.webkitAudioContext;
-    if(!AudioContext)return false;
 
-    if(!audioCtx){
-        audioCtx=new AudioContext();
-    }
+  const AudioContext=
+    window.AudioContext||
+    window.webkitAudioContext;
 
-    if(audioCtx.state==="suspended"){
-        try{
-            await audioCtx.resume();
-        }catch(e){}
-    }
+  if(!AudioContext)return false;
 
-    return audioCtx.state==="running";
+  if(!audioCtx){
+    audioCtx=new AudioContext();
+  }
+
+  if(audioCtx.state==="suspended"){
+    try{
+      await audioCtx.resume();
+    }catch(e){}
+  }
+
+  return audioCtx.state==="running";
 }
 
 
 function keyClick(){
-    if(!audioCtx || audioCtx.state!=="running")return;
 
-    const now=audioCtx.currentTime;
-    const osc=audioCtx.createOscillator();
-    const gain=audioCtx.createGain();
+  if(!audioCtx || audioCtx.state!=="running")return;
 
-    osc.type="square";
-    osc.frequency.setValueAtTime(850,now);
-    osc.frequency.exponentialRampToValueAtTime(500,now+.03);
+  const now=audioCtx.currentTime;
 
-    gain.gain.setValueAtTime(.055,now);
-    gain.gain.exponentialRampToValueAtTime(.001,now+.03);
+  const osc=audioCtx.createOscillator();
+  const gain=audioCtx.createGain();
 
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+  osc.type="square";
 
-    osc.start(now);
-    osc.stop(now+.03);
+  osc.frequency.setValueAtTime(850,now);
+  osc.frequency.exponentialRampToValueAtTime(
+    500,
+    now+.03
+  );
+
+  gain.gain.setValueAtTime(.055,now);
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    now+.03
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start(now);
+  osc.stop(now+.03);
 }
 
 
 function buttonClick(){
-    if(!audioCtx || audioCtx.state!=="running")return;
 
-    const now=audioCtx.currentTime;
-    const osc=audioCtx.createOscillator();
-    const gain=audioCtx.createGain();
+  if(!audioCtx || audioCtx.state!=="running")return;
 
-    osc.type="square";
-    osc.frequency.setValueAtTime(230,now);
-    osc.frequency.exponentialRampToValueAtTime(120,now+.075);
+  const now=audioCtx.currentTime;
 
-    gain.gain.setValueAtTime(.09,now);
-    gain.gain.exponentialRampToValueAtTime(.001,now+.075);
+  const osc=audioCtx.createOscillator();
+  const gain=audioCtx.createGain();
 
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+  osc.type="square";
 
-    osc.start(now);
-    osc.stop(now+.075);
+  osc.frequency.setValueAtTime(230,now);
+  osc.frequency.exponentialRampToValueAtTime(
+    120,
+    now+.075
+  );
+
+  gain.gain.setValueAtTime(.09,now);
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    now+.075
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start(now);
+  osc.stop(now+.075);
 }
 
 
 function grantedSound(){
-    if(!audioCtx || audioCtx.state!=="running")return;
 
-    const now=audioCtx.currentTime;
+  if(!audioCtx || audioCtx.state!=="running")return;
 
-    [520,780].forEach((freq,i)=>{
-        const osc=audioCtx.createOscillator();
-        const gain=audioCtx.createGain();
+  const now=audioCtx.currentTime;
 
-        osc.type="sine";
-        osc.frequency.value=freq;
+  [520,780].forEach((freq,i)=>{
 
-        const start=now+(i*.11);
-
-        gain.gain.setValueAtTime(.001,start);
-        gain.gain.exponentialRampToValueAtTime(.075,start+.015);
-        gain.gain.exponentialRampToValueAtTime(.001,start+.16);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start(start);
-        osc.stop(start+.17);
-    });
-}
-
-
-function pageSound(){
-    if(!audioCtx || audioCtx.state!=="running")return;
-
-    const duration=.24;
-    const rate=audioCtx.sampleRate;
-    const buffer=audioCtx.createBuffer(
-        1,
-        Math.floor(rate*duration),
-        rate
-    );
-
-    const data=buffer.getChannelData(0);
-
-    for(let i=0;i<data.length;i++){
-        const t=i/data.length;
-        const envelope=Math.sin(Math.PI*t);
-        data[i]=(Math.random()*2-1)*envelope*.5;
-    }
-
-    const source=audioCtx.createBufferSource();
-    source.buffer=buffer;
-
-    const filter=audioCtx.createBiquadFilter();
-    filter.type="bandpass";
-    filter.frequency.value=1500;
-    filter.Q.value=.55;
-
-    const gain=audioCtx.createGain();
-    gain.gain.value=.15;
-
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    source.start();
-}
-
-
-function lockedSound(){
-    if(!audioCtx || audioCtx.state!=="running")return;
-
-    const now=audioCtx.currentTime;
     const osc=audioCtx.createOscillator();
     const gain=audioCtx.createGain();
 
-    osc.type="sawtooth";
-    osc.frequency.setValueAtTime(125,now);
-    osc.frequency.exponentialRampToValueAtTime(65,now+.17);
+    osc.type="sine";
+    osc.frequency.value=freq;
 
-    gain.gain.setValueAtTime(.12,now);
-    gain.gain.exponentialRampToValueAtTime(.001,now+.17);
+    const start=now+(i*.11);
+
+    gain.gain.setValueAtTime(.001,start);
+
+    gain.gain.exponentialRampToValueAtTime(
+      .075,
+      start+.015
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      start+.16
+    );
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
 
-    osc.start(now);
-    osc.stop(now+.17);
+    osc.start(start);
+    osc.stop(start+.17);
+
+  });
 }
 
 
-/* =========================================================
+function pageSound(){
+
+  if(!audioCtx || audioCtx.state!=="running")return;
+
+  const duration=.24;
+  const rate=audioCtx.sampleRate;
+
+  const buffer=audioCtx.createBuffer(
+    1,
+    Math.floor(rate*duration),
+    rate
+  );
+
+  const data=buffer.getChannelData(0);
+
+  for(let i=0;i<data.length;i++){
+
+    const t=i/data.length;
+    const envelope=Math.sin(Math.PI*t);
+
+    data[i]=
+      (Math.random()*2-1)*
+      envelope*
+      .5;
+  }
+
+  const source=audioCtx.createBufferSource();
+  source.buffer=buffer;
+
+  const filter=audioCtx.createBiquadFilter();
+
+  filter.type="bandpass";
+  filter.frequency.value=1500;
+  filter.Q.value=.55;
+
+  const gain=audioCtx.createGain();
+  gain.gain.value=.15;
+
+  source.connect(filter);
+  filter.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  source.start();
+}
+
+
+function lockedSound(){
+
+  if(!audioCtx || audioCtx.state!=="running")return;
+
+  const now=audioCtx.currentTime;
+
+  const osc=audioCtx.createOscillator();
+  const gain=audioCtx.createGain();
+
+  osc.type="sawtooth";
+
+  osc.frequency.setValueAtTime(125,now);
+
+  osc.frequency.exponentialRampToValueAtTime(
+    65,
+    now+.17
+  );
+
+  gain.gain.setValueAtTime(.12,now);
+
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    now+.17
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start(now);
+  osc.stop(now+.17);
+}
+
+
+/* =========================
    ELEMENTE
-   ========================================================= */
+   ========================= */
 
-const gate=document.getElementById("gate");
-const selection=document.getElementById("selection");
-const topPanel=document.getElementById("topPanel");
-const answer=document.getElementById("answer");
-const checkButton=document.getElementById("checkButton");
-const error=document.getElementById("error");
+const gate=
+  document.getElementById("gate");
 
-const northwindCard=document.getElementById("northwindCard");
-const greyfoxCard=document.getElementById("greyfoxCard");
+const selection=
+  document.getElementById("selection");
 
-const northwindViewer=document.getElementById("northwindViewer");
-const closeFile=document.getElementById("closeFile");
+const topPanel=
+  document.getElementById("topPanel");
 
-const dossierUnit=document.getElementById("dossierUnit");
-const folderImage=document.getElementById("folderImage");
-const paperBox=document.getElementById("paperBox");
-const paperImage=document.getElementById("paperImage");
-const pageIndicator=document.getElementById("pageIndicator");
+const answer=
+  document.getElementById("answer");
 
-const reader=document.getElementById("reader");
-const readerImage=document.getElementById("readerImage");
-const readerClose=document.getElementById("readerClose");
+const checkButton=
+  document.getElementById("checkButton");
+
+const error=
+  document.getElementById("error");
+
+const northwindCard=
+  document.getElementById("northwindCard");
+
+const greyfoxCard=
+  document.getElementById("greyfoxCard");
+
+const northwindViewer=
+  document.getElementById("northwindViewer");
+
+const closeFile=
+  document.getElementById("closeFile");
+
+const dossierUnit=
+  document.getElementById("dossierUnit");
+
+const folderImage=
+  document.getElementById("folderImage");
+
+const paperBox=
+  document.getElementById("paperBox");
+
+const paperImage=
+  document.getElementById("paperImage");
+
+const pageIndicator=
+  document.getElementById("pageIndicator");
+
+const reader=
+  document.getElementById("reader");
+
+const readerImage=
+  document.getElementById("readerImage");
+
+const readerClose=
+  document.getElementById("readerClose");
 
 
-/* =========================================================
-   NORTHWIND SEITEN
-   ========================================================= */
+/* =========================
+   NORTHWIND-SEITEN
+   ========================= */
 
 const pages=[
-    "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
-    "728EE74F-078F-40C9-A363-05238EAAFCDB.png",
-    "CFB497BF-B1ED-4D66-87B3-EA1BC446E78F.png",
-    "DE9C9AAE-6122-4768-B61A-549A3AFD9F70.png"
+
+  "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
+
+  "728EE74F-078F-40C9-A363-05238EAAFCDB.png",
+
+  "CFB497BF-B1ED-4D66-87B3-EA1BC446E78F.png",
+
+  "DE9C9AAE-6122-4768-B61A-549A3AFD9F70.png"
+
 ];
 
 const folderPage1=
-    "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
+  "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
 
 const folderTurned=
-    "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
+  "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
 
 let currentPage=0;
 
 
-/* =========================================================
-   AUDIO AUF ECHTER INTERAKTION ENTSPERREN
-   ========================================================= */
+/* =========================
+   AUDIO ENTSPERREN
+   ========================= */
 
-document.addEventListener("touchstart",()=>{
+document.addEventListener(
+  "touchstart",
+  ()=>{
     ensureAudio();
-},{passive:true});
+  },
+  {passive:true}
+);
 
-document.addEventListener("pointerdown",()=>{
+document.addEventListener(
+  "pointerdown",
+  ()=>{
     ensureAudio();
-},{passive:true});
+  },
+  {passive:true}
+);
 
 
-/* =========================================================
+/* =========================
    LOGIN
-   ========================================================= */
+   ========================= */
 
-answer.addEventListener("focus",async()=>{
+answer.addEventListener(
+  "focus",
+  async()=>{
     await ensureAudio();
-});
+  }
+);
 
-answer.addEventListener("input",async()=>{
+answer.addEventListener(
+  "input",
+  async()=>{
     await ensureAudio();
     keyClick();
-});
+  }
+);
 
-answer.addEventListener("keydown",e=>{
+answer.addEventListener(
+  "keydown",
+  e=>{
     if(e.key==="Enter"){
-        checkAnswer();
+      checkAnswer();
     }
-});
+  }
+);
 
-checkButton.addEventListener("touchstart",()=>{
+checkButton.addEventListener(
+  "touchstart",
+  ()=>{
     ensureAudio();
-},{passive:true});
+  },
+  {passive:true}
+);
 
-checkButton.addEventListener("click",checkAnswer);
+checkButton.addEventListener(
+  "click",
+  checkAnswer
+);
 
 
 async function checkAnswer(){
 
-    await ensureAudio();
-    buttonClick();
+  await ensureAudio();
 
-    const value=answer.value
-        .trim()
-        .toLocaleLowerCase("de-DE");
+  buttonClick();
 
-    if(value==="drachen"){
+  const value=
+    answer.value
+      .trim()
+      .toLocaleLowerCase("de-DE");
 
-        error.style.display="none";
+  if(value==="drachen"){
 
-        setTimeout(()=>{
-            grantedSound();
-        },90);
+    error.style.display="none";
 
-        gate.style.display="none";
-        topPanel.style.display="none";
-        selection.style.display="block";
+    setTimeout(()=>{
+      grantedSound();
+    },90);
 
-    }else{
+    gate.style.display="none";
+    topPanel.style.display="none";
+    selection.style.display="block";
 
-        error.style.display="block";
+  }else{
 
-    }
+    error.style.display="block";
+
+  }
 }
 
 
-/* =========================================================
-   NORTHWIND ÖFFNEN / SCHLIESSEN
-   ========================================================= */
+/* =========================
+   AKTE ÖFFNEN
+   ========================= */
 
-northwindCard.addEventListener("touchstart",()=>{
+northwindCard.addEventListener(
+  "touchstart",
+  ()=>{
     ensureAudio();
-},{passive:true});
+  },
+  {passive:true}
+);
 
-northwindCard.addEventListener("click",async()=>{
+northwindCard.addEventListener(
+  "click",
+  async()=>{
 
     await ensureAudio();
+
     buttonClick();
 
     currentPage=0;
+
     updatePage();
 
     northwindViewer.style.display="block";
-
-});
-
-
-closeFile.addEventListener("touchstart",()=>{
-    ensureAudio();
-},{passive:true});
-
-closeFile.addEventListener("click",async()=>{
-
-    await ensureAudio();
-    buttonClick();
-
-    closeReader();
-    northwindViewer.style.display="none";
-
-});
-
-
-greyfoxCard.addEventListener("click",async()=>{
-    await ensureAudio();
-    buttonClick();
-});
-
-
-/* =========================================================
-   SEITENANZEIGE
-   ========================================================= */
-
-function updatePage(){
-
-    paperImage.src=pages[currentPage];
-
-    folderImage.src=
-        currentPage===0
-        ? folderPage1
-        : folderTurned;
-
-    pageIndicator.textContent=
-        `SEITE ${currentPage+1} / 4`;
-
-}
-
-
-/* =========================================================
-   BLÄTTERN
-   ========================================================= */
-
-async function nextPage(){
-
-    await ensureAudio();
-
-    if(currentPage>=pages.length-1){
-
-        lockedSound();
-
-        dossierUnit.classList.remove("lock-bump");
-        void dossierUnit.offsetWidth;
-        dossierUnit.classList.add("lock-bump");
-
-        return;
-    }
-
-    pageSound();
-
-    currentPage++;
-
-    dossierUnit.classList.remove(
-        "page-turn-left",
-        "page-turn-right"
-    );
-
-    void dossierUnit.offsetWidth;
-
-    dossierUnit.classList.add("page-turn-left");
-
-    updatePage();
-}
-
-
-async function previousPage(){
-
-    await ensureAudio();
-
-    if(currentPage<=0){
-        return;
-    }
-
-    pageSound();
-
-    currentPage--;
-
-    dossierUnit.classList.remove(
-        "page-turn-left",
-        "page-turn-right"
-    );
-
-    void dossierUnit.offsetWidth;
-
-    dossierUnit.classList.add("page-turn-right");
-
-    updatePage();
-}
-
-
-/* =========================================================
-   SWIPE
-   ========================================================= */
-
-let touchStartX=0;
-let touchStartY=0;
-
-northwindViewer.addEventListener(
-    "touchstart",
-    async e=>{
-
-        await ensureAudio();
-
-        if(reader.classList.contains("open")){
-            return;
-        }
-
-        const t=e.changedTouches[0];
-
-        touchStartX=t.clientX;
-        touchStartY=t.clientY;
-
-    },
-    {passive:true}
+  }
 );
 
 
-northwindViewer.addEventListener(
-    "touchend",
-    e=>{
+/* =========================
+   AKTE SCHLIESSEN
+   ========================= */
 
-        if(reader.classList.contains("open")){
-            return;
-        }
-
-        const t=e.changedTouches[0];
-
-        const dx=t.clientX-touchStartX;
-        const dy=t.clientY-touchStartY;
-
-        if(
-            Math.abs(dx)<45 ||
-            Math.abs(dx)<Math.abs(dy)
-        ){
-            return;
-        }
-
-        if(dx<0){
-            nextPage();
-        }else{
-            previousPage();
-        }
-
-    },
-    {passive:true}
+closeFile.addEventListener(
+  "touchstart",
+  ()=>{
+    ensureAudio();
+  },
+  {passive:true}
 );
 
-
-/* =========================================================
-   LESEMODUS
-   ========================================================= */
-
-paperBox.addEventListener("click",async e=>{
-
-    e.stopPropagation();
-
-    await ensureAudio();
-    buttonClick();
-
-    readerImage.src=pages[currentPage];
-    reader.classList.add("open");
-
-});
-
-
-/*
-   WICHTIG:
-   Dieser Button ist ein eigenes festes Element.
-   Er hängt NICHT am Bild und funktioniert unabhängig davon.
-*/
-readerClose.addEventListener("touchstart",e=>{
-    e.stopPropagation();
-    ensureAudio();
-},{passive:true});
-
-readerClose.addEventListener("click",async e=>{
+closeFile.addEventListener(
+  "click",
+  async e=>{
 
     e.preventDefault();
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
     closeReader();
 
-});
+    northwindViewer.style.display="none";
+  }
+);
 
 
-function closeReader(){
-    reader.classList.remove("open");
+greyfoxCard.addEventListener(
+  "click",
+  async()=>{
+    await ensureAudio();
+    buttonClick();
+  }
+);
+
+
+/* =========================
+   SEITE AKTUALISIEREN
+   ========================= */
+
+function updatePage(){
+
+  paperImage.src=
+    pages[currentPage];
+
+  folderImage.src=
+    currentPage===0
+      ? folderPage1
+      : folderTurned;
+
+  pageIndicator.textContent=
+    `SEITE ${currentPage+1} / 4`;
 }
 
 
-/*
-   Zusätzlich: Tippen auf den dunklen Bereich außerhalb
-   des Dokuments bringt ebenfalls zurück.
-*/
-reader.addEventListener("click",e=>{
+/* =========================
+   BLÄTTERN
+   ========================= */
 
-    if(e.target===reader){
-        closeReader();
+async function nextPage(){
+
+  await ensureAudio();
+
+  if(currentPage>=pages.length-1){
+
+    lockedSound();
+
+    dossierUnit.classList.remove(
+      "lock-bump"
+    );
+
+    void dossierUnit.offsetWidth;
+
+    dossierUnit.classList.add(
+      "lock-bump"
+    );
+
+    return;
+  }
+
+  pageSound();
+
+  currentPage++;
+
+  updatePage();
+}
+
+
+async function previousPage(){
+
+  await ensureAudio();
+
+  if(currentPage<=0){
+    return;
+  }
+
+  pageSound();
+
+  currentPage--;
+
+  updatePage();
+}
+
+
+/* =========================
+   SWIPE
+   ========================= */
+
+let touchStartX=0;
+let touchStartY=0;
+
+
+northwindViewer.addEventListener(
+  "touchstart",
+  async e=>{
+
+    await ensureAudio();
+
+    if(reader.classList.contains("open")){
+      return;
     }
 
-});
+    const t=e.changedTouches[0];
+
+    touchStartX=t.clientX;
+    touchStartY=t.clientY;
+  },
+  {passive:true}
+);
+
+
+northwindViewer.addEventListener(
+  "touchend",
+  e=>{
+
+    if(reader.classList.contains("open")){
+      return;
+    }
+
+    const t=e.changedTouches[0];
+
+    const dx=
+      t.clientX-touchStartX;
+
+    const dy=
+      t.clientY-touchStartY;
+
+    if(
+      Math.abs(dx)<45 ||
+      Math.abs(dx)<Math.abs(dy)
+    ){
+      return;
+    }
+
+    if(dx<0){
+      nextPage();
+    }else{
+      previousPage();
+    }
+  },
+  {passive:true}
+);
+
+
+/* ==========================================================
+   TEST-5-LESEMODUS
+   Dokument antippen -> groß
+   ========================================================== */
+
+paperBox.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    readerImage.src=
+      pages[currentPage];
+
+    reader.classList.add("open");
+  }
+);
+
+
+/* ==========================================================
+   ZURÜCK ZUR AKTE
+   Eigenständiger Button, unabhängig vom Bild
+   ========================================================== */
+
+readerClose.addEventListener(
+  "touchstart",
+  e=>{
+    e.stopPropagation();
+    ensureAudio();
+  },
+  {passive:true}
+);
+
+
+readerClose.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    closeReader();
+  }
+);
+
+
+function closeReader(){
+
+  reader.classList.remove("open");
+
+}
+
+
+/* Dunklen Hintergrund antippen = ebenfalls zurück */
+
+reader.addEventListener(
+  "click",
+  e=>{
+
+    if(e.target===reader){
+      closeReader();
+    }
+  }
+);
 
 </script>
 
