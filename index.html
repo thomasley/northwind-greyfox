@@ -2,15 +2,18 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>NORTHWIND & GREYFOX</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
   min-height: 100%;
   background: #050c12;
 }
@@ -20,7 +23,7 @@ body {
   color: #f2f2f2;
 }
 
-/* DER SCHREIBTISCH – WIRD NICHT MEHR GEFRESSEN */
+/* SCHREIBTISCH – FUNKTIONIERT, ALSO FINGER WEG 😄 */
 .desk-background {
   position: fixed;
   z-index: 0;
@@ -35,15 +38,20 @@ body {
   position: fixed;
   z-index: 1;
   inset: 0;
-  background: rgba(2, 8, 12, 0.08);
+  background: rgba(2, 8, 12, 0.04);
   pointer-events: none;
 }
 
+/* STARTSEITE */
 .page {
   position: relative;
   z-index: 2;
-  min-height: 100vh;
-  padding: 26px 18px 55px;
+  width: 100%;
+  min-height: 100dvh;
+  padding:
+    max(12px, env(safe-area-inset-top))
+    16px
+    max(16px, env(safe-area-inset-bottom));
 }
 
 .container {
@@ -52,79 +60,104 @@ body {
   margin: 0 auto;
 }
 
-/* KOPF – DEUTLICH KOMPAKTER */
+/* KOPF */
 .header {
-  padding: 15px 17px 17px;
-  margin-bottom: 14px;
-  background: rgba(3, 12, 19, 0.64);
+  padding: 10px 14px 11px;
+  margin-bottom: 9px;
+
+  background: rgba(3, 12, 19, 0.57);
   border-left: 3px solid #d8aa43;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.30);
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
 .agency {
+  margin-bottom: 5px;
+
   color: #d8aa43;
-  font-size: 10px;
+
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 2.5px;
-  line-height: 1.4;
+  letter-spacing: 2px;
+  line-height: 1.3;
+
   text-transform: uppercase;
-  margin-bottom: 8px;
 }
 
 h1 {
   margin: 0;
+
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(25px, 6.5vw, 38px);
+  font-size: clamp(21px, 5.2vw, 31px);
   line-height: 1.02;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px #000;
+
+  letter-spacing: 0.3px;
+
+  text-shadow: 0 2px 7px #000;
 }
 
-/* EINLEITUNG */
+/* KURZE MELDUNG */
 .intro {
-  padding: 13px 16px;
-  margin-bottom: 16px;
-  background: rgba(3, 12, 19, 0.62);
+  padding: 9px 13px;
+  margin-bottom: 9px;
+
+  background: rgba(3, 12, 19, 0.54);
   border-left: 3px solid #d8aa43;
-  font-size: 14px;
-  line-height: 1.5;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.30);
+
+  font-size: 11px;
+  line-height: 1.42;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
 /* IDENTITÄTSPRÜFUNG */
 .card {
-  padding: 18px 17px;
-  background: rgba(3, 13, 21, 0.76);
-  border: 1px solid rgba(215,224,230,0.55);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.38);
+  padding: 13px 14px;
+
+  background: rgba(3, 13, 21, 0.68);
+
+  border: 1px solid rgba(215,224,230,0.50);
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.34);
 }
 
 .label {
+  margin-bottom: 8px;
+
   color: #d8aa43;
-  font-size: 10px;
+
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
+
   text-transform: uppercase;
-  margin-bottom: 13px;
 }
 
 .question {
-  margin-bottom: 16px;
+  margin-bottom: 11px;
+
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 20px;
-  line-height: 1.3;
-  text-shadow: 0 2px 7px #000;
+  font-size: 16px;
+  line-height: 1.25;
+
+  text-shadow: 0 2px 6px #000;
 }
 
 input {
+  display: block;
+
   width: 100%;
-  padding: 13px 14px;
-  margin-bottom: 11px;
-  font-size: 16px;
-  color: white;
-  background: rgba(0, 6, 10, 0.76);
+
+  padding: 10px 12px;
+  margin: 0 0 8px;
+
+  color: #fff;
+  background: rgba(0, 6, 10, 0.72);
+
   border: 1px solid #89949d;
   outline: none;
+
+  font-size: 14px;
 }
 
 input::placeholder {
@@ -136,15 +169,23 @@ input:focus {
 }
 
 button {
+  display: block;
+
   width: 100%;
-  padding: 14px;
-  border: none;
+
+  padding: 10px 12px;
+
+  border: 0;
+
   background: #d8aa43;
   color: #080b0e;
-  font-size: 13px;
+
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
+
   text-transform: uppercase;
+
   cursor: pointer;
 }
 
@@ -154,50 +195,81 @@ button:active {
 
 #error {
   display: none;
-  margin-top: 12px;
-  padding: 11px;
-  background: rgba(0,0,0,0.45);
-  border-left: 3px solid #d8aa43;
+
+  margin-top: 8px;
+  padding: 8px 10px;
+
+  background: rgba(0,0,0,0.44);
+
+  border-left: 2px solid #d8aa43;
+
   color: #f0cf7c;
-  font-size: 13px;
-  line-height: 1.45;
+
+  font-size: 10px;
+  line-height: 1.35;
 }
 
-/* AKTEN NACH RICHTIGER ANTWORT */
+/* KLEINER ABSCHLUSS */
+.footer {
+  margin-top: 9px;
+  padding: 7px 10px;
+
+  background: rgba(2, 8, 12, 0.48);
+
+  color: rgba(240,240,240,0.72);
+
+  font-size: 7px;
+  letter-spacing: 1.3px;
+  line-height: 1.45;
+
+  text-transform: uppercase;
+}
+
+/* NACH DEM RICHTIGEN CODE */
 #dossiers {
   display: none;
-  margin-top: 16px;
+  margin-top: 10px;
 }
 
 .access {
-  padding: 18px 17px;
-  background: rgba(3, 13, 21, 0.78);
-  border: 1px solid rgba(215,224,230,0.55);
+  padding: 17px;
+
+  background: rgba(3, 13, 21, 0.76);
+
+  border: 1px solid rgba(215,224,230,0.52);
+
   box-shadow: 0 10px 30px rgba(0,0,0,0.38);
 }
 
 .access-small {
+  margin-bottom: 6px;
+
   color: #d8aa43;
-  font-size: 10px;
+
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
+
   text-transform: uppercase;
-  margin-bottom: 7px;
 }
 
 .access-title {
-  margin-bottom: 17px;
+  margin-bottom: 15px;
+
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 27px;
+  font-size: 24px;
   line-height: 1.05;
+
   text-shadow: 0 2px 7px #000;
 }
 
 .dossier {
-  padding: 15px;
-  margin-bottom: 11px;
-  background: rgba(1, 8, 13, 0.76);
-  border: 1px solid rgba(215,224,230,0.45);
+  padding: 14px;
+  margin-bottom: 10px;
+
+  background: rgba(1, 8, 13, 0.73);
+
+  border: 1px solid rgba(215,224,230,0.44);
 }
 
 .dossier:last-child {
@@ -206,45 +278,70 @@ button:active {
 
 .code {
   color: #d8aa43;
-  font-size: 9px;
+
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 1.5px;
-  line-height: 1.5;
+  letter-spacing: 1.3px;
+  line-height: 1.45;
 }
 
 .name {
-  margin: 9px 0 5px;
+  margin: 7px 0 4px;
+
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 23px;
+  font-size: 21px;
 }
 
 .status {
   color: #c1c7cc;
-  font-size: 10px;
-  letter-spacing: 1px;
+
+  font-size: 9px;
+  letter-spacing: 0.8px;
 }
 
-.footer {
-  margin-top: 18px;
-  padding: 10px 12px;
-  background: rgba(2, 8, 12, 0.55);
-  color: rgba(240,240,240,0.72);
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  line-height: 1.6;
-  text-transform: uppercase;
-}
+/* AUF SEHR KLEINEN HANDYS NOCH ETWAS KOMPAKTER */
+@media (max-height: 700px) {
 
-@media (min-width: 700px) {
   .page {
-    padding-top: 40px;
+    padding-top: 8px;
+  }
+
+  .header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .intro {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 6px;
+  }
+
+  .card {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .question {
+    font-size: 15px;
+  }
+
+  .footer {
+    margin-top: 6px;
   }
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- ECHTES BILD: DAS BLEIBT GENAU SO -->
 <img
   class="desk-background"
   src="E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png"
@@ -254,54 +351,67 @@ button:active {
 <div class="shade"></div>
 
 <div class="page">
+
   <div class="container">
 
-    <div class="header">
-      <div class="agency">
-        Zentralstelle für besondere Lagen
+    <div id="entrance">
+
+      <div class="header">
+
+        <div class="agency">
+          Zentralstelle für besondere Lagen
+        </div>
+
+        <h1>
+          REFERAT F – BESONDERE ERMITTLUNGEN
+        </h1>
+
       </div>
 
-      <h1>
-        REFERAT F –<br>
-        BESONDERE ERMITTLUNGEN
-      </h1>
+      <div class="intro">
+        Eine neue Übertragung wurde registriert.<br>
+        Identitätsprüfung erforderlich.<br>
+        Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
+      </div>
+
+      <div class="card" id="loginCard">
+
+        <div class="label">
+          Identity Verification
+        </div>
+
+        <div class="question">
+          Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
+        </div>
+
+        <input
+          id="answer"
+          type="text"
+          placeholder="Antwort eingeben"
+          autocomplete="off"
+        >
+
+        <button onclick="checkAnswer()">
+          Zugang prüfen
+        </button>
+
+        <div id="error">
+          Identität konnte nicht bestätigt werden.<br>
+          Hinweis: Sie sind größer als Aktenordner und mögen offenbar Kaffee.
+        </div>
+
+      </div>
+
+      <div class="footer">
+        FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
+        CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
+      </div>
+
     </div>
 
-    <div class="intro">
-      Eine neue Übertragung wurde registriert.<br>
-      Identitätsprüfung erforderlich.<br>
-      Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
-    </div>
-
-    <div class="card" id="loginCard">
-
-      <div class="label">
-        Identity Verification
-      </div>
-
-      <div class="question">
-        Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
-      </div>
-
-      <input
-        id="answer"
-        type="text"
-        placeholder="Antwort eingeben"
-        autocomplete="off"
-      >
-
-      <button onclick="checkAnswer()">
-        Zugang prüfen
-      </button>
-
-      <div id="error">
-        Identität konnte nicht bestätigt werden.<br>
-        Hinweis: Sie sind größer als Aktenordner und mögen offenbar Kaffee.
-      </div>
-
-    </div>
 
     <div id="dossiers">
+
       <div class="access">
 
         <div class="access-small">
@@ -313,77 +423,101 @@ button:active {
         </div>
 
         <div class="dossier">
+
           <div class="code">
             F-01 // NORTHWIND // BERLIN DIVISION
           </div>
+
           <div class="name">
             NORTHWIND
           </div>
+
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
+
         </div>
 
         <div class="dossier">
+
           <div class="code">
             TJ-01 // GREYFOX // RHINELAND DIVISION
           </div>
+
           <div class="name">
             GREYFOX
           </div>
+
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
+
         </div>
 
       </div>
-    </div>
 
-    <div class="footer">
-      FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
-      CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
     </div>
 
   </div>
+
 </div>
 
-<script>
-function checkAnswer() {
-  const answer = document
-    .getElementById("answer")
-    .value
-    .trim()
-    .toLowerCase();
 
-  const error = document.getElementById("error");
-  const dossiers = document.getElementById("dossiers");
-  const loginCard = document.getElementById("loginCard");
+<script>
+
+function checkAnswer() {
+
+  const answer =
+    document
+      .getElementById("answer")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const error =
+    document.getElementById("error");
+
+  const entrance =
+    document.getElementById("entrance");
+
+  const dossiers =
+    document.getElementById("dossiers");
 
   if (
     answer === "drachen" ||
     answer === "drache" ||
     answer === "die drachen"
   ) {
+
     error.style.display = "none";
-    loginCard.style.display = "none";
+
+    entrance.style.display = "none";
+
     dossiers.style.display = "block";
 
-    dossiers.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
+
   } else {
+
     error.style.display = "block";
+
   }
+
 }
 
 document
   .getElementById("answer")
   .addEventListener("keydown", function(event) {
+
     if (event.key === "Enter") {
       checkAnswer();
     }
+
   });
+
 </script>
 
 </body>
