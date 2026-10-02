@@ -9,444 +9,470 @@
 * { box-sizing: border-box; }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-  background: #050c12;
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  background:#050c12;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #f2f2f2;
-  overflow-x: hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#f2f2f2;
 }
 
 .desk-background {
-  position: fixed;
-  z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  position:fixed;
+  z-index:0;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
 }
 
 .shade {
-  position: fixed;
-  z-index: 1;
-  inset: 0;
-  background: rgba(2, 8, 12, 0.04);
-  pointer-events: none;
+  position:fixed;
+  z-index:1;
+  inset:0;
+  background:rgba(2,8,12,.04);
+  pointer-events:none;
 }
 
 .page {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 100dvh;
-  padding:
-    max(12px, env(safe-area-inset-top))
-    16px
-    max(16px, env(safe-area-inset-bottom));
+  position:relative;
+  z-index:2;
+  width:100%;
+  min-height:100dvh;
+  padding:max(12px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));
 }
 
 .container {
-  width: 100%;
-  max-width: 620px;
-  margin: 0 auto;
+  width:100%;
+  max-width:620px;
+  margin:0 auto;
 }
 
 .header {
-  padding: 10px 14px 11px;
-  margin-bottom: 9px;
-  background: rgba(3, 12, 19, 0.57);
-  border-left: 3px solid #d8aa43;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding:10px 14px 11px;
+  margin-bottom:9px;
+  background:rgba(3,12,19,.57);
+  border-left:3px solid #d8aa43;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
 }
 
 .agency {
-  margin-bottom: 5px;
-  color: #d8aa43;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  line-height: 1.3;
-  text-transform: uppercase;
+  margin-bottom:5px;
+  color:#d8aa43;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:2px;
+  line-height:1.3;
+  text-transform:uppercase;
 }
 
 h1 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(21px, 5.2vw, 31px);
-  line-height: 1.02;
-  letter-spacing: 0.3px;
-  text-shadow: 0 2px 7px #000;
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(21px,5.2vw,31px);
+  line-height:1.02;
+  letter-spacing:.3px;
+  text-shadow:0 2px 7px #000;
 }
 
 .intro {
-  padding: 9px 13px;
-  margin-bottom: 9px;
-  background: rgba(3, 12, 19, 0.54);
-  border-left: 3px solid #d8aa43;
-  font-size: 11px;
-  line-height: 1.42;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding:9px 13px;
+  margin-bottom:9px;
+  background:rgba(3,12,19,.54);
+  border-left:3px solid #d8aa43;
+  font-size:11px;
+  line-height:1.42;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
 }
 
 .card {
-  padding: 13px 14px;
-  background: rgba(3, 13, 21, 0.68);
-  border: 1px solid rgba(215,224,230,0.50);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.34);
+  padding:13px 14px;
+  background:rgba(3,13,21,.68);
+  border:1px solid rgba(215,224,230,.50);
+  box-shadow:0 8px 25px rgba(0,0,0,.34);
 }
 
 .label {
-  margin-bottom: 8px;
-  color: #d8aa43;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  margin-bottom:8px;
+  color:#d8aa43;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
 .question {
-  margin-bottom: 11px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 16px;
-  line-height: 1.25;
-  text-shadow: 0 2px 6px #000;
+  margin-bottom:11px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:16px;
+  line-height:1.25;
+  text-shadow:0 2px 6px #000;
 }
 
 input {
-  display: block;
-  width: 100%;
-  padding: 10px 12px;
-  margin: 0 0 8px;
-  color: #fff;
-  background: rgba(0, 6, 10, 0.72);
-  border: 1px solid #89949d;
-  outline: none;
-  font-size: 14px;
+  display:block;
+  width:100%;
+  padding:10px 12px;
+  margin:0 0 8px;
+  color:#fff;
+  background:rgba(0,6,10,.72);
+  border:1px solid #89949d;
+  outline:none;
+  font-size:14px;
 }
 
-input::placeholder { color: #aeb4b9; }
-input:focus { border-color: #d8aa43; }
+input::placeholder { color:#aeb4b9; }
+input:focus { border-color:#d8aa43; }
 
 button {
-  display: block;
-  width: 100%;
-  padding: 10px 12px;
-  border: 0;
-  background: #d8aa43;
-  color: #080b0e;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  cursor: pointer;
+  display:block;
+  width:100%;
+  padding:10px 12px;
+  border:0;
+  background:#d8aa43;
+  color:#080b0e;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  cursor:pointer;
 }
 
-button:active { transform: translateY(1px); }
+button:active { transform:translateY(1px); }
 
 #error {
-  display: none;
-  margin-top: 8px;
-  padding: 8px 10px;
-  background: rgba(0,0,0,0.44);
-  border-left: 2px solid #d8aa43;
-  color: #f0cf7c;
-  font-size: 10px;
-  line-height: 1.35;
+  display:none;
+  margin-top:8px;
+  padding:8px 10px;
+  background:rgba(0,0,0,.44);
+  border-left:2px solid #d8aa43;
+  color:#f0cf7c;
+  font-size:10px;
+  line-height:1.35;
 }
 
 .footer {
-  margin-top: 9px;
-  padding: 7px 10px;
-  background: rgba(2, 8, 12, 0.48);
-  color: rgba(240,240,240,0.72);
-  font-size: 7px;
-  letter-spacing: 1.3px;
-  line-height: 1.45;
-  text-transform: uppercase;
+  margin-top:9px;
+  padding:7px 10px;
+  background:rgba(2,8,12,.48);
+  color:rgba(240,240,240,.72);
+  font-size:7px;
+  letter-spacing:1.3px;
+  line-height:1.45;
+  text-transform:uppercase;
 }
 
 
-/* AKTENAUSWAHL */
+/* =========================
+   AKTENAUSWAHL
+   ========================= */
 
 #dossiers {
-  display: none;
-  min-height: calc(100dvh - 28px);
-  align-items: center;
+  display:none;
+  min-height:calc(100dvh - 28px);
+  align-items:center;
 }
 
 .access {
-  width: 100%;
-  padding: 18px 17px;
-  background: rgba(3, 13, 21, 0.70);
-  border: 1px solid rgba(215,224,230,0.52);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.38);
+  width:100%;
+  padding:18px 17px;
+  background:rgba(3,13,21,.70);
+  border:1px solid rgba(215,224,230,.52);
+  box-shadow:0 10px 30px rgba(0,0,0,.38);
 }
 
 .access-small {
-  margin-bottom: 7px;
-  color: #d8aa43;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
+  margin-bottom:7px;
+  color:#d8aa43;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:2.2px;
+  text-transform:uppercase;
 }
 
 .access-title {
-  margin-bottom: 18px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 27px;
-  line-height: 1.05;
-  text-shadow: 0 2px 7px #000;
+  margin-bottom:18px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:27px;
+  line-height:1.05;
+  text-shadow:0 2px 7px #000;
 }
 
 .dossier {
-  position: relative;
-  padding: 16px;
-  margin-bottom: 11px;
-  background: rgba(1, 8, 13, 0.74);
-  border: 1px solid rgba(215,224,230,0.46);
-  transition: 0.15s ease;
-  cursor: pointer;
+  position:relative;
+  padding:16px;
+  margin-bottom:11px;
+  background:rgba(1,8,13,.74);
+  border:1px solid rgba(215,224,230,.46);
+  transition:.15s ease;
+  cursor:pointer;
 }
 
-.dossier:last-child { margin-bottom: 0; }
+.dossier:last-child { margin-bottom:0; }
 
 .dossier:active {
-  border-color: #d8aa43;
-  transform: scale(0.99);
+  border-color:#d8aa43;
+  transform:scale(.99);
 }
 
 .code {
-  color: #d8aa43;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  line-height: 1.45;
+  color:#d8aa43;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:1.4px;
+  line-height:1.45;
 }
 
 .name {
-  margin: 8px 0 5px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 23px;
+  margin:8px 0 5px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:23px;
 }
 
 .status {
-  color: #c1c7cc;
-  font-size: 9px;
-  letter-spacing: 0.9px;
+  color:#c1c7cc;
+  font-size:9px;
+  letter-spacing:.9px;
 }
 
 .access-footer {
-  margin-top: 13px;
-  color: rgba(240,240,240,0.65);
-  font-size: 7px;
-  letter-spacing: 1.3px;
-  line-height: 1.5;
-  text-transform: uppercase;
+  margin-top:13px;
+  color:rgba(240,240,240,.65);
+  font-size:7px;
+  letter-spacing:1.3px;
+  line-height:1.5;
+  text-transform:uppercase;
 }
 
 
-/* NORTHWIND AKTE */
+/* =========================
+   NORTHWIND VIEWER
+   ========================= */
 
 #northwindViewer {
-  display: none;
-  position: fixed;
-  z-index: 20;
-  inset: 0;
-  background: #080b0e;
-  overflow: hidden;
-  touch-action: pan-y;
+  display:none;
+  position:fixed;
+  z-index:20;
+  inset:0;
+  background:rgba(2,7,10,.97);
+  overflow:hidden;
+  touch-action:pan-y;
 }
 
 .file-stage {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background: #080b0e;
+  position:absolute;
+  inset:0;
+  overflow:hidden;
 }
 
+/*
+  WICHTIG:
+  Die komplette Akte wird jetzt NICHT mehr
+  bildfüllend aufgeblasen.
+*/
 .folder-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  user-select: none;
-  -webkit-user-select: none;
-  pointer-events: none;
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:84%;
+  height:84%;
+  transform:translate(-50%,-50%);
+  object-fit:contain;
+  object-position:center center;
+  user-select:none;
+  -webkit-user-select:none;
+  pointer-events:none;
 }
 
+/*
+  Dokument passend innerhalb der kleineren Akte.
+*/
 .paper-image {
-  position: absolute;
+  position:absolute;
+  left:50%;
+  top:50%;
 
-  /*
-     Das Blatt liegt auf der rechten Papierfläche
-     der Aktenvorlage.
-  */
-  left: 30.5%;
-  top: 13.5%;
-  width: 61%;
-  height: 76%;
+  width:45%;
+  height:61%;
 
-  object-fit: contain;
-  object-position: center top;
+  object-fit:contain;
+  object-position:center center;
+
+  transform:
+    translate(-7%,-46%);
+
+  transform-origin:left center;
 
   filter:
-    drop-shadow(0 3px 3px rgba(0,0,0,.28))
-    sepia(.04);
+    drop-shadow(0 2px 3px rgba(0,0,0,.30))
+    sepia(.03);
 
-  transform-origin: left center;
-
-  user-select: none;
-  -webkit-user-select: none;
-  pointer-events: none;
+  user-select:none;
+  -webkit-user-select:none;
+  pointer-events:none;
 
   transition:
-    transform 240ms ease,
-    opacity 240ms ease;
+    transform 230ms ease,
+    opacity 230ms ease;
 }
 
 .paper-image.turn-left {
-  transform: translateX(-22%) rotateY(-12deg) rotate(-1deg);
-  opacity: 0;
+  transform:
+    translate(-30%,-46%)
+    rotate(-1.2deg);
+  opacity:0;
 }
 
 .paper-image.turn-right {
-  transform: translateX(22%) rotateY(12deg) rotate(1deg);
-  opacity: 0;
+  transform:
+    translate(15%,-46%)
+    rotate(1.2deg);
+  opacity:0;
 }
 
 .paper-image.lock-bump {
-  animation: lockBump 280ms ease;
+  animation:lockBump 280ms ease;
 }
 
 @keyframes lockBump {
-  0%   { transform: translateX(0); }
-  35%  { transform: translateX(-10px) rotate(-0.4deg); }
-  65%  { transform: translateX(5px) rotate(0.2deg); }
-  100% { transform: translateX(0); }
+  0% {
+    transform:translate(-7%,-46%);
+  }
+  35% {
+    transform:translate(-10%,-46%) rotate(-.35deg);
+  }
+  65% {
+    transform:translate(-5%,-46%) rotate(.2deg);
+  }
+  100% {
+    transform:translate(-7%,-46%);
+  }
 }
 
+
+/* dezente Bedienung */
+
 .viewer-top {
-  position: absolute;
-  z-index: 30;
-  top: max(10px, env(safe-area-inset-top));
-  left: 12px;
-  right: 12px;
+  position:absolute;
+  z-index:30;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  top:max(10px,env(safe-area-inset-top));
+  left:14px;
+  right:14px;
 
-  pointer-events: none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  pointer-events:none;
 }
 
 .viewer-title {
-  padding: 7px 10px;
-  background: rgba(2,8,12,.72);
-  border-left: 2px solid #d8aa43;
+  padding:5px 8px;
+  background:rgba(2,8,12,.68);
+  border-left:2px solid #d8aa43;
 
-  color: #d8aa43;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  color:#d8aa43;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
 }
 
 .close-file {
-  width: auto;
-  padding: 7px 10px;
+  width:auto;
+  padding:5px 7px;
 
-  background: rgba(2,8,12,.78);
-  border: 1px solid rgba(255,255,255,.35);
-  color: #fff;
+  background:rgba(2,8,12,.72);
+  border:1px solid rgba(255,255,255,.30);
+  color:#fff;
 
-  font-size: 9px;
-  letter-spacing: 1px;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:.7px;
 
-  pointer-events: auto;
+  pointer-events:auto;
 }
 
 .page-indicator {
-  position: absolute;
-  z-index: 30;
+  position:absolute;
+  z-index:30;
 
-  bottom: max(14px, env(safe-area-inset-bottom));
-  left: 50%;
-  transform: translateX(-50%);
+  bottom:max(13px,env(safe-area-inset-bottom));
+  left:50%;
+  transform:translateX(-50%);
 
-  padding: 6px 10px;
+  padding:5px 8px;
 
-  background: rgba(2,8,12,.72);
-  border: 1px solid rgba(255,255,255,.25);
+  background:rgba(2,8,12,.66);
+  border:1px solid rgba(255,255,255,.20);
 
-  color: rgba(255,255,255,.86);
-  font-size: 8px;
-  letter-spacing: 1.3px;
-  white-space: nowrap;
+  color:rgba(255,255,255,.78);
+  font-size:7px;
+  letter-spacing:1px;
+  white-space:nowrap;
 
-  pointer-events: none;
+  pointer-events:none;
 }
 
 .swipe-hint {
-  position: absolute;
-  z-index: 30;
+  position:absolute;
+  z-index:30;
 
-  bottom: calc(max(14px, env(safe-area-inset-bottom)) + 31px);
-  left: 50%;
-  transform: translateX(-50%);
+  bottom:calc(max(13px,env(safe-area-inset-bottom)) + 28px);
+  left:50%;
+  transform:translateX(-50%);
 
-  color: rgba(255,255,255,.68);
-  font-size: 8px;
-  letter-spacing: 1px;
-  white-space: nowrap;
+  color:rgba(255,255,255,.55);
+  font-size:7px;
+  letter-spacing:.7px;
+  white-space:nowrap;
 
-  text-shadow: 0 1px 4px #000;
-  pointer-events: none;
+  text-shadow:0 1px 4px #000;
+  pointer-events:none;
 }
 
 
-/* KLEINE DISPLAYS */
+@media (max-height:700px) {
 
-@media (max-height: 700px) {
-
-  .page { padding-top: 8px; }
+  .page { padding-top:8px; }
 
   .header {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin-bottom: 6px;
+    padding-top:8px;
+    padding-bottom:8px;
+    margin-bottom:6px;
   }
 
-  h1 { font-size: 20px; }
+  h1 { font-size:20px; }
 
   .intro {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-bottom: 6px;
+    padding-top:7px;
+    padding-bottom:7px;
+    margin-bottom:6px;
   }
 
   .card {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top:10px;
+    padding-bottom:10px;
   }
 
-  .question { font-size: 15px; }
-  .footer { margin-top: 6px; }
-  .access { padding: 14px; }
+  .question { font-size:15px; }
+
+  .footer { margin-top:6px; }
+
+  .access { padding:14px; }
 
   .access-title {
-    font-size: 23px;
-    margin-bottom: 13px;
+    font-size:23px;
+    margin-bottom:13px;
   }
 }
+
 </style>
 </head>
 
@@ -471,6 +497,7 @@ button:active { transform: translateY(1px); }
 <div id="entrance">
 
   <div class="header">
+
     <div class="agency">
       Zentralstelle für besondere Lagen
     </div>
@@ -478,6 +505,7 @@ button:active { transform: translateY(1px); }
     <h1>
       REFERAT F – BESONDERE ERMITTLUNGEN
     </h1>
+
   </div>
 
 
@@ -544,10 +572,8 @@ button:active { transform: translateY(1px); }
     </div>
 
 
-    <div
-      class="dossier"
-      id="northwindDossier"
-    >
+    <div class="dossier" id="northwindDossier">
+
       <div class="code">
         F-01 // NORTHWIND // BERLIN DIVISION
       </div>
@@ -559,13 +585,12 @@ button:active { transform: translateY(1px); }
       <div class="status">
         DOSSIER // BEREIT ZUR ÜBERTRAGUNG
       </div>
+
     </div>
 
 
-    <div
-      class="dossier"
-      id="greyfoxDossier"
-    >
+    <div class="dossier" id="greyfoxDossier">
+
       <div class="code">
         TJ-01 // GREYFOX // RHINELAND DIVISION
       </div>
@@ -577,6 +602,7 @@ button:active { transform: translateY(1px); }
       <div class="status">
         DOSSIER // BEREIT ZUR ÜBERTRAGUNG
       </div>
+
     </div>
 
 
@@ -588,6 +614,7 @@ button:active { transform: translateY(1px); }
   </div>
 
 </div>
+
 
 </div>
 </div>
@@ -623,10 +650,7 @@ button:active { transform: translateY(1px); }
       F-01 // NORTHWIND
     </div>
 
-    <button
-      class="close-file"
-      id="closeFile"
-    >
+    <button class="close-file" id="closeFile">
       AKTE SCHLIESSEN
     </button>
 
@@ -634,13 +658,11 @@ button:active { transform: translateY(1px); }
 
 
   <div class="swipe-hint">
-    ← ZURÜCK &nbsp;&nbsp; WISCHEN &nbsp;&nbsp; WEITER →
+    ← ZURÜCK &nbsp; WISCHEN &nbsp; WEITER →
   </div>
 
-  <div
-    class="page-indicator"
-    id="pageIndicator"
-  >
+
+  <div class="page-indicator" id="pageIndicator">
     F-01 // SEITE 1 VON 4
   </div>
 
@@ -655,39 +677,38 @@ button:active { transform: translateY(1px); }
    ========================================================= */
 
 let audioCtx = null;
-let soundUnlocked = false;
 
 
-function unlockSound() {
-
-  if (soundUnlocked) return;
+/*
+  iPhone/Safari:
+  Nicht mehr nur EINMAL als "freigeschaltet" markieren.
+  Bei echter Benutzeraktion wird der Context immer geprüft.
+*/
+async function ensureAudio() {
 
   const AudioContext =
     window.AudioContext ||
     window.webkitAudioContext;
 
-  if (!AudioContext) return;
+  if (!AudioContext) return false;
+
 
   if (!audioCtx) {
     audioCtx = new AudioContext();
   }
 
+
   if (audioCtx.state === "suspended") {
-    audioCtx.resume();
+
+    try {
+      await audioCtx.resume();
+    }
+    catch(e) {}
+
   }
 
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
 
-  gain.gain.value = 0.0001;
-
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.01);
-
-  soundUnlocked = true;
+  return audioCtx.state === "running";
 }
 
 
@@ -705,13 +726,18 @@ function keyClick() {
 
   osc.type = "square";
 
-  osc.frequency.setValueAtTime(850, now);
+  osc.frequency.setValueAtTime(850,now);
+
   osc.frequency.exponentialRampToValueAtTime(
     500,
     now + 0.018
   );
 
-  gain.gain.setValueAtTime(0.055, now);
+  gain.gain.setValueAtTime(
+    0.055,
+    now
+  );
+
   gain.gain.exponentialRampToValueAtTime(
     0.001,
     now + 0.028
@@ -739,13 +765,21 @@ function buttonClick() {
 
   osc.type = "square";
 
-  osc.frequency.setValueAtTime(230, now);
+  osc.frequency.setValueAtTime(
+    230,
+    now
+  );
+
   osc.frequency.exponentialRampToValueAtTime(
     120,
     now + 0.06
   );
 
-  gain.gain.setValueAtTime(0.09, now);
+  gain.gain.setValueAtTime(
+    0.09,
+    now
+  );
+
   gain.gain.exponentialRampToValueAtTime(
     0.001,
     now + 0.07
@@ -768,7 +802,8 @@ function grantedSound() {
 
   const now = audioCtx.currentTime;
 
-  [520, 780].forEach(function(freq, index) {
+
+  [520,780].forEach(function(freq,index) {
 
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
@@ -805,26 +840,27 @@ function grantedSound() {
 
 
 
-/* PAPIERGERÄUSCH */
+/* PAPIER - FRRRSCHT */
 
 function pageSound() {
 
   if (!audioCtx || audioCtx.state !== "running") return;
 
-  const duration = 0.22;
+  const duration = 0.24;
   const sampleRate = audioCtx.sampleRate;
 
   const buffer =
     audioCtx.createBuffer(
       1,
-      sampleRate * duration,
+      Math.floor(sampleRate * duration),
       sampleRate
     );
 
   const data =
     buffer.getChannelData(0);
 
-  for (let i = 0; i < data.length; i++) {
+
+  for (let i=0; i<data.length; i++) {
 
     const progress =
       i / data.length;
@@ -835,8 +871,9 @@ function pageSound() {
     data[i] =
       (Math.random() * 2 - 1) *
       envelope *
-      0.42;
+      0.5;
   }
+
 
   const source =
     audioCtx.createBufferSource();
@@ -847,13 +884,14 @@ function pageSound() {
   const gain =
     audioCtx.createGain();
 
+
   source.buffer = buffer;
 
   filter.type = "bandpass";
-  filter.frequency.value = 1900;
-  filter.Q.value = 0.7;
+  filter.frequency.value = 1500;
+  filter.Q.value = 0.55;
 
-  gain.gain.value = 0.12;
+  gain.gain.value = 0.15;
 
   source.connect(filter);
   filter.connect(gain);
@@ -864,7 +902,7 @@ function pageSound() {
 
 
 
-/* GESPERRT-KLACK / BZZT */
+/* GESPERRT */
 
 function lockedSound() {
 
@@ -872,45 +910,42 @@ function lockedSound() {
 
   const now = audioCtx.currentTime;
 
-  const osc =
-    audioCtx.createOscillator();
-
-  const gain =
-    audioCtx.createGain();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
 
   osc.type = "sawtooth";
 
   osc.frequency.setValueAtTime(
-    115,
+    125,
     now
   );
 
   osc.frequency.linearRampToValueAtTime(
-    70,
-    now + 0.13
+    65,
+    now + .15
   );
 
   gain.gain.setValueAtTime(
-    0.11,
+    .12,
     now
   );
 
   gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    now + 0.15
+    .001,
+    now + .16
   );
 
   osc.connect(gain);
   gain.connect(audioCtx.destination);
 
   osc.start(now);
-  osc.stop(now + 0.16);
+  osc.stop(now + .17);
 }
 
 
 
 /* =========================================================
-   IDENTITÄTSPRÜFUNG
+   IDENTITÄT
    ========================================================= */
 
 const answerField =
@@ -920,26 +955,38 @@ const accessButton =
   document.getElementById("accessButton");
 
 
+/*
+  Audio bereits beim ersten echten Kontakt
+  mit dem Eingabefeld aktivieren.
+*/
 answerField.addEventListener(
   "touchstart",
-  unlockSound,
-  { passive: true }
+  function() {
+    ensureAudio();
+  },
+  {passive:true}
 );
 
 answerField.addEventListener(
   "pointerdown",
-  unlockSound
+  function() {
+    ensureAudio();
+  }
 );
 
 answerField.addEventListener(
   "focus",
-  unlockSound
+  function() {
+    ensureAudio();
+  }
 );
 
 
 answerField.addEventListener(
   "input",
-  function(event) {
+  async function(event) {
+
+    await ensureAudio();
 
     if (
       event.inputType !== "deleteContentBackward" &&
@@ -952,16 +999,20 @@ answerField.addEventListener(
 );
 
 
-function checkAnswer() {
 
-  unlockSound();
+async function checkAnswer() {
+
+  await ensureAudio();
+
   buttonClick();
+
 
   const answer =
     answerField
       .value
       .trim()
       .toLowerCase();
+
 
   const error =
     document.getElementById("error");
@@ -983,14 +1034,15 @@ function checkAnswer() {
 
     grantedSound();
 
+
     setTimeout(function() {
 
       entrance.style.display = "none";
       dossiers.style.display = "flex";
 
-      window.scrollTo(0, 0);
+      window.scrollTo(0,0);
 
-    }, 260);
+    },260);
 
   }
 
@@ -1004,13 +1056,17 @@ function checkAnswer() {
 
 accessButton.addEventListener(
   "touchstart",
-  unlockSound,
-  { passive: true }
+  function() {
+    ensureAudio();
+  },
+  {passive:true}
 );
 
 accessButton.addEventListener(
   "pointerdown",
-  unlockSound
+  function() {
+    ensureAudio();
+  }
 );
 
 accessButton.addEventListener(
@@ -1089,17 +1145,20 @@ let changingPage = false;
 
 
 
-/* NORTHWIND ÖFFNEN */
-
 northwindDossier.addEventListener(
   "touchstart",
-  unlockSound,
-  { passive: true }
+  function() {
+    ensureAudio();
+  },
+  {passive:true}
 );
+
 
 northwindDossier.addEventListener(
   "click",
-  function() {
+  async function() {
+
+    await ensureAudio();
 
     buttonClick();
 
@@ -1124,18 +1183,20 @@ northwindDossier.addEventListener(
 
 
 
-/* GREYFOX BLEIBT HEUTE ZU */
-
 greyfoxDossier.addEventListener(
   "touchstart",
-  unlockSound,
-  { passive: true }
+  function() {
+    ensureAudio();
+  },
+  {passive:true}
 );
+
 
 greyfoxDossier.addEventListener(
   "click",
-  function() {
+  async function() {
 
+    await ensureAudio();
     buttonClick();
 
   }
@@ -1143,11 +1204,20 @@ greyfoxDossier.addEventListener(
 
 
 
-/* AKTE SCHLIESSEN */
+closeFile.addEventListener(
+  "touchstart",
+  function() {
+    ensureAudio();
+  },
+  {passive:true}
+);
+
 
 closeFile.addEventListener(
   "click",
-  function() {
+  async function() {
+
+    await ensureAudio();
 
     buttonClick();
 
@@ -1171,16 +1241,20 @@ function updateIndicator() {
 
 
 /* =========================================================
-   BLÄTTERN
+   SEITEN
    ========================================================= */
 
-function nextPage() {
+async function nextPage() {
 
   if (changingPage) return;
 
+  await ensureAudio();
 
-  /* SEITE 4 = GESPERRT */
 
+  /*
+    SEITE 4:
+    Kein Weiterblättern.
+  */
   if (
     currentPage ===
     northwindPages.length - 1
@@ -1244,24 +1318,37 @@ function nextPage() {
 
       changingPage = false;
 
-    }, 260);
+    },260);
 
 
-  }, 220);
+  },210);
 
 }
 
 
 
-function previousPage() {
+async function previousPage() {
 
   if (changingPage) return;
+
+  await ensureAudio();
+
 
   if (currentPage === 0) {
 
     lockedSound();
-    return;
 
+    paperImage.classList.remove(
+      "lock-bump"
+    );
+
+    void paperImage.offsetWidth;
+
+    paperImage.classList.add(
+      "lock-bump"
+    );
+
+    return;
   }
 
 
@@ -1320,10 +1407,10 @@ function previousPage() {
 
       changingPage = false;
 
-    }, 260);
+    },260);
 
 
-  }, 220);
+  },210);
 
 }
 
@@ -1341,19 +1428,19 @@ fileStage.addEventListener(
   "touchstart",
   function(event) {
 
-    unlockSound();
+    ensureAudio();
 
     const touch =
       event.changedTouches[0];
 
     touchStartX =
-      touch.screenX;
+      touch.clientX;
 
     touchStartY =
-      touch.screenY;
+      touch.clientY;
 
   },
-  { passive: true }
+  {passive:true}
 );
 
 
@@ -1365,30 +1452,26 @@ fileStage.addEventListener(
       event.changedTouches[0];
 
     const diffX =
-      touch.screenX -
+      touch.clientX -
       touchStartX;
 
     const diffY =
-      touch.screenY -
+      touch.clientY -
       touchStartY;
 
 
-    /*
-       Nur echte horizontale Wischbewegungen.
-       Dadurch löst normales Scrollen nichts aus.
-    */
-
     if (
       Math.abs(diffX) < 45 ||
-      Math.abs(diffX) <
-      Math.abs(diffY)
+      Math.abs(diffX) < Math.abs(diffY)
     ) {
       return;
     }
 
 
-    /* Nach links = nächste Seite */
-
+    /*
+      Finger nach LINKS:
+      nächste Seite.
+    */
     if (diffX < 0) {
 
       nextPage();
@@ -1396,8 +1479,10 @@ fileStage.addEventListener(
     }
 
 
-    /* Nach rechts = vorherige Seite */
-
+    /*
+      Finger nach RECHTS:
+      vorherige Seite.
+    */
     else {
 
       previousPage();
@@ -1405,7 +1490,7 @@ fileStage.addEventListener(
     }
 
   },
-  { passive: true }
+  {passive:true}
 );
 
 </script>
