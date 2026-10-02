@@ -14,30 +14,45 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  background: #050c12;
 }
 
 body {
-  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   color: #f2f2f2;
+}
 
-  background-image:
-    linear-gradient(
-      rgba(3, 9, 14, 0.12),
-      rgba(3, 9, 14, 0.22)
-    ),
-    url("E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png");
+/* ECHTES HINTERGRUNDBILD */
+.desk-background {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
 
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-color: #050c12;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* NUR LEICHTE ABDUNKLUNG */
+.shade {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+
+  background: rgba(2, 8, 12, 0.16);
+
+  pointer-events: none;
 }
 
 .page {
+  position: relative;
+  z-index: 2;
+
   min-height: 100vh;
-  padding: 40px 22px 70px;
+  padding: 38px 20px 70px;
 }
 
 .container {
@@ -47,64 +62,72 @@ body {
 }
 
 .header {
-  padding: 20px 20px 22px;
+  padding: 19px 20px 22px;
   margin-bottom: 24px;
 
-  background: rgba(4, 12, 18, 0.68);
+  background: rgba(3, 12, 19, 0.72);
   border-left: 3px solid #d8aa43;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
-  backdrop-filter: blur(2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.38);
 }
 
 .agency {
   color: #d8aa43;
+
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.5;
+
   text-transform: uppercase;
+
   margin-bottom: 12px;
 }
 
 h1 {
   margin: 0;
+
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(31px, 8vw, 52px);
   line-height: 1;
+
   letter-spacing: 1px;
+
   text-shadow: 0 3px 12px #000;
 }
 
 .intro {
-  margin: 0 0 28px;
   padding: 18px 20px;
+  margin-bottom: 28px;
 
-  background: rgba(4, 13, 20, 0.70);
+  background: rgba(3, 12, 19, 0.72);
   border-left: 3px solid #d8aa43;
 
   font-size: 17px;
   line-height: 1.65;
-  color: #f0f0f0;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
-  backdrop-filter: blur(2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.38);
 }
 
 .card {
-  background: rgba(4, 14, 22, 0.82);
-  border: 1px solid rgba(215, 224, 230, 0.55);
   padding: 25px 21px;
 
-  box-shadow: 0 14px 38px rgba(0,0,0,0.42);
-  backdrop-filter: blur(3px);
+  background: rgba(3, 13, 21, 0.84);
+
+  border: 1px solid rgba(215,224,230,0.60);
+
+  box-shadow: 0 16px 45px rgba(0,0,0,0.48);
 }
 
 .label {
   color: #d8aa43;
+
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 3px;
+
   text-transform: uppercase;
+
   margin-bottom: 20px;
 }
 
@@ -120,20 +143,24 @@ h1 {
 
 input {
   width: 100%;
+
   padding: 17px;
 
-  color: white;
-  background: rgba(1, 7, 11, 0.78);
+  font-size: 18px;
 
-  border: 1px solid #84909a;
+  color: white;
+
+  background: rgba(0, 6, 10, 0.84);
+
+  border: 1px solid #89949d;
+
   outline: none;
 
-  font-size: 18px;
   margin-bottom: 16px;
 }
 
 input::placeholder {
-  color: #aab0b5;
+  color: #aeb4b9;
 }
 
 input:focus {
@@ -142,15 +169,18 @@ input:focus {
 
 button {
   width: 100%;
+
   padding: 18px;
 
   border: none;
+
   background: #d8aa43;
   color: #080b0e;
 
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 2px;
+
   text-transform: uppercase;
 
   cursor: pointer;
@@ -166,26 +196,29 @@ button:active {
   margin-top: 17px;
   padding: 14px;
 
+  background: rgba(0,0,0,0.50);
+
   border-left: 3px solid #d8aa43;
-  background: rgba(0,0,0,0.40);
 
   color: #f0cf7c;
+
   line-height: 1.5;
 }
 
 #dossiers {
   display: none;
+
   margin-top: 28px;
 }
 
 .access {
   padding: 25px 21px;
 
-  background: rgba(4, 14, 22, 0.82);
-  border: 1px solid rgba(215,224,230,0.55);
+  background: rgba(3, 13, 21, 0.84);
 
-  box-shadow: 0 14px 38px rgba(0,0,0,0.42);
-  backdrop-filter: blur(3px);
+  border: 1px solid rgba(215,224,230,0.60);
+
+  box-shadow: 0 16px 45px rgba(0,0,0,0.48);
 }
 
 .access-small {
@@ -194,17 +227,19 @@ button:active {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+
   text-transform: uppercase;
 
   margin-bottom: 10px;
 }
 
 .access-title {
+  margin-bottom: 26px;
+
   font-family: Georgia, "Times New Roman", serif;
   font-size: 35px;
   line-height: 1.05;
 
-  margin-bottom: 26px;
   text-shadow: 0 2px 8px #000;
 }
 
@@ -212,8 +247,9 @@ button:active {
   padding: 21px;
   margin-bottom: 16px;
 
-  background: rgba(1, 8, 13, 0.78);
-  border: 1px solid rgba(215,224,230,0.45);
+  background: rgba(1, 8, 13, 0.83);
+
+  border: 1px solid rgba(215,224,230,0.48);
 }
 
 .dossier:last-child {
@@ -238,29 +274,28 @@ button:active {
 
 .status {
   color: #c1c7cc;
+
   font-size: 13px;
   letter-spacing: 1px;
 }
 
 .footer {
   margin-top: 35px;
+
   padding: 14px 16px;
 
-  background: rgba(2, 8, 12, 0.58);
+  background: rgba(2, 8, 12, 0.68);
 
-  color: rgba(240,240,240,0.72);
+  color: rgba(240,240,240,0.78);
 
   font-size: 10px;
   letter-spacing: 2px;
   line-height: 1.8;
+
   text-transform: uppercase;
 }
 
 @media (max-width: 600px) {
-  body {
-    background-attachment: scroll;
-    background-position: center top;
-  }
 
   .page {
     padding: 25px 18px 55px;
@@ -269,13 +304,24 @@ button:active {
   .header {
     margin-top: 12px;
   }
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- DAS BILD LIEGT JETZT TATSÄCHLICH HINTER DER SEITE -->
+<img
+  class="desk-background"
+  src="E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png"
+  alt=""
+>
+
+<div class="shade"></div>
+
 <div class="page">
+
   <div class="container">
 
     <div class="header">
@@ -340,6 +386,7 @@ button:active {
         </div>
 
         <div class="dossier">
+
           <div class="code">
             F-01 // NORTHWIND // BERLIN DIVISION
           </div>
@@ -351,9 +398,11 @@ button:active {
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
+
         </div>
 
         <div class="dossier">
+
           <div class="code">
             TJ-01 // GREYFOX // RHINELAND DIVISION
           </div>
@@ -365,6 +414,7 @@ button:active {
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
+
         </div>
 
       </div>
@@ -377,16 +427,19 @@ button:active {
     </div>
 
   </div>
+
 </div>
 
 <script>
+
 function checkAnswer() {
 
   const answer =
-    document.getElementById("answer")
-    .value
-    .trim()
-    .toLowerCase();
+    document
+      .getElementById("answer")
+      .value
+      .trim()
+      .toLowerCase();
 
   const error =
     document.getElementById("error");
@@ -404,7 +457,9 @@ function checkAnswer() {
   ) {
 
     error.style.display = "none";
+
     loginCard.style.display = "none";
+
     dossiers.style.display = "block";
 
     dossiers.scrollIntoView({
@@ -417,6 +472,7 @@ function checkAnswer() {
     error.style.display = "block";
 
   }
+
 }
 
 document
@@ -428,6 +484,7 @@ document
     }
 
   });
+
 </script>
 
 </body>
