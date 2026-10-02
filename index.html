@@ -3,1343 +3,1043 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>NORTHWIND & GREYFOX</title>
+<title>NORTHWIND // GREYFOX</title>
 
 <style>
-* { box-sizing:border-box; }
-
-html,body {
-  margin:0;
-  padding:0;
-  width:100%;
-  min-height:100%;
-  background:#050c12;
-  overflow-x:hidden;
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-body {
-  font-family:Arial,Helvetica,sans-serif;
-  color:#f2f2f2;
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#05090b;
+    color:#eee;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-.desk-background {
-  position:fixed;
-  z-index:0;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center top;
+body{
+    min-height:100dvh;
 }
 
-.shade {
-  position:fixed;
-  z-index:1;
-  inset:0;
-  background:rgba(2,8,12,.04);
-  pointer-events:none;
+button,input{
+    font:inherit;
 }
 
-.page {
-  position:relative;
-  z-index:2;
-  width:100%;
-  min-height:100dvh;
-  padding:max(12px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));
+/* =========================================================
+   HAUPTSEITE
+   ========================================================= */
+
+#mainScreen{
+    position:fixed;
+    inset:0;
+    min-height:100dvh;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(2,7,9,.18),rgba(2,7,9,.34)),
+        url("E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png")
+        center center / cover no-repeat;
 }
 
-.container {
-  width:100%;
-  max-width:620px;
-  margin:0 auto;
+.top-panel{
+    position:absolute;
+    left:6%;
+    right:6%;
+    top:max(6%,env(safe-area-inset-top));
+    padding:14px 15px 13px;
+    border-left:3px solid #c79b3c;
+    background:rgba(4,10,12,.72);
+    backdrop-filter:blur(2px);
 }
 
-.header {
-  padding:10px 14px 11px;
-  margin-bottom:9px;
-  background:rgba(3,12,19,.57);
-  border-left:3px solid #d8aa43;
-  box-shadow:0 6px 20px rgba(0,0,0,.25);
+.kicker{
+    color:#d4ad55;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.4px;
+    margin-bottom:5px;
 }
 
-.agency {
-  margin-bottom:5px;
-  color:#d8aa43;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:2px;
-  line-height:1.3;
-  text-transform:uppercase;
+.agency{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:19px;
+    line-height:1.05;
+    letter-spacing:.3px;
 }
 
-h1 {
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(21px,5.2vw,31px);
-  line-height:1.02;
-  letter-spacing:.3px;
-  text-shadow:0 2px 7px #000;
+.intro{
+    margin-top:9px;
+    color:#d8d8d8;
+    font-size:10px;
+    line-height:1.4;
+    max-width:95%;
 }
 
-.intro {
-  padding:9px 13px;
-  margin-bottom:9px;
-  background:rgba(3,12,19,.54);
-  border-left:3px solid #d8aa43;
-  font-size:11px;
-  line-height:1.42;
-  box-shadow:0 6px 20px rgba(0,0,0,.25);
+#gate{
+    position:absolute;
+    left:7%;
+    right:7%;
+    top:43%;
+    padding:16px 15px;
+    background:rgba(4,10,12,.86);
+    border:1px solid rgba(201,165,87,.48);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
-.card {
-  padding:13px 14px;
-  background:rgba(3,13,21,.68);
-  border:1px solid rgba(215,224,230,.50);
-  box-shadow:0 8px 25px rgba(0,0,0,.34);
+.gate-title{
+    color:#d4ad55;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.4px;
+    margin-bottom:10px;
 }
 
-.label {
-  margin-bottom:8px;
-  color:#d8aa43;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
+.question{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:15px;
+    line-height:1.3;
+    margin-bottom:12px;
 }
 
-.question {
-  margin-bottom:11px;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:16px;
-  line-height:1.25;
-  text-shadow:0 2px 6px #000;
+#answer{
+    width:100%;
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.07);
+    color:#fff;
+    padding:10px 11px;
+    outline:none;
+    border-radius:0;
+    font-size:16px;
 }
 
-input {
-  display:block;
-  width:100%;
-  padding:10px 12px;
-  margin:0 0 8px;
-  color:#fff;
-  background:rgba(0,6,10,.72);
-  border:1px solid #89949d;
-  outline:none;
-  font-size:14px;
+#answer:focus{
+    border-color:#c9a557;
 }
 
-input::placeholder { color:#aeb4b9; }
-input:focus { border-color:#d8aa43; }
-
-button {
-  display:block;
-  width:100%;
-  padding:10px 12px;
-  border:0;
-  background:#d8aa43;
-  color:#080b0e;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-  cursor:pointer;
+#checkButton{
+    width:100%;
+    margin-top:10px;
+    padding:11px;
+    border:1px solid #c9a557;
+    background:#b58b34;
+    color:#080b0c;
+    font-weight:800;
+    font-size:10px;
+    letter-spacing:1px;
 }
 
-button:active { transform:translateY(1px); }
-
-#error {
-  display:none;
-  margin-top:8px;
-  padding:8px 10px;
-  background:rgba(0,0,0,.44);
-  border-left:2px solid #d8aa43;
-  color:#f0cf7c;
-  font-size:10px;
-  line-height:1.35;
+#error{
+    display:none;
+    margin-top:9px;
+    color:#d9b1a8;
+    font-size:9px;
+    line-height:1.35;
 }
 
-.footer {
-  margin-top:9px;
-  padding:7px 10px;
-  background:rgba(2,8,12,.48);
-  color:rgba(240,240,240,.72);
-  font-size:7px;
-  letter-spacing:1.3px;
-  line-height:1.45;
-  text-transform:uppercase;
+.footer{
+    position:absolute;
+    left:6%;
+    right:6%;
+    bottom:max(3%,env(safe-area-inset-bottom));
+    color:rgba(255,255,255,.62);
+    font-size:7px;
+    line-height:1.6;
+    letter-spacing:.7px;
 }
 
+/* =========================================================
+   AKTENAUSWAHL
+   ========================================================= */
 
-/* AKTENAUSWAHL */
-
-#dossiers {
-  display:none;
-  min-height:calc(100dvh - 28px);
-  align-items:center;
+#selection{
+    display:none;
+    position:absolute;
+    inset:0;
+    padding:
+        max(8vh,env(safe-area-inset-top))
+        7%
+        max(5vh,env(safe-area-inset-bottom));
+    background:rgba(2,7,9,.42);
 }
 
-.access {
-  width:100%;
-  padding:18px 17px;
-  background:rgba(3,13,21,.70);
-  border:1px solid rgba(215,224,230,.52);
-  box-shadow:0 10px 30px rgba(0,0,0,.38);
+.confirmed{
+    margin-top:7vh;
+    padding:12px 13px;
+    border-left:3px solid #c79b3c;
+    background:rgba(4,10,12,.76);
 }
 
-.access-small {
-  margin-bottom:7px;
-  color:#d8aa43;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:2.2px;
-  text-transform:uppercase;
+.confirmed .small{
+    color:#d4ad55;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1.3px;
 }
 
-.access-title {
-  margin-bottom:18px;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:27px;
-  line-height:1.05;
-  text-shadow:0 2px 7px #000;
+.confirmed .big{
+    margin-top:4px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:18px;
 }
 
-.dossier {
-  position:relative;
-  padding:16px;
-  margin-bottom:11px;
-  background:rgba(1,8,13,.74);
-  border:1px solid rgba(215,224,230,.46);
-  transition:.15s ease;
-  cursor:pointer;
+.cards{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
-.dossier:last-child { margin-bottom:0; }
-
-.dossier:active {
-  border-color:#d8aa43;
-  transform:scale(.99);
+.agent-card{
+    width:100%;
+    padding:16px 14px;
+    text-align:left;
+    border:1px solid rgba(201,165,87,.46);
+    background:rgba(4,10,12,.83);
+    color:#fff;
 }
 
-.code {
-  color:#d8aa43;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:1.4px;
-  line-height:1.45;
+.agent-code{
+    color:#d4ad55;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1.4px;
 }
 
-.name {
-  margin:8px 0 5px;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:23px;
+.agent-name{
+    margin-top:5px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:21px;
 }
 
-.status {
-  color:#c1c7cc;
-  font-size:9px;
-  letter-spacing:.9px;
+.agent-division{
+    margin-top:4px;
+    color:#aaa;
+    font-size:8px;
+    letter-spacing:.9px;
 }
 
-.access-footer {
-  margin-top:13px;
-  color:rgba(240,240,240,.65);
-  font-size:7px;
-  letter-spacing:1.3px;
-  line-height:1.5;
-  text-transform:uppercase;
-}
+/* =========================================================
+   NORTHWIND DOSSIER
+   ========================================================= */
 
-
-/* NORTHWIND VIEWER */
-
-#northwindViewer {
-  display:none;
-  position:fixed;
-  z-index:20;
-  inset:0;
-  width:100vw;
-  max-width:100vw;
-  background:rgba(2,7,10,.97);
-  overflow:hidden;
-  touch-action:pan-y;
-}
-
-.file-stage {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
+#northwindViewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:50;
+    overflow:hidden;
+    background:#050b0e;
 }
 
 /*
-  GRÖSSE BLEIBT EXAKT WIE IM LETZTEN STAND.
-  NUR DIE GESAMTE AKTE RÜCKT NACH LINKS.
+   MASTER-GEOMETRIE – TEST 4
+   Ordner + Dokument bleiben EINE gemeinsame Einheit.
 */
-.folder-image {
-  position:absolute;
-  left:38%;
-  top:50%;
-  width:92%;
-  height:92%;
-  transform:translate(-50%,-50%);
-  object-fit:contain;
-  object-position:center center;
-  user-select:none;
-  -webkit-user-select:none;
-  pointer-events:none;
+#dossierUnit{
+    position:absolute;
+    width:92vw;
+    height:92vh;
+    left:38%;
+    top:50%;
+    transform:translate(-50%,-50%);
 }
 
-/*
-  DOKUMENT:
-  EXAKT GLEICHE GRÖSSE WIE VORHER.
-  ES RÜCKT UM DENSELBEN BETRAG NACH LINKS
-  WIE DIE AKTE.
-*/
-.paper-image {
-  position:absolute;
-  left:32%;
-  top:50%;
-  width:50%;
-  height:68%;
-  object-fit:contain;
-  object-position:center center;
-  transform:translate(0,-46%);
-  transform-origin:left center;
-
-  filter:
-    drop-shadow(0 2px 3px rgba(0,0,0,.30))
-    sepia(.03);
-
-  user-select:none;
-  -webkit-user-select:none;
-  pointer-events:none;
-
-  transition:
-    transform 230ms ease,
-    opacity 230ms ease;
+.folder-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    user-select:none;
+    pointer-events:none;
 }
 
-.paper-image.turn-left {
-  transform:
-    translate(-22%,-46%)
-    rotate(-1.2deg);
-  opacity:0;
+.paper-box{
+    position:absolute;
+    left:36.775%;
+    top:22.487%;
+    width:54.082%;
+    height:62.891%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
 }
 
-.paper-image.turn-right {
-  transform:
-    translate(22%,-46%)
-    rotate(1.2deg);
-  opacity:0;
+.paper-image{
+    display:block;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    user-select:none;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
 }
 
-.paper-image.lock-bump {
-  animation:lockBump 280ms ease;
+.file-label{
+    position:fixed;
+    z-index:70;
+    top:max(12px,env(safe-area-inset-top));
+    left:max(12px,env(safe-area-inset-left));
+    padding:7px 9px;
+    border-left:2px solid #d8aa43;
+    background:rgba(2,8,12,.76);
+    color:#d8aa43;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:1px;
+    white-space:nowrap;
 }
 
-@keyframes lockBump {
-  0%   { transform:translate(0,-46%); }
-  35%  { transform:translate(-3%,-46%) rotate(-.35deg); }
-  65%  { transform:translate(2%,-46%) rotate(.2deg); }
-  100% { transform:translate(0,-46%); }
+.close-file{
+    position:fixed;
+    z-index:70;
+    top:max(12px,env(safe-area-inset-top));
+    right:max(12px,env(safe-area-inset-right));
+    width:auto;
+    margin:0;
+    padding:7px 9px;
+    border:1px solid rgba(255,255,255,.42);
+    background:rgba(2,8,12,.86);
+    color:#fff;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:.8px;
+    white-space:nowrap;
 }
 
-
-/* OBERE BEDIENUNG */
-
-.viewer-top {
-  position:absolute;
-  z-index:30;
-  top:max(10px,env(safe-area-inset-top));
-  left:max(14px,env(safe-area-inset-left));
-  right:max(14px,env(safe-area-inset-right));
-  width:auto;
-  max-width:calc(100vw - 28px);
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-
-  overflow:hidden;
-  pointer-events:none;
+.page-indicator{
+    position:fixed;
+    z-index:70;
+    left:50%;
+    bottom:max(13px,env(safe-area-inset-bottom));
+    transform:translateX(-50%);
+    padding:6px 9px;
+    background:rgba(2,8,12,.75);
+    color:rgba(255,255,255,.78);
+    font-size:7px;
+    letter-spacing:.8px;
+    white-space:nowrap;
 }
 
-.viewer-title {
-  min-width:0;
-  flex:1 1 auto;
-
-  padding:5px 8px;
-  background:rgba(2,8,12,.68);
-  border-left:2px solid #d8aa43;
-  color:#d8aa43;
-  font-size:7px;
-  font-weight:700;
-  letter-spacing:1.2px;
-  text-transform:uppercase;
-  white-space:nowrap;
+.lock-bump{
+    animation:lockBump .18s ease-in-out 2;
 }
 
-.close-file {
-  flex:0 0 auto;
-  width:auto;
-  max-width:42vw;
-  margin:0;
-  padding:5px 7px;
-
-  background:rgba(2,8,12,.72);
-  border:1px solid rgba(255,255,255,.30);
-  color:#fff;
-
-  font-size:7px;
-  font-weight:700;
-  letter-spacing:.7px;
-  white-space:nowrap;
-
-  pointer-events:auto;
+@keyframes lockBump{
+    0%{transform:translate(-50%,-50%)}
+    50%{transform:translate(calc(-50% - 7px),-50%)}
+    100%{transform:translate(-50%,-50%)}
 }
 
-.page-indicator {
-  position:absolute;
-  z-index:30;
-  bottom:max(13px,env(safe-area-inset-bottom));
-  left:50%;
-  transform:translateX(-50%);
-  padding:5px 8px;
-  background:rgba(2,8,12,.66);
-  border:1px solid rgba(255,255,255,.20);
-  color:rgba(255,255,255,.78);
-  font-size:7px;
-  letter-spacing:1px;
-  white-space:nowrap;
-  pointer-events:none;
+.page-turn-left{
+    animation:turnLeft .22s ease;
 }
 
-.swipe-hint {
-  position:absolute;
-  z-index:30;
-  bottom:calc(max(13px,env(safe-area-inset-bottom)) + 28px);
-  left:50%;
-  transform:translateX(-50%);
-  color:rgba(255,255,255,.55);
-  font-size:7px;
-  letter-spacing:.7px;
-  white-space:nowrap;
-  text-shadow:0 1px 4px #000;
-  pointer-events:none;
+.page-turn-right{
+    animation:turnRight .22s ease;
 }
 
-@media (max-height:700px) {
-  .page { padding-top:8px; }
-
-  .header {
-    padding-top:8px;
-    padding-bottom:8px;
-    margin-bottom:6px;
-  }
-
-  h1 { font-size:20px; }
-
-  .intro {
-    padding-top:7px;
-    padding-bottom:7px;
-    margin-bottom:6px;
-  }
-
-  .card {
-    padding-top:10px;
-    padding-bottom:10px;
-  }
-
-  .question { font-size:15px; }
-  .footer { margin-top:6px; }
-  .access { padding:14px; }
-
-  .access-title {
-    font-size:23px;
-    margin-bottom:13px;
-  }
+@keyframes turnLeft{
+    0%{opacity:1;transform:translateX(0)}
+    48%{opacity:.25;transform:translateX(-12px)}
+    100%{opacity:1;transform:translateX(0)}
 }
+
+@keyframes turnRight{
+    0%{opacity:1;transform:translateX(0)}
+    48%{opacity:.25;transform:translateX(12px)}
+    100%{opacity:1;transform:translateX(0)}
+}
+
+/* =========================================================
+   LESEMODUS – TEST 5
+   ========================================================= */
+
+#reader{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(2,7,10,.98);
+    align-items:center;
+    justify-content:center;
+    padding:
+        max(62px,calc(env(safe-area-inset-top) + 48px))
+        10px
+        max(14px,env(safe-area-inset-bottom));
+}
+
+#reader.open{
+    display:flex;
+}
+
+#readerImage{
+    display:block;
+    max-width:96vw;
+    max-height:calc(100dvh - 82px);
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 5px 18px rgba(0,0,0,.8));
+}
+
+.reader-close{
+    position:fixed;
+    z-index:250;
+    top:max(12px,env(safe-area-inset-top));
+    right:max(12px,env(safe-area-inset-right));
+    width:auto;
+    padding:9px 11px;
+    border:1px solid rgba(255,255,255,.5);
+    background:#071015;
+    color:#fff;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.8px;
+    white-space:nowrap;
+}
+
+/* GREYFOX bleibt vorerst nur Auswahl */
 </style>
 </head>
 
 <body>
 
-<img
-  class="desk-background"
-  src="E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png"
-  alt=""
->
+<div id="mainScreen">
 
-<div class="shade"></div>
-
-<div class="page">
-<div class="container">
-
-<div id="entrance">
-
-  <div class="header">
-    <div class="agency">
-      Zentralstelle für besondere Lagen
+    <div class="top-panel" id="topPanel">
+        <div class="kicker">ZENTRALSTELLE FÜR BESONDERE LAGEN</div>
+        <div class="agency">REFERAT F – BESONDERE ERMITTLUNGEN</div>
+        <div class="intro">
+            Eine neue Übertragung wurde registriert.
+            Identitätsprüfung erforderlich.
+            Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
+        </div>
     </div>
 
-    <h1>
-      REFERAT F – BESONDERE ERMITTLUNGEN
-    </h1>
-  </div>
+    <div id="gate">
+        <div class="gate-title">IDENTITY VERIFICATION</div>
 
-  <div class="intro">
-    Eine neue Übertragung wurde registriert.<br>
-    Identitätsprüfung erforderlich.<br>
-    Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
-  </div>
+        <div class="question">
+            Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
+        </div>
 
-  <div class="card">
+        <input
+            id="answer"
+            type="text"
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+            placeholder="Antwort eingeben"
+        >
 
-    <div class="label">
-      Identity Verification
+        <button id="checkButton">ZUGANG PRÜFEN</button>
+
+        <div id="error">
+            IDENTITÄT NICHT BESTÄTIGT // ERNEUTE PRÜFUNG ERFORDERLICH
+        </div>
     </div>
 
-    <div class="question">
-      Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
+    <div id="selection">
+
+        <div class="confirmed">
+            <div class="small">IDENTITÄT BESTÄTIGT</div>
+            <div class="big">AKTENZUGRIFF FREIGEGEBEN</div>
+        </div>
+
+        <div class="cards">
+
+            <button class="agent-card" id="northwindCard">
+                <div class="agent-code">F-01</div>
+                <div class="agent-name">NORTHWIND</div>
+                <div class="agent-division">BERLIN DIVISION</div>
+            </button>
+
+            <button class="agent-card" id="greyfoxCard">
+                <div class="agent-code">TJ-01</div>
+                <div class="agent-name">GREYFOX</div>
+                <div class="agent-division">RHINELAND DIVISION</div>
+            </button>
+
+        </div>
     </div>
 
-    <input
-      id="answer"
-      type="text"
-      placeholder="Antwort eingeben"
-      autocomplete="off"
-      autocapitalize="off"
-      spellcheck="false"
-    >
-
-    <button id="accessButton">
-      Zugang prüfen
-    </button>
-
-    <div id="error">
-      Identität konnte nicht bestätigt werden.<br>
-      Hinweis: Sie sind größer als Aktenordner und mögen offenbar Kaffee.
+    <div class="footer">
+        FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
+        CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
     </div>
-
-  </div>
-
-  <div class="footer">
-    FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
-    CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
-  </div>
 
 </div>
 
 
-<div id="dossiers">
-
-  <div class="access">
-
-    <div class="access-small">
-      Identität bestätigt
-    </div>
-
-    <div class="access-title">
-      AKTENZUGRIFF<br>
-      FREIGEGEBEN
-    </div>
-
-    <div class="dossier" id="northwindDossier">
-
-      <div class="code">
-        F-01 // NORTHWIND // BERLIN DIVISION
-      </div>
-
-      <div class="name">
-        NORTHWIND
-      </div>
-
-      <div class="status">
-        DOSSIER // BEREIT ZUR ÜBERTRAGUNG
-      </div>
-
-    </div>
-
-    <div class="dossier" id="greyfoxDossier">
-
-      <div class="code">
-        TJ-01 // GREYFOX // RHINELAND DIVISION
-      </div>
-
-      <div class="name">
-        GREYFOX
-      </div>
-
-      <div class="status">
-        DOSSIER // BEREIT ZUR ÜBERTRAGUNG
-      </div>
-
-    </div>
-
-    <div class="access-footer">
-      FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
-      CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
-    </div>
-
-  </div>
-
-</div>
-
-</div>
-</div>
-
+<!-- =======================================================
+     NORTHWIND VIEWER
+     ======================================================= -->
 
 <div id="northwindViewer">
 
-  <div class="file-stage" id="fileStage">
-
-    <img
-      id="folderImage"
-      class="folder-image"
-      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
-      alt=""
-    >
-
-    <img
-      id="paperImage"
-      class="paper-image"
-      src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
-      alt="NORTHWIND Akte"
-    >
-
-  </div>
-
-  <div class="viewer-top">
-
-    <div class="viewer-title">
-      F-01 // NORTHWIND
-    </div>
+    <div class="file-label">F-01 // NORTHWIND</div>
 
     <button class="close-file" id="closeFile">
-      AKTE SCHLIESSEN
+        AKTE SCHLIESSEN
     </button>
 
-  </div>
+    <div id="dossierUnit">
 
-  <div class="swipe-hint">
-    ← ZURÜCK &nbsp; WISCHEN &nbsp; WEITER →
-  </div>
+        <img
+            id="folderImage"
+            class="folder-image"
+            src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
+            alt=""
+        >
 
-  <div class="page-indicator" id="pageIndicator">
-    F-01 // SEITE 1 VON 4
-  </div>
+        <div class="paper-box" id="paperBox">
+            <img
+                id="paperImage"
+                class="paper-image"
+                src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
+                alt="NORTHWIND Dokument"
+            >
+        </div>
+
+    </div>
+
+    <div class="page-indicator" id="pageIndicator">
+        SEITE 1 / 4
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     LESEMODUS
+     ======================================================= -->
+
+<div id="reader">
+
+    <button class="reader-close" id="readerClose">
+        ZURÜCK ZUR AKTE
+    </button>
+
+    <img id="readerImage" src="" alt="Dokument Lesemodus">
 
 </div>
 
 
 <script>
 
-/* AUDIO – UNVERÄNDERT */
+/* =========================================================
+   AUDIO – FUNKTIONIERENDER STAND
+   ========================================================= */
 
-let audioCtx = null;
+let audioCtx=null;
 
-async function ensureAudio() {
+async function ensureAudio(){
+    const AudioContext=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContext)return false;
 
-  const AudioContext =
-    window.AudioContext ||
-    window.webkitAudioContext;
-
-  if (!AudioContext) return false;
-
-  if (!audioCtx) {
-    audioCtx = new AudioContext();
-  }
-
-  if (audioCtx.state === "suspended") {
-    try {
-      await audioCtx.resume();
+    if(!audioCtx){
+        audioCtx=new AudioContext();
     }
-    catch(e) {}
-  }
 
-  return audioCtx.state === "running";
+    if(audioCtx.state==="suspended"){
+        try{
+            await audioCtx.resume();
+        }catch(e){}
+    }
+
+    return audioCtx.state==="running";
 }
 
-function keyClick() {
 
-  if (!audioCtx || audioCtx.state !== "running") return;
+function keyClick(){
+    if(!audioCtx || audioCtx.state!=="running")return;
 
-  const now = audioCtx.currentTime;
+    const now=audioCtx.currentTime;
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
 
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
+    osc.type="square";
+    osc.frequency.setValueAtTime(850,now);
+    osc.frequency.exponentialRampToValueAtTime(500,now+.03);
 
-  osc.type = "square";
-
-  osc.frequency.setValueAtTime(850,now);
-
-  osc.frequency.exponentialRampToValueAtTime(
-    500,
-    now + 0.018
-  );
-
-  gain.gain.setValueAtTime(
-    0.055,
-    now
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    now + 0.028
-  );
-
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  osc.start(now);
-  osc.stop(now + 0.03);
-}
-
-function buttonClick() {
-
-  if (!audioCtx || audioCtx.state !== "running") return;
-
-  const now = audioCtx.currentTime;
-
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-
-  osc.type = "square";
-
-  osc.frequency.setValueAtTime(
-    230,
-    now
-  );
-
-  osc.frequency.exponentialRampToValueAtTime(
-    120,
-    now + 0.06
-  );
-
-  gain.gain.setValueAtTime(
-    0.09,
-    now
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    now + 0.07
-  );
-
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  osc.start(now);
-  osc.stop(now + 0.075);
-}
-
-function grantedSound() {
-
-  if (!audioCtx || audioCtx.state !== "running") return;
-
-  const now = audioCtx.currentTime;
-
-  [520,780].forEach(function(freq,index) {
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    const start =
-      now + (index * 0.10);
-
-    osc.type = "sine";
-    osc.frequency.value = freq;
-
-    gain.gain.setValueAtTime(
-      0.001,
-      start
-    );
-
-    gain.gain.linearRampToValueAtTime(
-      0.075,
-      start + 0.01
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      start + 0.11
-    );
+    gain.gain.setValueAtTime(.055,now);
+    gain.gain.exponentialRampToValueAtTime(.001,now+.03);
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
 
-    osc.start(start);
-    osc.stop(start + 0.12);
-
-  });
+    osc.start(now);
+    osc.stop(now+.03);
 }
 
-function pageSound() {
 
-  if (!audioCtx || audioCtx.state !== "running") return;
+function buttonClick(){
+    if(!audioCtx || audioCtx.state!=="running")return;
 
-  const duration = 0.24;
-  const sampleRate = audioCtx.sampleRate;
+    const now=audioCtx.currentTime;
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
 
-  const buffer =
-    audioCtx.createBuffer(
-      1,
-      Math.floor(sampleRate * duration),
-      sampleRate
+    osc.type="square";
+    osc.frequency.setValueAtTime(230,now);
+    osc.frequency.exponentialRampToValueAtTime(120,now+.075);
+
+    gain.gain.setValueAtTime(.09,now);
+    gain.gain.exponentialRampToValueAtTime(.001,now+.075);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now);
+    osc.stop(now+.075);
+}
+
+
+function grantedSound(){
+    if(!audioCtx || audioCtx.state!=="running")return;
+
+    const now=audioCtx.currentTime;
+
+    [520,780].forEach((freq,i)=>{
+        const osc=audioCtx.createOscillator();
+        const gain=audioCtx.createGain();
+
+        osc.type="sine";
+        osc.frequency.value=freq;
+
+        const start=now+(i*.11);
+
+        gain.gain.setValueAtTime(.001,start);
+        gain.gain.exponentialRampToValueAtTime(.075,start+.015);
+        gain.gain.exponentialRampToValueAtTime(.001,start+.16);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(start);
+        osc.stop(start+.17);
+    });
+}
+
+
+function pageSound(){
+    if(!audioCtx || audioCtx.state!=="running")return;
+
+    const duration=.24;
+    const rate=audioCtx.sampleRate;
+    const buffer=audioCtx.createBuffer(
+        1,
+        Math.floor(rate*duration),
+        rate
     );
 
-  const data =
-    buffer.getChannelData(0);
+    const data=buffer.getChannelData(0);
 
-  for (let i=0; i<data.length; i++) {
-
-    const progress =
-      i / data.length;
-
-    const envelope =
-      Math.sin(Math.PI * progress);
-
-    data[i] =
-      (Math.random() * 2 - 1) *
-      envelope *
-      0.5;
-  }
-
-  const source =
-    audioCtx.createBufferSource();
-
-  const filter =
-    audioCtx.createBiquadFilter();
-
-  const gain =
-    audioCtx.createGain();
-
-  source.buffer = buffer;
-
-  filter.type = "bandpass";
-  filter.frequency.value = 1500;
-  filter.Q.value = 0.55;
-
-  gain.gain.value = 0.15;
-
-  source.connect(filter);
-  filter.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  source.start();
-}
-
-function lockedSound() {
-
-  if (!audioCtx || audioCtx.state !== "running") return;
-
-  const now = audioCtx.currentTime;
-
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-
-  osc.type = "sawtooth";
-
-  osc.frequency.setValueAtTime(
-    125,
-    now
-  );
-
-  osc.frequency.linearRampToValueAtTime(
-    65,
-    now + .15
-  );
-
-  gain.gain.setValueAtTime(
-    .12,
-    now
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    .001,
-    now + .16
-  );
-
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  osc.start(now);
-  osc.stop(now + .17);
-}
-
-
-/* IDENTITÄT */
-
-const answerField =
-  document.getElementById("answer");
-
-const accessButton =
-  document.getElementById("accessButton");
-
-answerField.addEventListener(
-  "touchstart",
-  function() {
-    ensureAudio();
-  },
-  {passive:true}
-);
-
-answerField.addEventListener(
-  "pointerdown",
-  function() {
-    ensureAudio();
-  }
-);
-
-answerField.addEventListener(
-  "focus",
-  function() {
-    ensureAudio();
-  }
-);
-
-answerField.addEventListener(
-  "input",
-  async function(event) {
-
-    await ensureAudio();
-
-    if (
-      event.inputType !== "deleteContentBackward" &&
-      event.inputType !== "deleteContentForward"
-    ) {
-      keyClick();
+    for(let i=0;i<data.length;i++){
+        const t=i/data.length;
+        const envelope=Math.sin(Math.PI*t);
+        data[i]=(Math.random()*2-1)*envelope*.5;
     }
 
-  }
-);
+    const source=audioCtx.createBufferSource();
+    source.buffer=buffer;
 
-async function checkAnswer() {
+    const filter=audioCtx.createBiquadFilter();
+    filter.type="bandpass";
+    filter.frequency.value=1500;
+    filter.Q.value=.55;
 
-  await ensureAudio();
+    const gain=audioCtx.createGain();
+    gain.gain.value=.15;
 
-  buttonClick();
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioCtx.destination);
 
-  const answer =
-    answerField
-      .value
-      .trim()
-      .toLowerCase();
-
-  const error =
-    document.getElementById("error");
-
-  const entrance =
-    document.getElementById("entrance");
-
-  const dossiers =
-    document.getElementById("dossiers");
-
-  if (
-    answer === "drachen" ||
-    answer === "drache" ||
-    answer === "die drachen"
-  ) {
-
-    error.style.display = "none";
-
-    grantedSound();
-
-    setTimeout(function() {
-
-      entrance.style.display = "none";
-      dossiers.style.display = "flex";
-
-      window.scrollTo(0,0);
-
-    },260);
-
-  }
-
-  else {
-
-    error.style.display = "block";
-
-  }
+    source.start();
 }
 
-accessButton.addEventListener(
-  "touchstart",
-  function() {
-    ensureAudio();
-  },
-  {passive:true}
-);
 
-accessButton.addEventListener(
-  "pointerdown",
-  function() {
-    ensureAudio();
-  }
-);
+function lockedSound(){
+    if(!audioCtx || audioCtx.state!=="running")return;
 
-accessButton.addEventListener(
-  "click",
-  checkAnswer
-);
+    const now=audioCtx.currentTime;
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
 
-answerField.addEventListener(
-  "keydown",
-  function(event) {
+    osc.type="sawtooth";
+    osc.frequency.setValueAtTime(125,now);
+    osc.frequency.exponentialRampToValueAtTime(65,now+.17);
 
-    if (event.key === "Enter") {
+    gain.gain.setValueAtTime(.12,now);
+    gain.gain.exponentialRampToValueAtTime(.001,now+.17);
 
-      event.preventDefault();
-      checkAnswer();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
 
-    }
-
-  }
-);
+    osc.start(now);
+    osc.stop(now+.17);
+}
 
 
-/* NORTHWIND */
+/* =========================================================
+   ELEMENTE
+   ========================================================= */
 
-const northwindViewer =
-  document.getElementById("northwindViewer");
+const gate=document.getElementById("gate");
+const selection=document.getElementById("selection");
+const topPanel=document.getElementById("topPanel");
+const answer=document.getElementById("answer");
+const checkButton=document.getElementById("checkButton");
+const error=document.getElementById("error");
 
-const northwindDossier =
-  document.getElementById("northwindDossier");
+const northwindCard=document.getElementById("northwindCard");
+const greyfoxCard=document.getElementById("greyfoxCard");
 
-const greyfoxDossier =
-  document.getElementById("greyfoxDossier");
+const northwindViewer=document.getElementById("northwindViewer");
+const closeFile=document.getElementById("closeFile");
 
-const closeFile =
-  document.getElementById("closeFile");
+const dossierUnit=document.getElementById("dossierUnit");
+const folderImage=document.getElementById("folderImage");
+const paperBox=document.getElementById("paperBox");
+const paperImage=document.getElementById("paperImage");
+const pageIndicator=document.getElementById("pageIndicator");
 
-const fileStage =
-  document.getElementById("fileStage");
+const reader=document.getElementById("reader");
+const readerImage=document.getElementById("readerImage");
+const readerClose=document.getElementById("readerClose");
 
-const folderImage =
-  document.getElementById("folderImage");
 
-const paperImage =
-  document.getElementById("paperImage");
+/* =========================================================
+   NORTHWIND SEITEN
+   ========================================================= */
 
-const pageIndicator =
-  document.getElementById("pageIndicator");
-
-const folderFirst =
-  "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
-
-const folderTurned =
-  "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
-
-const northwindPages = [
-
-  "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
-
-  "728EE74F-078F-40C9-A363-05238EAAFCDB.png",
-
-  "CFB497BF-B1ED-4D66-87B3-EA1BC446E78F.png",
-
-  "DE9C9AAE-6122-4768-B61A-549A3AFD9F70.png"
-
+const pages=[
+    "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
+    "728EE74F-078F-40C9-A363-05238EAAFCDB.png",
+    "CFB497BF-B1ED-4D66-87B3-EA1BC446E78F.png",
+    "DE9C9AAE-6122-4768-B61A-549A3AFD9F70.png"
 ];
 
-let currentPage = 0;
-let changingPage = false;
+const folderPage1=
+    "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
 
-northwindDossier.addEventListener(
-  "touchstart",
-  function() {
+const folderTurned=
+    "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
+
+let currentPage=0;
+
+
+/* =========================================================
+   AUDIO AUF ECHTER INTERAKTION ENTSPERREN
+   ========================================================= */
+
+document.addEventListener("touchstart",()=>{
     ensureAudio();
-  },
-  {passive:true}
-);
+},{passive:true});
 
-northwindDossier.addEventListener(
-  "click",
-  async function() {
+document.addEventListener("pointerdown",()=>{
+    ensureAudio();
+},{passive:true});
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+answer.addEventListener("focus",async()=>{
+    await ensureAudio();
+});
+
+answer.addEventListener("input",async()=>{
+    await ensureAudio();
+    keyClick();
+});
+
+answer.addEventListener("keydown",e=>{
+    if(e.key==="Enter"){
+        checkAnswer();
+    }
+});
+
+checkButton.addEventListener("touchstart",()=>{
+    ensureAudio();
+},{passive:true});
+
+checkButton.addEventListener("click",checkAnswer);
+
+
+async function checkAnswer(){
 
     await ensureAudio();
-
     buttonClick();
 
-    currentPage = 0;
+    const value=answer.value
+        .trim()
+        .toLocaleLowerCase("de-DE");
 
-    folderImage.src =
-      folderFirst;
+    if(value==="drachen"){
 
-    paperImage.src =
-      northwindPages[0];
+        error.style.display="none";
 
-    paperImage.className =
-      "paper-image";
+        setTimeout(()=>{
+            grantedSound();
+        },90);
 
-    updateIndicator();
+        gate.style.display="none";
+        topPanel.style.display="none";
+        selection.style.display="block";
 
-    northwindViewer.style.display =
-      "block";
+    }else{
 
-  }
-);
+        error.style.display="block";
 
-greyfoxDossier.addEventListener(
-  "touchstart",
-  function() {
+    }
+}
+
+
+/* =========================================================
+   NORTHWIND ÖFFNEN / SCHLIESSEN
+   ========================================================= */
+
+northwindCard.addEventListener("touchstart",()=>{
     ensureAudio();
-  },
-  {passive:true}
-);
+},{passive:true});
 
-greyfoxDossier.addEventListener(
-  "click",
-  async function() {
+northwindCard.addEventListener("click",async()=>{
 
     await ensureAudio();
     buttonClick();
 
-  }
-);
+    currentPage=0;
+    updatePage();
 
-closeFile.addEventListener(
-  "touchstart",
-  function() {
+    northwindViewer.style.display="block";
+
+});
+
+
+closeFile.addEventListener("touchstart",()=>{
     ensureAudio();
-  },
-  {passive:true}
-);
+},{passive:true});
 
-closeFile.addEventListener(
-  "click",
-  async function() {
+closeFile.addEventListener("click",async()=>{
 
     await ensureAudio();
-
     buttonClick();
 
-    northwindViewer.style.display =
-      "none";
+    closeReader();
+    northwindViewer.style.display="none";
 
-  }
-);
+});
 
-function updateIndicator() {
 
-  pageIndicator.textContent =
-    "F-01 // SEITE " +
-    (currentPage + 1) +
-    " VON 4";
+greyfoxCard.addEventListener("click",async()=>{
+    await ensureAudio();
+    buttonClick();
+});
+
+
+/* =========================================================
+   SEITENANZEIGE
+   ========================================================= */
+
+function updatePage(){
+
+    paperImage.src=pages[currentPage];
+
+    folderImage.src=
+        currentPage===0
+        ? folderPage1
+        : folderTurned;
+
+    pageIndicator.textContent=
+        `SEITE ${currentPage+1} / 4`;
 
 }
 
 
-/* BLÄTTERN */
+/* =========================================================
+   BLÄTTERN
+   ========================================================= */
 
-async function nextPage() {
+async function nextPage(){
 
-  if (changingPage) return;
+    await ensureAudio();
 
-  await ensureAudio();
+    if(currentPage>=pages.length-1){
 
-  if (
-    currentPage ===
-    northwindPages.length - 1
-  ) {
+        lockedSound();
 
-    lockedSound();
+        dossierUnit.classList.remove("lock-bump");
+        void dossierUnit.offsetWidth;
+        dossierUnit.classList.add("lock-bump");
 
-    paperImage.classList.remove(
-      "lock-bump"
-    );
+        return;
+    }
 
-    void paperImage.offsetWidth;
-
-    paperImage.classList.add(
-      "lock-bump"
-    );
-
-    return;
-  }
-
-  changingPage = true;
-
-  pageSound();
-
-  paperImage.classList.add(
-    "turn-left"
-  );
-
-  setTimeout(function() {
+    pageSound();
 
     currentPage++;
 
-    if (currentPage === 0) {
-      folderImage.src = folderFirst;
-    }
-    else {
-      folderImage.src = folderTurned;
-    }
+    dossierUnit.classList.remove(
+        "page-turn-left",
+        "page-turn-right"
+    );
 
-    paperImage.src =
-      northwindPages[currentPage];
+    void dossierUnit.offsetWidth;
 
-    paperImage.className =
-      "paper-image turn-right";
+    dossierUnit.classList.add("page-turn-left");
 
-    requestAnimationFrame(function() {
-
-      requestAnimationFrame(function() {
-
-        paperImage.className =
-          "paper-image";
-
-      });
-
-    });
-
-    updateIndicator();
-
-    setTimeout(function() {
-
-      changingPage = false;
-
-    },260);
-
-  },210);
-
+    updatePage();
 }
 
-async function previousPage() {
 
-  if (changingPage) return;
+async function previousPage(){
 
-  await ensureAudio();
+    await ensureAudio();
 
-  if (currentPage === 0) {
+    if(currentPage<=0){
+        return;
+    }
 
-    lockedSound();
-
-    paperImage.classList.remove(
-      "lock-bump"
-    );
-
-    void paperImage.offsetWidth;
-
-    paperImage.classList.add(
-      "lock-bump"
-    );
-
-    return;
-  }
-
-  changingPage = true;
-
-  pageSound();
-
-  paperImage.classList.add(
-    "turn-right"
-  );
-
-  setTimeout(function() {
+    pageSound();
 
     currentPage--;
 
-    if (currentPage === 0) {
-      folderImage.src = folderFirst;
-    }
-    else {
-      folderImage.src = folderTurned;
-    }
+    dossierUnit.classList.remove(
+        "page-turn-left",
+        "page-turn-right"
+    );
 
-    paperImage.src =
-      northwindPages[currentPage];
+    void dossierUnit.offsetWidth;
 
-    paperImage.className =
-      "paper-image turn-left";
+    dossierUnit.classList.add("page-turn-right");
 
-    requestAnimationFrame(function() {
-
-      requestAnimationFrame(function() {
-
-        paperImage.className =
-          "paper-image";
-
-      });
-
-    });
-
-    updateIndicator();
-
-    setTimeout(function() {
-
-      changingPage = false;
-
-    },260);
-
-  },210);
-
+    updatePage();
 }
 
 
-/* WISCHEN */
+/* =========================================================
+   SWIPE
+   ========================================================= */
 
-let touchStartX = 0;
-let touchStartY = 0;
+let touchStartX=0;
+let touchStartY=0;
 
-fileStage.addEventListener(
-  "touchstart",
-  function(event) {
+northwindViewer.addEventListener(
+    "touchstart",
+    async e=>{
 
+        await ensureAudio();
+
+        if(reader.classList.contains("open")){
+            return;
+        }
+
+        const t=e.changedTouches[0];
+
+        touchStartX=t.clientX;
+        touchStartY=t.clientY;
+
+    },
+    {passive:true}
+);
+
+
+northwindViewer.addEventListener(
+    "touchend",
+    e=>{
+
+        if(reader.classList.contains("open")){
+            return;
+        }
+
+        const t=e.changedTouches[0];
+
+        const dx=t.clientX-touchStartX;
+        const dy=t.clientY-touchStartY;
+
+        if(
+            Math.abs(dx)<45 ||
+            Math.abs(dx)<Math.abs(dy)
+        ){
+            return;
+        }
+
+        if(dx<0){
+            nextPage();
+        }else{
+            previousPage();
+        }
+
+    },
+    {passive:true}
+);
+
+
+/* =========================================================
+   LESEMODUS
+   ========================================================= */
+
+paperBox.addEventListener("click",async e=>{
+
+    e.stopPropagation();
+
+    await ensureAudio();
+    buttonClick();
+
+    readerImage.src=pages[currentPage];
+    reader.classList.add("open");
+
+});
+
+
+/*
+   WICHTIG:
+   Dieser Button ist ein eigenes festes Element.
+   Er hängt NICHT am Bild und funktioniert unabhängig davon.
+*/
+readerClose.addEventListener("touchstart",e=>{
+    e.stopPropagation();
     ensureAudio();
+},{passive:true});
 
-    const touch =
-      event.changedTouches[0];
+readerClose.addEventListener("click",async e=>{
 
-    touchStartX =
-      touch.clientX;
+    e.preventDefault();
+    e.stopPropagation();
 
-    touchStartY =
-      touch.clientY;
+    await ensureAudio();
+    buttonClick();
 
-  },
-  {passive:true}
-);
+    closeReader();
 
-fileStage.addEventListener(
-  "touchend",
-  function(event) {
+});
 
-    const touch =
-      event.changedTouches[0];
 
-    const diffX =
-      touch.clientX -
-      touchStartX;
+function closeReader(){
+    reader.classList.remove("open");
+}
 
-    const diffY =
-      touch.clientY -
-      touchStartY;
 
-    if (
-      Math.abs(diffX) < 45 ||
-      Math.abs(diffX) < Math.abs(diffY)
-    ) {
-      return;
+/*
+   Zusätzlich: Tippen auf den dunklen Bereich außerhalb
+   des Dokuments bringt ebenfalls zurück.
+*/
+reader.addEventListener("click",e=>{
+
+    if(e.target===reader){
+        closeReader();
     }
 
-    if (diffX < 0) {
-
-      nextPage();
-
-    }
-
-    else {
-
-      previousPage();
-
-    }
-
-  },
-  {passive:true}
-);
+});
 
 </script>
 
