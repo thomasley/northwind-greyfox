@@ -6,9 +6,7 @@
 <title>NORTHWIND & GREYFOX</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -23,7 +21,6 @@ body {
   color: #f2f2f2;
 }
 
-/* SCHREIBTISCH – NICHT MEHR ANFASSEN 😂 */
 .desk-background {
   position: fixed;
   z-index: 0;
@@ -58,8 +55,6 @@ body {
   max-width: 620px;
   margin: 0 auto;
 }
-
-/* ---------- EINGANG ---------- */
 
 .header {
   padding: 10px 14px 11px;
@@ -134,13 +129,8 @@ input {
   font-size: 14px;
 }
 
-input::placeholder {
-  color: #aeb4b9;
-}
-
-input:focus {
-  border-color: #d8aa43;
-}
+input::placeholder { color: #aeb4b9; }
+input:focus { border-color: #d8aa43; }
 
 button {
   display: block;
@@ -156,9 +146,7 @@ button {
   cursor: pointer;
 }
 
-button:active {
-  transform: translateY(1px);
-}
+button:active { transform: translateY(1px); }
 
 #error {
   display: none;
@@ -181,9 +169,6 @@ button:active {
   line-height: 1.45;
   text-transform: uppercase;
 }
-
-
-/* ---------- AKTENBILDSCHIRM ---------- */
 
 #dossiers {
   display: none;
@@ -225,9 +210,7 @@ button:active {
   transition: 0.15s ease;
 }
 
-.dossier:last-child {
-  margin-bottom: 0;
-}
+.dossier:last-child { margin-bottom: 0; }
 
 .dossier:active {
   border-color: #d8aa43;
@@ -263,14 +246,8 @@ button:active {
   text-transform: uppercase;
 }
 
-
-/* ---------- KLEINE DISPLAYS ---------- */
-
 @media (max-height: 700px) {
-
-  .page {
-    padding-top: 8px;
-  }
+  .page { padding-top: 8px; }
 
   .header {
     padding-top: 8px;
@@ -278,9 +255,7 @@ button:active {
     margin-bottom: 6px;
   }
 
-  h1 {
-    font-size: 20px;
-  }
+  h1 { font-size: 20px; }
 
   .intro {
     padding-top: 7px;
@@ -293,24 +268,15 @@ button:active {
     padding-bottom: 10px;
   }
 
-  .question {
-    font-size: 15px;
-  }
-
-  .footer {
-    margin-top: 6px;
-  }
-
-  .access {
-    padding: 14px;
-  }
+  .question { font-size: 15px; }
+  .footer { margin-top: 6px; }
+  .access { padding: 14px; }
 
   .access-title {
     font-size: 23px;
     margin-bottom: 13px;
   }
 }
-
 </style>
 </head>
 
@@ -327,25 +293,12 @@ button:active {
 <div class="page">
 <div class="container">
 
-
-<!-- ============================= -->
-<!-- EINGANG                       -->
-<!-- ============================= -->
-
 <div id="entrance">
 
   <div class="header">
-
-    <div class="agency">
-      Zentralstelle für besondere Lagen
-    </div>
-
-    <h1>
-      REFERAT F – BESONDERE ERMITTLUNGEN
-    </h1>
-
+    <div class="agency">Zentralstelle für besondere Lagen</div>
+    <h1>REFERAT F – BESONDERE ERMITTLUNGEN</h1>
   </div>
-
 
   <div class="intro">
     Eine neue Übertragung wurde registriert.<br>
@@ -353,12 +306,9 @@ button:active {
     Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
   </div>
 
-
   <div class="card">
 
-    <div class="label">
-      Identity Verification
-    </div>
+    <div class="label">Identity Verification</div>
 
     <div class="question">
       Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
@@ -373,7 +323,7 @@ button:active {
       spellcheck="false"
     >
 
-    <button id="accessButton" onclick="checkAnswer()">
+    <button id="accessButton">
       Zugang prüfen
     </button>
 
@@ -384,7 +334,6 @@ button:active {
 
   </div>
 
-
   <div class="footer">
     FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
     CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
@@ -392,10 +341,6 @@ button:active {
 
 </div>
 
-
-<!-- ============================= -->
-<!-- AKTENAUSWAHL                   -->
-<!-- ============================= -->
 
 <div id="dossiers">
 
@@ -410,40 +355,25 @@ button:active {
       FREIGEGEBEN
     </div>
 
-
-    <div class="dossier" onclick="dossierClick()">
-
+    <div class="dossier">
       <div class="code">
         F-01 // NORTHWIND // BERLIN DIVISION
       </div>
-
-      <div class="name">
-        NORTHWIND
-      </div>
-
+      <div class="name">NORTHWIND</div>
       <div class="status">
         DOSSIER // BEREIT ZUR ÜBERTRAGUNG
       </div>
-
     </div>
 
-
-    <div class="dossier" onclick="dossierClick()">
-
+    <div class="dossier">
       <div class="code">
         TJ-01 // GREYFOX // RHINELAND DIVISION
       </div>
-
-      <div class="name">
-        GREYFOX
-      </div>
-
+      <div class="name">GREYFOX</div>
       <div class="status">
         DOSSIER // BEREIT ZUR ÜBERTRAGUNG
       </div>
-
     </div>
-
 
     <div class="access-footer">
       FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
@@ -454,182 +384,168 @@ button:active {
 
 </div>
 
-
 </div>
 </div>
 
 
 <script>
+let audioCtx = null;
+let soundUnlocked = false;
 
-/* ==========================================
-   KLEINE SYNTHETISCHE TERMINAL-GERÄUSCHE
-   Keine MP3-Dateien notwendig.
-   ========================================== */
 
-let audioContext = null;
+/* Ton DIREKT bei der ersten Berührung freischalten */
+function unlockSound() {
 
-function getAudioContext() {
+  if (soundUnlocked) return;
 
-  if (!audioContext) {
+  const AudioContext =
+    window.AudioContext || window.webkitAudioContext;
 
-    const AudioContext =
-      window.AudioContext ||
-      window.webkitAudioContext;
+  if (!AudioContext) return;
 
-    if (AudioContext) {
-      audioContext = new AudioContext();
-    }
-
+  if (!audioCtx) {
+    audioCtx = new AudioContext();
   }
 
-  if (
-    audioContext &&
-    audioContext.state === "suspended"
-  ) {
-    audioContext.resume();
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
   }
 
-  return audioContext;
+  /*
+    Ein praktisch lautloser Mini-Ton wird innerhalb
+    der echten Benutzerberührung abgespielt.
+    Damit bekommt iOS den AudioContext freigeschaltet.
+  */
+
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  gain.gain.value = 0.0001;
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.01);
+
+  soundUnlocked = true;
 }
 
 
-/* KURZER TASTENKLICK */
-
+/* Tastenklick */
 function keyClick() {
 
-  const ctx = getAudioContext();
+  if (!audioCtx || audioCtx.state !== "running") return;
 
-  if (!ctx) return;
+  const now = audioCtx.currentTime;
 
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
 
   osc.type = "square";
-  osc.frequency.value = 720;
+  osc.frequency.setValueAtTime(850, now);
+  osc.frequency.exponentialRampToValueAtTime(500, now + 0.018);
 
-  gain.gain.setValueAtTime(
-    0.025,
-    ctx.currentTime
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    ctx.currentTime + 0.025
-  );
+  gain.gain.setValueAtTime(0.055, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.028);
 
   osc.connect(gain);
-  gain.connect(ctx.destination);
+  gain.connect(audioCtx.destination);
 
-  osc.start();
-  osc.stop(ctx.currentTime + 0.025);
+  osc.start(now);
+  osc.stop(now + 0.03);
 }
 
 
-/* SATTER KLICK BEIM BUTTON */
-
+/* Satter Button-Klick */
 function buttonClick() {
 
-  const ctx = getAudioContext();
+  if (!audioCtx || audioCtx.state !== "running") return;
 
-  if (!ctx) return;
+  const now = audioCtx.currentTime;
 
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
 
   osc.type = "square";
-  osc.frequency.value = 190;
+  osc.frequency.setValueAtTime(230, now);
+  osc.frequency.exponentialRampToValueAtTime(120, now + 0.06);
 
-  gain.gain.setValueAtTime(
-    0.05,
-    ctx.currentTime
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    ctx.currentTime + 0.07
-  );
-  
+  gain.gain.setValueAtTime(0.09, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
 
   osc.connect(gain);
-  gain.connect(ctx.destination);
+  gain.connect(audioCtx.destination);
 
-  osc.start();
-  osc.stop(ctx.currentTime + 0.07);
+  osc.start(now);
+  osc.stop(now + 0.075);
 }
 
 
-/* KURZES ZUGANGSSIGNAL */
+/* Zugang bestätigt */
+function grantedSound() {
 
-function accessGrantedSound() {
+  if (!audioCtx || audioCtx.state !== "running") return;
 
-  const ctx = getAudioContext();
+  const now = audioCtx.currentTime;
 
-  if (!ctx) return;
+  [520, 780].forEach(function(freq, index) {
 
-  const now = ctx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
 
-  const osc1 = ctx.createOscillator();
-  const gain1 = ctx.createGain();
+    const start = now + (index * 0.10);
 
-  osc1.type = "sine";
-  osc1.frequency.value = 520;
+    osc.type = "sine";
+    osc.frequency.value = freq;
 
-  gain1.gain.setValueAtTime(0.04, now);
-  gain1.gain.exponentialRampToValueAtTime(
-    0.001,
-    now + 0.10
-  );
+    gain.gain.setValueAtTime(0.001, start);
+    gain.gain.linearRampToValueAtTime(0.075, start + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + 0.11);
 
-  osc1.connect(gain1);
-  gain1.connect(ctx.destination);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
 
-  osc1.start(now);
-  osc1.stop(now + 0.10);
+    osc.start(start);
+    osc.stop(start + 0.12);
 
-
-  const osc2 = ctx.createOscillator();
-  const gain2 = ctx.createGain();
-
-  osc2.type = "sine";
-  osc2.frequency.value = 780;
-
-  gain2.gain.setValueAtTime(
-    0.001,
-    now + 0.09
-  );
-
-  gain2.gain.exponentialRampToValueAtTime(
-    0.04,
-    now + 0.10
-  );
-
-  gain2.gain.exponentialRampToValueAtTime(
-    0.001,
-    now + 0.22
-  );
-
-  osc2.connect(gain2);
-  gain2.connect(ctx.destination);
-
-  osc2.start(now + 0.09);
-  osc2.stop(now + 0.22);
+  });
 }
 
 
-/* ==========================================
-   IDENTITÄTSPRÜFUNG
-   ========================================== */
+const answerField = document.getElementById("answer");
+const accessButton = document.getElementById("accessButton");
+
+
+/*
+  WICHTIGER iPHONE-TRICK:
+  Audio wird schon beim echten Fingerkontakt aktiviert,
+  nicht erst später beim Tippen.
+*/
+
+answerField.addEventListener("touchstart", unlockSound, { passive: true });
+answerField.addEventListener("pointerdown", unlockSound);
+answerField.addEventListener("focus", unlockSound);
+
+
+/* Bei jedem tatsächlich eingegebenen Zeichen */
+answerField.addEventListener("input", function(event) {
+
+  if (event.inputType !== "deleteContentBackward" &&
+      event.inputType !== "deleteContentForward") {
+    keyClick();
+  }
+
+});
+
 
 function checkAnswer() {
 
+  unlockSound();
   buttonClick();
 
   const answer =
-    document
-      .getElementById("answer")
-      .value
-      .trim()
-      .toLowerCase();
+    answerField.value.trim().toLowerCase();
 
   const error =
     document.getElementById("error");
@@ -649,17 +565,15 @@ function checkAnswer() {
 
     error.style.display = "none";
 
+    grantedSound();
+
     setTimeout(function() {
 
-      accessGrantedSound();
-
       entrance.style.display = "none";
-
       dossiers.style.display = "flex";
-
       window.scrollTo(0, 0);
 
-    }, 120);
+    }, 260);
 
   }
 
@@ -668,59 +582,37 @@ function checkAnswer() {
     error.style.display = "block";
 
   }
-
 }
 
 
-/* ==========================================
-   TIPPKLICK
-   ========================================== */
-
-const answerField =
-  document.getElementById("answer");
-
-answerField.addEventListener(
-  "input",
-  function() {
-
-    keyClick();
-
-  }
-);
+accessButton.addEventListener("touchstart", unlockSound, { passive: true });
+accessButton.addEventListener("pointerdown", unlockSound);
+accessButton.addEventListener("click", checkAnswer);
 
 
-/* ENTER-TASTE */
+answerField.addEventListener("keydown", function(event) {
 
-answerField.addEventListener(
-  "keydown",
-  function(event) {
+  if (event.key === "Enter") {
 
-    if (event.key === "Enter") {
-
-      event.preventDefault();
-
-      checkAnswer();
-
-    }
+    event.preventDefault();
+    checkAnswer();
 
   }
-);
+
+});
 
 
-/* ==========================================
-   AKTEN-KLICK
-   Noch keine Akte öffnen –
-   nur Sound als Vorbereitung.
-   ========================================== */
+/* Akten reagieren nur akustisch – öffnen noch nichts */
+document.querySelectorAll(".dossier").forEach(function(dossier) {
 
-function dossierClick() {
+  dossier.addEventListener("touchstart", unlockSound, { passive: true });
 
-  buttonClick();
+  dossier.addEventListener("click", function() {
+    buttonClick();
+  });
 
-}
-
+});
 </script>
 
 </body>
 </html>
-
