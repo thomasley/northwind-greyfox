@@ -23,7 +23,7 @@ body {
   color: #f2f2f2;
 }
 
-/* SCHREIBTISCH – FUNKTIONIERT, ALSO FINGER WEG 😄 */
+/* SCHREIBTISCH – NICHT MEHR ANFASSEN 😂 */
 .desk-background {
   position: fixed;
   z-index: 0;
@@ -42,7 +42,6 @@ body {
   pointer-events: none;
 }
 
-/* STARTSEITE */
 .page {
   position: relative;
   z-index: 2;
@@ -60,103 +59,78 @@ body {
   margin: 0 auto;
 }
 
-/* KOPF */
+/* ---------- EINGANG ---------- */
+
 .header {
   padding: 10px 14px 11px;
   margin-bottom: 9px;
-
   background: rgba(3, 12, 19, 0.57);
   border-left: 3px solid #d8aa43;
-
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
 .agency {
   margin-bottom: 5px;
-
   color: #d8aa43;
-
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 1.3;
-
   text-transform: uppercase;
 }
 
 h1 {
   margin: 0;
-
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(21px, 5.2vw, 31px);
   line-height: 1.02;
-
   letter-spacing: 0.3px;
-
   text-shadow: 0 2px 7px #000;
 }
 
-/* KURZE MELDUNG */
 .intro {
   padding: 9px 13px;
   margin-bottom: 9px;
-
   background: rgba(3, 12, 19, 0.54);
   border-left: 3px solid #d8aa43;
-
   font-size: 11px;
   line-height: 1.42;
-
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
-/* IDENTITÄTSPRÜFUNG */
 .card {
   padding: 13px 14px;
-
   background: rgba(3, 13, 21, 0.68);
-
   border: 1px solid rgba(215,224,230,0.50);
-
   box-shadow: 0 8px 25px rgba(0,0,0,0.34);
 }
 
 .label {
   margin-bottom: 8px;
-
   color: #d8aa43;
-
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2px;
-
   text-transform: uppercase;
 }
 
 .question {
   margin-bottom: 11px;
-
   font-family: Georgia, "Times New Roman", serif;
   font-size: 16px;
   line-height: 1.25;
-
   text-shadow: 0 2px 6px #000;
 }
 
 input {
   display: block;
-
   width: 100%;
-
   padding: 10px 12px;
   margin: 0 0 8px;
-
   color: #fff;
   background: rgba(0, 6, 10, 0.72);
-
   border: 1px solid #89949d;
   outline: none;
-
   font-size: 14px;
 }
 
@@ -170,22 +144,15 @@ input:focus {
 
 button {
   display: block;
-
   width: 100%;
-
   padding: 10px 12px;
-
   border: 0;
-
   background: #d8aa43;
   color: #080b0e;
-
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 1.8px;
-
   text-transform: uppercase;
-
   cursor: pointer;
 }
 
@@ -195,111 +162,110 @@ button:active {
 
 #error {
   display: none;
-
   margin-top: 8px;
   padding: 8px 10px;
-
   background: rgba(0,0,0,0.44);
-
   border-left: 2px solid #d8aa43;
-
   color: #f0cf7c;
-
   font-size: 10px;
   line-height: 1.35;
 }
 
-/* KLEINER ABSCHLUSS */
 .footer {
   margin-top: 9px;
   padding: 7px 10px;
-
   background: rgba(2, 8, 12, 0.48);
-
   color: rgba(240,240,240,0.72);
-
   font-size: 7px;
   letter-spacing: 1.3px;
   line-height: 1.45;
-
   text-transform: uppercase;
 }
 
-/* NACH DEM RICHTIGEN CODE */
+
+/* ---------- AKTENBILDSCHIRM ---------- */
+
 #dossiers {
   display: none;
-  margin-top: 10px;
+  min-height: calc(100dvh - 28px);
+  align-items: center;
 }
 
 .access {
-  padding: 17px;
-
-  background: rgba(3, 13, 21, 0.76);
-
+  width: 100%;
+  padding: 18px 17px;
+  background: rgba(3, 13, 21, 0.70);
   border: 1px solid rgba(215,224,230,0.52);
-
   box-shadow: 0 10px 30px rgba(0,0,0,0.38);
 }
 
 .access-small {
-  margin-bottom: 6px;
-
+  margin-bottom: 7px;
   color: #d8aa43;
-
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2px;
-
+  letter-spacing: 2.2px;
   text-transform: uppercase;
 }
 
 .access-title {
-  margin-bottom: 15px;
-
+  margin-bottom: 18px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 24px;
+  font-size: 27px;
   line-height: 1.05;
-
   text-shadow: 0 2px 7px #000;
 }
 
 .dossier {
-  padding: 14px;
-  margin-bottom: 10px;
-
-  background: rgba(1, 8, 13, 0.73);
-
-  border: 1px solid rgba(215,224,230,0.44);
+  position: relative;
+  padding: 16px;
+  margin-bottom: 11px;
+  background: rgba(1, 8, 13, 0.74);
+  border: 1px solid rgba(215,224,230,0.46);
+  transition: 0.15s ease;
 }
 
 .dossier:last-child {
   margin-bottom: 0;
 }
 
+.dossier:active {
+  border-color: #d8aa43;
+  transform: scale(0.99);
+}
+
 .code {
   color: #d8aa43;
-
   font-size: 8px;
   font-weight: 700;
-  letter-spacing: 1.3px;
+  letter-spacing: 1.4px;
   line-height: 1.45;
 }
 
 .name {
-  margin: 7px 0 4px;
-
+  margin: 8px 0 5px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
+  font-size: 23px;
 }
 
 .status {
   color: #c1c7cc;
-
   font-size: 9px;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.9px;
 }
 
-/* AUF SEHR KLEINEN HANDYS NOCH ETWAS KOMPAKTER */
+.access-footer {
+  margin-top: 13px;
+  color: rgba(240,240,240,0.65);
+  font-size: 7px;
+  letter-spacing: 1.3px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+
+/* ---------- KLEINE DISPLAYS ---------- */
+
 @media (max-height: 700px) {
 
   .page {
@@ -334,6 +300,15 @@ button:active {
   .footer {
     margin-top: 6px;
   }
+
+  .access {
+    padding: 14px;
+  }
+
+  .access-title {
+    font-size: 23px;
+    margin-bottom: 13px;
+  }
 }
 
 </style>
@@ -341,7 +316,6 @@ button:active {
 
 <body>
 
-<!-- ECHTES BILD: DAS BLEIBT GENAU SO -->
 <img
   class="desk-background"
   src="E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png"
@@ -351,111 +325,129 @@ button:active {
 <div class="shade"></div>
 
 <div class="page">
+<div class="container">
 
-  <div class="container">
 
-    <div id="entrance">
+<!-- ============================= -->
+<!-- EINGANG                       -->
+<!-- ============================= -->
 
-      <div class="header">
+<div id="entrance">
 
-        <div class="agency">
-          Zentralstelle für besondere Lagen
-        </div>
+  <div class="header">
 
-        <h1>
-          REFERAT F – BESONDERE ERMITTLUNGEN
-        </h1>
+    <div class="agency">
+      Zentralstelle für besondere Lagen
+    </div>
 
+    <h1>
+      REFERAT F – BESONDERE ERMITTLUNGEN
+    </h1>
+
+  </div>
+
+
+  <div class="intro">
+    Eine neue Übertragung wurde registriert.<br>
+    Identitätsprüfung erforderlich.<br>
+    Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
+  </div>
+
+
+  <div class="card">
+
+    <div class="label">
+      Identity Verification
+    </div>
+
+    <div class="question">
+      Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
+    </div>
+
+    <input
+      id="answer"
+      type="text"
+      placeholder="Antwort eingeben"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+    >
+
+    <button id="accessButton" onclick="checkAnswer()">
+      Zugang prüfen
+    </button>
+
+    <div id="error">
+      Identität konnte nicht bestätigt werden.<br>
+      Hinweis: Sie sind größer als Aktenordner und mögen offenbar Kaffee.
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
+    CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
+  </div>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- AKTENAUSWAHL                   -->
+<!-- ============================= -->
+
+<div id="dossiers">
+
+  <div class="access">
+
+    <div class="access-small">
+      Identität bestätigt
+    </div>
+
+    <div class="access-title">
+      AKTENZUGRIFF<br>
+      FREIGEGEBEN
+    </div>
+
+
+    <div class="dossier" onclick="dossierClick()">
+
+      <div class="code">
+        F-01 // NORTHWIND // BERLIN DIVISION
       </div>
 
-      <div class="intro">
-        Eine neue Übertragung wurde registriert.<br>
-        Identitätsprüfung erforderlich.<br>
-        Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
+      <div class="name">
+        NORTHWIND
       </div>
 
-      <div class="card" id="loginCard">
-
-        <div class="label">
-          Identity Verification
-        </div>
-
-        <div class="question">
-          Welche Wesen wurden in der Berliner Außenstelle zuletzt auf Kaffee eingestellt?
-        </div>
-
-        <input
-          id="answer"
-          type="text"
-          placeholder="Antwort eingeben"
-          autocomplete="off"
-        >
-
-        <button onclick="checkAnswer()">
-          Zugang prüfen
-        </button>
-
-        <div id="error">
-          Identität konnte nicht bestätigt werden.<br>
-          Hinweis: Sie sind größer als Aktenordner und mögen offenbar Kaffee.
-        </div>
-
-      </div>
-
-      <div class="footer">
-        FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
-        CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
+      <div class="status">
+        DOSSIER // BEREIT ZUR ÜBERTRAGUNG
       </div>
 
     </div>
 
 
-    <div id="dossiers">
+    <div class="dossier" onclick="dossierClick()">
 
-      <div class="access">
-
-        <div class="access-small">
-          Identität bestätigt
-        </div>
-
-        <div class="access-title">
-          AKTENZUGRIFF FREIGEGEBEN
-        </div>
-
-        <div class="dossier">
-
-          <div class="code">
-            F-01 // NORTHWIND // BERLIN DIVISION
-          </div>
-
-          <div class="name">
-            NORTHWIND
-          </div>
-
-          <div class="status">
-            DOSSIER // BEREIT ZUR ÜBERTRAGUNG
-          </div>
-
-        </div>
-
-        <div class="dossier">
-
-          <div class="code">
-            TJ-01 // GREYFOX // RHINELAND DIVISION
-          </div>
-
-          <div class="name">
-            GREYFOX
-          </div>
-
-          <div class="status">
-            DOSSIER // BEREIT ZUR ÜBERTRAGUNG
-          </div>
-
-        </div>
-
+      <div class="code">
+        TJ-01 // GREYFOX // RHINELAND DIVISION
       </div>
 
+      <div class="name">
+        GREYFOX
+      </div>
+
+      <div class="status">
+        DOSSIER // BEREIT ZUR ÜBERTRAGUNG
+      </div>
+
+    </div>
+
+
+    <div class="access-footer">
+      FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
+      CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
     </div>
 
   </div>
@@ -463,9 +455,174 @@ button:active {
 </div>
 
 
+</div>
+</div>
+
+
 <script>
 
+/* ==========================================
+   KLEINE SYNTHETISCHE TERMINAL-GERÄUSCHE
+   Keine MP3-Dateien notwendig.
+   ========================================== */
+
+let audioContext = null;
+
+function getAudioContext() {
+
+  if (!audioContext) {
+
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if (AudioContext) {
+      audioContext = new AudioContext();
+    }
+
+  }
+
+  if (
+    audioContext &&
+    audioContext.state === "suspended"
+  ) {
+    audioContext.resume();
+  }
+
+  return audioContext;
+}
+
+
+/* KURZER TASTENKLICK */
+
+function keyClick() {
+
+  const ctx = getAudioContext();
+
+  if (!ctx) return;
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "square";
+  osc.frequency.value = 720;
+
+  gain.gain.setValueAtTime(
+    0.025,
+    ctx.currentTime
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    ctx.currentTime + 0.025
+  );
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime + 0.025);
+}
+
+
+/* SATTER KLICK BEIM BUTTON */
+
+function buttonClick() {
+
+  const ctx = getAudioContext();
+
+  if (!ctx) return;
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "square";
+  osc.frequency.value = 190;
+
+  gain.gain.setValueAtTime(
+    0.05,
+    ctx.currentTime
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    ctx.currentTime + 0.07
+  );
+  
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime + 0.07);
+}
+
+
+/* KURZES ZUGANGSSIGNAL */
+
+function accessGrantedSound() {
+
+  const ctx = getAudioContext();
+
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+
+  const osc1 = ctx.createOscillator();
+  const gain1 = ctx.createGain();
+
+  osc1.type = "sine";
+  osc1.frequency.value = 520;
+
+  gain1.gain.setValueAtTime(0.04, now);
+  gain1.gain.exponentialRampToValueAtTime(
+    0.001,
+    now + 0.10
+  );
+
+  osc1.connect(gain1);
+  gain1.connect(ctx.destination);
+
+  osc1.start(now);
+  osc1.stop(now + 0.10);
+
+
+  const osc2 = ctx.createOscillator();
+  const gain2 = ctx.createGain();
+
+  osc2.type = "sine";
+  osc2.frequency.value = 780;
+
+  gain2.gain.setValueAtTime(
+    0.001,
+    now + 0.09
+  );
+
+  gain2.gain.exponentialRampToValueAtTime(
+    0.04,
+    now + 0.10
+  );
+
+  gain2.gain.exponentialRampToValueAtTime(
+    0.001,
+    now + 0.22
+  );
+
+  osc2.connect(gain2);
+  gain2.connect(ctx.destination);
+
+  osc2.start(now + 0.09);
+  osc2.stop(now + 0.22);
+}
+
+
+/* ==========================================
+   IDENTITÄTSPRÜFUNG
+   ========================================== */
+
 function checkAnswer() {
+
+  buttonClick();
 
   const answer =
     document
@@ -483,6 +640,7 @@ function checkAnswer() {
   const dossiers =
     document.getElementById("dossiers");
 
+
   if (
     answer === "drachen" ||
     answer === "drache" ||
@@ -491,16 +649,21 @@ function checkAnswer() {
 
     error.style.display = "none";
 
-    entrance.style.display = "none";
+    setTimeout(function() {
 
-    dossiers.style.display = "block";
+      accessGrantedSound();
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+      entrance.style.display = "none";
 
-  } else {
+      dossiers.style.display = "flex";
+
+      window.scrollTo(0, 0);
+
+    }, 120);
+
+  }
+
+  else {
 
     error.style.display = "block";
 
@@ -508,17 +671,56 @@ function checkAnswer() {
 
 }
 
-document
-  .getElementById("answer")
-  .addEventListener("keydown", function(event) {
+
+/* ==========================================
+   TIPPKLICK
+   ========================================== */
+
+const answerField =
+  document.getElementById("answer");
+
+answerField.addEventListener(
+  "input",
+  function() {
+
+    keyClick();
+
+  }
+);
+
+
+/* ENTER-TASTE */
+
+answerField.addEventListener(
+  "keydown",
+  function(event) {
 
     if (event.key === "Enter") {
+
+      event.preventDefault();
+
       checkAnswer();
+
     }
 
-  });
+  }
+);
+
+
+/* ==========================================
+   AKTEN-KLICK
+   Noch keine Akte öffnen –
+   nur Sound als Vorbereitung.
+   ========================================== */
+
+function dossierClick() {
+
+  buttonClick();
+
+}
 
 </script>
 
 </body>
 </html>
+
