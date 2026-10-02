@@ -14,34 +14,30 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #050c12;
-  color: #f2f2f2;
 }
 
 body {
   min-height: 100vh;
-  background:
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f2f2f2;
+
+  background-image:
     linear-gradient(
-      rgba(3, 10, 16, 0.42),
-      rgba(3, 10, 16, 0.68)
+      rgba(3, 9, 14, 0.12),
+      rgba(3, 9, 14, 0.22)
     ),
     url("E4BD210F-D0C2-49E9-B754-0CD42E9F2CD4.png");
 
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-color: #050c12;
 }
 
 .page {
   min-height: 100vh;
-  padding: 42px 22px 70px;
-  background: linear-gradient(
-    180deg,
-    rgba(4, 12, 19, 0.28) 0%,
-    rgba(4, 12, 19, 0.48) 55%,
-    rgba(4, 12, 19, 0.72) 100%
-  );
+  padding: 40px 22px 70px;
 }
 
 .container {
@@ -50,40 +46,57 @@ body {
   margin: 0 auto;
 }
 
+.header {
+  padding: 20px 20px 22px;
+  margin-bottom: 24px;
+
+  background: rgba(4, 12, 18, 0.68);
+  border-left: 3px solid #d8aa43;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  backdrop-filter: blur(2px);
+}
+
 .agency {
   color: #d8aa43;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 h1 {
-  margin: 0 0 28px;
+  margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(34px, 9vw, 55px);
-  line-height: 0.98;
+  font-size: clamp(31px, 8vw, 52px);
+  line-height: 1;
   letter-spacing: 1px;
-  text-shadow: 0 3px 14px #000;
+  text-shadow: 0 3px 12px #000;
 }
 
-.message {
+.intro {
+  margin: 0 0 28px;
+  padding: 18px 20px;
+
+  background: rgba(4, 13, 20, 0.70);
   border-left: 3px solid #d8aa43;
-  padding: 8px 0 8px 18px;
-  margin-bottom: 32px;
-  font-size: 18px;
+
+  font-size: 17px;
   line-height: 1.65;
-  color: #d4d8dc;
-  text-shadow: 0 2px 8px #000;
+  color: #f0f0f0;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  backdrop-filter: blur(2px);
 }
 
 .card {
-  background: rgba(5, 16, 24, 0.91);
-  border: 1px solid rgba(192, 202, 210, 0.45);
-  padding: 26px 22px;
-  box-shadow: 0 14px 45px rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px);
+  background: rgba(4, 14, 22, 0.82);
+  border: 1px solid rgba(215, 224, 230, 0.55);
+  padding: 25px 21px;
+
+  box-shadow: 0 14px 38px rgba(0,0,0,0.42);
+  backdrop-filter: blur(3px);
 }
 
 .label {
@@ -96,21 +109,31 @@ h1 {
 }
 
 .question {
+  margin-bottom: 24px;
+
   font-family: Georgia, "Times New Roman", serif;
   font-size: 27px;
   line-height: 1.35;
-  margin-bottom: 24px;
+
+  text-shadow: 0 2px 8px #000;
 }
 
 input {
   width: 100%;
-  padding: 18px;
-  font-size: 18px;
+  padding: 17px;
+
   color: white;
-  background: rgba(1, 8, 13, 0.88);
-  border: 1px solid #66727b;
+  background: rgba(1, 7, 11, 0.78);
+
+  border: 1px solid #84909a;
   outline: none;
+
+  font-size: 18px;
   margin-bottom: 16px;
+}
+
+input::placeholder {
+  color: #aab0b5;
 }
 
 input:focus {
@@ -120,80 +143,115 @@ input:focus {
 button {
   width: 100%;
   padding: 18px;
-  border: 0;
+
+  border: none;
   background: #d8aa43;
   color: #080b0e;
+
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
+
   cursor: pointer;
+}
+
+button:active {
+  transform: translateY(1px);
 }
 
 #error {
   display: none;
-  margin-top: 16px;
-  color: #d9b45d;
+
+  margin-top: 17px;
+  padding: 14px;
+
+  border-left: 3px solid #d8aa43;
+  background: rgba(0,0,0,0.40);
+
+  color: #f0cf7c;
   line-height: 1.5;
 }
 
 #dossiers {
   display: none;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .access {
-  border-top: 1px solid rgba(200,210,218,.35);
-  padding-top: 28px;
+  padding: 25px 21px;
+
+  background: rgba(4, 14, 22, 0.82);
+  border: 1px solid rgba(215,224,230,0.55);
+
+  box-shadow: 0 14px 38px rgba(0,0,0,0.42);
+  backdrop-filter: blur(3px);
 }
 
 .access-small {
   color: #d8aa43;
-  font-size: 13px;
+
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
+
   margin-bottom: 10px;
 }
 
 .access-title {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 38px;
-  line-height: 1;
+  font-size: 35px;
+  line-height: 1.05;
+
   margin-bottom: 26px;
+  text-shadow: 0 2px 8px #000;
 }
 
 .dossier {
-  background: rgba(6, 18, 27, 0.94);
-  border: 1px solid rgba(190, 200, 208, 0.45);
-  padding: 22px;
+  padding: 21px;
   margin-bottom: 16px;
+
+  background: rgba(1, 8, 13, 0.78);
+  border: 1px solid rgba(215,224,230,0.45);
+}
+
+.dossier:last-child {
+  margin-bottom: 0;
 }
 
 .code {
   color: #d8aa43;
-  font-size: 13px;
+
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 1.5;
 }
 
 .name {
+  margin: 13px 0 8px;
+
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  margin: 14px 0 8px;
+  font-size: 29px;
 }
 
 .status {
-  color: #aeb5bb;
-  font-size: 14px;
+  color: #c1c7cc;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
 .footer {
-  margin-top: 48px;
-  color: rgba(220,225,230,.55);
-  font-size: 11px;
-  letter-spacing: 3px;
+  margin-top: 35px;
+  padding: 14px 16px;
+
+  background: rgba(2, 8, 12, 0.58);
+
+  color: rgba(240,240,240,0.72);
+
+  font-size: 10px;
+  letter-spacing: 2px;
   line-height: 1.8;
   text-transform: uppercase;
 }
@@ -205,7 +263,11 @@ button {
   }
 
   .page {
-    padding-top: 32px;
+    padding: 25px 18px 55px;
+  }
+
+  .header {
+    margin-top: 12px;
   }
 }
 </style>
@@ -216,17 +278,21 @@ button {
 <div class="page">
   <div class="container">
 
-    <div class="agency">
-      Zentralstelle für besondere Lagen
+    <div class="header">
+
+      <div class="agency">
+        Zentralstelle für besondere Lagen
+      </div>
+
+      <h1>
+        REFERAT F –<br>
+        BESONDERE<br>
+        ERMITTLUNGEN
+      </h1>
+
     </div>
 
-    <h1>
-      REFERAT F –<br>
-      BESONDERE<br>
-      ERMITTLUNGEN
-    </h1>
-
-    <div class="message">
+    <div class="intro">
       Eine neue Übertragung wurde registriert.<br>
       Identitätsprüfung erforderlich.<br>
       Unbefugter Zugriff wird selbstverständlich mit strengem Stirnrunzeln geahndet.
@@ -277,9 +343,11 @@ button {
           <div class="code">
             F-01 // NORTHWIND // BERLIN DIVISION
           </div>
+
           <div class="name">
             NORTHWIND
           </div>
+
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
@@ -289,9 +357,11 @@ button {
           <div class="code">
             TJ-01 // GREYFOX // RHINELAND DIVISION
           </div>
+
           <div class="name">
             GREYFOX
           </div>
+
           <div class="status">
             DOSSIER // BEREIT ZUR ÜBERTRAGUNG
           </div>
@@ -303,7 +373,7 @@ button {
 
     <div class="footer">
       FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
-      CHANNEL NW-GF/01
+      CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
     </div>
 
   </div>
@@ -311,21 +381,28 @@ button {
 
 <script>
 function checkAnswer() {
-  const answer = document
-    .getElementById("answer")
+
+  const answer =
+    document.getElementById("answer")
     .value
     .trim()
     .toLowerCase();
 
-  const error = document.getElementById("error");
-  const dossiers = document.getElementById("dossiers");
-  const loginCard = document.getElementById("loginCard");
+  const error =
+    document.getElementById("error");
+
+  const dossiers =
+    document.getElementById("dossiers");
+
+  const loginCard =
+    document.getElementById("loginCard");
 
   if (
     answer === "drachen" ||
     answer === "drache" ||
     answer === "die drachen"
   ) {
+
     error.style.display = "none";
     loginCard.style.display = "none";
     dossiers.style.display = "block";
@@ -334,17 +411,22 @@ function checkAnswer() {
       behavior: "smooth",
       block: "start"
     });
+
   } else {
+
     error.style.display = "block";
+
   }
 }
 
 document
   .getElementById("answer")
   .addEventListener("keydown", function(event) {
+
     if (event.key === "Enter") {
       checkAnswer();
     }
+
   });
 </script>
 
