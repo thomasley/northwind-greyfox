@@ -6,9 +6,9 @@
 <title>NORTHWIND & GREYFOX</title>
 
 <style>
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 
-html, body {
+html,body {
   margin:0;
   padding:0;
   width:100%;
@@ -168,9 +168,7 @@ button:active { transform:translateY(1px); }
 }
 
 
-/* =========================
-   AKTENAUSWAHL
-   ========================= */
+/* AKTENAUSWAHL */
 
 #dossiers {
   display:none;
@@ -250,9 +248,10 @@ button:active { transform:translateY(1px); }
 }
 
 
-/* =========================
-   NORTHWIND VIEWER
-   ========================= */
+/* =========================================================
+   NORTHWIND
+   FESTER STANDARD FÜR ALLE 4 SEITEN
+   ========================================================= */
 
 #northwindViewer {
   display:none;
@@ -271,16 +270,16 @@ button:active { transform:translateY(1px); }
 }
 
 /*
-  WICHTIG:
-  Die komplette Akte wird jetzt NICHT mehr
-  bildfüllend aufgeblasen.
+   MITTELWEG:
+   größer als letzter kleiner Stand,
+   deutlich kleiner als ursprünglicher Vollbild-Stand.
 */
 .folder-image {
   position:absolute;
   left:50%;
   top:50%;
-  width:84%;
-  height:84%;
+  width:92%;
+  height:92%;
   transform:translate(-50%,-50%);
   object-fit:contain;
   object-position:center center;
@@ -290,21 +289,25 @@ button:active { transform:translateY(1px); }
 }
 
 /*
-  Dokument passend innerhalb der kleineren Akte.
+   DIESE GEOMETRIE GILT FÜR JEDE SEITE.
+   Seite 1, 2, 3 und 4 springen NICHT mehr
+   in Größe oder Position.
+
+   Das Blatt sitzt jetzt deutlich weiter links.
 */
 .paper-image {
   position:absolute;
-  left:50%;
+
+  left:44%;
   top:50%;
 
-  width:45%;
-  height:61%;
+  width:50%;
+  height:68%;
 
   object-fit:contain;
   object-position:center center;
 
-  transform:
-    translate(-7%,-46%);
+  transform:translate(0,-46%);
 
   transform-origin:left center;
 
@@ -323,14 +326,14 @@ button:active { transform:translateY(1px); }
 
 .paper-image.turn-left {
   transform:
-    translate(-30%,-46%)
+    translate(-22%,-46%)
     rotate(-1.2deg);
   opacity:0;
 }
 
 .paper-image.turn-right {
   transform:
-    translate(15%,-46%)
+    translate(22%,-46%)
     rotate(1.2deg);
   opacity:0;
 }
@@ -341,26 +344,25 @@ button:active { transform:translateY(1px); }
 
 @keyframes lockBump {
   0% {
-    transform:translate(-7%,-46%);
+    transform:translate(0,-46%);
   }
   35% {
-    transform:translate(-10%,-46%) rotate(-.35deg);
+    transform:translate(-3%,-46%) rotate(-.35deg);
   }
   65% {
-    transform:translate(-5%,-46%) rotate(.2deg);
+    transform:translate(2%,-46%) rotate(.2deg);
   }
   100% {
-    transform:translate(-7%,-46%);
+    transform:translate(0,-46%);
   }
 }
 
 
-/* dezente Bedienung */
+/* BEDIENUNG */
 
 .viewer-top {
   position:absolute;
   z-index:30;
-
   top:max(10px,env(safe-area-inset-top));
   left:14px;
   right:14px;
@@ -376,7 +378,6 @@ button:active { transform:translateY(1px); }
   padding:5px 8px;
   background:rgba(2,8,12,.68);
   border-left:2px solid #d8aa43;
-
   color:#d8aa43;
   font-size:7px;
   font-weight:700;
@@ -387,59 +388,47 @@ button:active { transform:translateY(1px); }
 .close-file {
   width:auto;
   padding:5px 7px;
-
   background:rgba(2,8,12,.72);
   border:1px solid rgba(255,255,255,.30);
   color:#fff;
-
   font-size:7px;
   font-weight:700;
   letter-spacing:.7px;
-
   pointer-events:auto;
 }
 
 .page-indicator {
   position:absolute;
   z-index:30;
-
   bottom:max(13px,env(safe-area-inset-bottom));
   left:50%;
   transform:translateX(-50%);
-
   padding:5px 8px;
-
   background:rgba(2,8,12,.66);
   border:1px solid rgba(255,255,255,.20);
-
   color:rgba(255,255,255,.78);
   font-size:7px;
   letter-spacing:1px;
   white-space:nowrap;
-
   pointer-events:none;
 }
 
 .swipe-hint {
   position:absolute;
   z-index:30;
-
   bottom:calc(max(13px,env(safe-area-inset-bottom)) + 28px);
   left:50%;
   transform:translateX(-50%);
-
   color:rgba(255,255,255,.55);
   font-size:7px;
   letter-spacing:.7px;
   white-space:nowrap;
-
   text-shadow:0 1px 4px #000;
   pointer-events:none;
 }
 
 
 @media (max-height:700px) {
-
   .page { padding-top:8px; }
 
   .header {
@@ -462,9 +451,7 @@ button:active { transform:translateY(1px); }
   }
 
   .question { font-size:15px; }
-
   .footer { margin-top:6px; }
-
   .access { padding:14px; }
 
   .access-title {
@@ -476,7 +463,6 @@ button:active { transform:translateY(1px); }
 </style>
 </head>
 
-
 <body>
 
 <img
@@ -487,7 +473,6 @@ button:active { transform:translateY(1px); }
 
 <div class="shade"></div>
 
-
 <div class="page">
 <div class="container">
 
@@ -497,7 +482,6 @@ button:active { transform:translateY(1px); }
 <div id="entrance">
 
   <div class="header">
-
     <div class="agency">
       Zentralstelle für besondere Lagen
     </div>
@@ -505,7 +489,6 @@ button:active { transform:translateY(1px); }
     <h1>
       REFERAT F – BESONDERE ERMITTLUNGEN
     </h1>
-
   </div>
 
 
@@ -615,7 +598,6 @@ button:active { transform:translateY(1px); }
 
 </div>
 
-
 </div>
 </div>
 
@@ -661,7 +643,6 @@ button:active { transform:translateY(1px); }
     ← ZURÜCK &nbsp; WISCHEN &nbsp; WEITER →
   </div>
 
-
   <div class="page-indicator" id="pageIndicator">
     F-01 // SEITE 1 VON 4
   </div>
@@ -674,16 +655,11 @@ button:active { transform:translateY(1px); }
 
 /* =========================================================
    AUDIO
+   UNVERÄNDERT AUS DER FUNKTIONIERENDEN VERSION
    ========================================================= */
 
 let audioCtx = null;
 
-
-/*
-  iPhone/Safari:
-  Nicht mehr nur EINMAL als "freigeschaltet" markieren.
-  Bei echter Benutzeraktion wird der Context immer geprüft.
-*/
 async function ensureAudio() {
 
   const AudioContext =
@@ -692,25 +668,19 @@ async function ensureAudio() {
 
   if (!AudioContext) return false;
 
-
   if (!audioCtx) {
     audioCtx = new AudioContext();
   }
 
-
   if (audioCtx.state === "suspended") {
-
     try {
       await audioCtx.resume();
     }
     catch(e) {}
-
   }
-
 
   return audioCtx.state === "running";
 }
-
 
 
 /* TASTENKLICK */
@@ -749,7 +719,6 @@ function keyClick() {
   osc.start(now);
   osc.stop(now + 0.03);
 }
-
 
 
 /* BUTTON-KLACK */
@@ -793,7 +762,6 @@ function buttonClick() {
 }
 
 
-
 /* ZUGANG BESTÄTIGT */
 
 function grantedSound() {
@@ -801,7 +769,6 @@ function grantedSound() {
   if (!audioCtx || audioCtx.state !== "running") return;
 
   const now = audioCtx.currentTime;
-
 
   [520,780].forEach(function(freq,index) {
 
@@ -839,8 +806,7 @@ function grantedSound() {
 }
 
 
-
-/* PAPIER - FRRRSCHT */
+/* PAPIERGERÄUSCH */
 
 function pageSound() {
 
@@ -859,7 +825,6 @@ function pageSound() {
   const data =
     buffer.getChannelData(0);
 
-
   for (let i=0; i<data.length; i++) {
 
     const progress =
@@ -874,7 +839,6 @@ function pageSound() {
       0.5;
   }
 
-
   const source =
     audioCtx.createBufferSource();
 
@@ -883,7 +847,6 @@ function pageSound() {
 
   const gain =
     audioCtx.createGain();
-
 
   source.buffer = buffer;
 
@@ -899,7 +862,6 @@ function pageSound() {
 
   source.start();
 }
-
 
 
 /* GESPERRT */
@@ -943,7 +905,6 @@ function lockedSound() {
 }
 
 
-
 /* =========================================================
    IDENTITÄT
    ========================================================= */
@@ -955,10 +916,6 @@ const accessButton =
   document.getElementById("accessButton");
 
 
-/*
-  Audio bereits beim ersten echten Kontakt
-  mit dem Eingabefeld aktivieren.
-*/
 answerField.addEventListener(
   "touchstart",
   function() {
@@ -981,7 +938,6 @@ answerField.addEventListener(
   }
 );
 
-
 answerField.addEventListener(
   "input",
   async function(event) {
@@ -999,20 +955,17 @@ answerField.addEventListener(
 );
 
 
-
 async function checkAnswer() {
 
   await ensureAudio();
 
   buttonClick();
 
-
   const answer =
     answerField
       .value
       .trim()
       .toLowerCase();
-
 
   const error =
     document.getElementById("error");
@@ -1033,7 +986,6 @@ async function checkAnswer() {
     error.style.display = "none";
 
     grantedSound();
-
 
     setTimeout(function() {
 
@@ -1090,7 +1042,6 @@ answerField.addEventListener(
 );
 
 
-
 /* =========================================================
    NORTHWIND
    ========================================================= */
@@ -1144,7 +1095,6 @@ let currentPage = 0;
 let changingPage = false;
 
 
-
 northwindDossier.addEventListener(
   "touchstart",
   function() {
@@ -1182,7 +1132,6 @@ northwindDossier.addEventListener(
 );
 
 
-
 greyfoxDossier.addEventListener(
   "touchstart",
   function() {
@@ -1201,7 +1150,6 @@ greyfoxDossier.addEventListener(
 
   }
 );
-
 
 
 closeFile.addEventListener(
@@ -1228,7 +1176,6 @@ closeFile.addEventListener(
 );
 
 
-
 function updateIndicator() {
 
   pageIndicator.textContent =
@@ -1239,9 +1186,8 @@ function updateIndicator() {
 }
 
 
-
 /* =========================================================
-   SEITEN
+   BLÄTTERN
    ========================================================= */
 
 async function nextPage() {
@@ -1251,10 +1197,6 @@ async function nextPage() {
   await ensureAudio();
 
 
-  /*
-    SEITE 4:
-    Kein Weiterblättern.
-  */
   if (
     currentPage ===
     northwindPages.length - 1
@@ -1289,8 +1231,18 @@ async function nextPage() {
 
     currentPage++;
 
-    folderImage.src =
-      folderTurned;
+
+    /*
+       Nur die Aktenvorlage wechselt.
+       Größe und Position bleiben identisch.
+    */
+    if (currentPage === 0) {
+      folderImage.src = folderFirst;
+    }
+    else {
+      folderImage.src = folderTurned;
+    }
+
 
     paperImage.src =
       northwindPages[currentPage];
@@ -1324,7 +1276,6 @@ async function nextPage() {
   },210);
 
 }
-
 
 
 async function previousPage() {
@@ -1367,17 +1318,10 @@ async function previousPage() {
 
 
     if (currentPage === 0) {
-
-      folderImage.src =
-        folderFirst;
-
+      folderImage.src = folderFirst;
     }
-
     else {
-
-      folderImage.src =
-        folderTurned;
-
+      folderImage.src = folderTurned;
     }
 
 
@@ -1413,7 +1357,6 @@ async function previousPage() {
   },210);
 
 }
-
 
 
 /* =========================================================
@@ -1468,21 +1411,12 @@ fileStage.addEventListener(
     }
 
 
-    /*
-      Finger nach LINKS:
-      nächste Seite.
-    */
     if (diffX < 0) {
 
       nextPage();
 
     }
 
-
-    /*
-      Finger nach RECHTS:
-      vorherige Seite.
-    */
     else {
 
       previousPage();
