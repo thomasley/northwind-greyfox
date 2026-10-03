@@ -15,6 +15,10 @@ html,body{
 body{min-height:100dvh}
 button,input,textarea{font:inherit}
 
+/* =========================
+   STARTSEITE
+   ========================= */
+
 #mainScreen{
   position:fixed;inset:0;min-height:100dvh;overflow:hidden;
   background:
@@ -24,185 +28,573 @@ button,input,textarea{font:inherit}
 }
 
 .top-panel{
-  position:absolute;left:6%;right:6%;
+  position:absolute;
+  left:6%;right:6%;
   top:max(6%,env(safe-area-inset-top));
   padding:14px 15px 13px;
   border-left:3px solid #c79b3c;
   background:rgba(4,10,12,.72)
 }
-.kicker{color:#d4ad55;font-size:10px;font-weight:700;letter-spacing:1.4px;margin-bottom:5px}
-.agency{font-family:Georgia,"Times New Roman",serif;font-size:19px;line-height:1.05}
-.intro{margin-top:9px;color:#d8d8d8;font-size:10px;line-height:1.4}
+
+.kicker{
+  color:#d4ad55;font-size:10px;font-weight:700;
+  letter-spacing:1.4px;margin-bottom:5px
+}
+
+.agency{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;line-height:1.05
+}
+
+.intro{
+  margin-top:9px;color:#d8d8d8;
+  font-size:10px;line-height:1.4
+}
 
 #gate{
-  position:absolute;left:7%;right:7%;top:43%;
-  padding:16px 15px;background:rgba(4,10,12,.86);
+  position:absolute;
+  left:7%;right:7%;top:43%;
+  padding:16px 15px;
+  background:rgba(4,10,12,.86);
   border:1px solid rgba(201,165,87,.48)
 }
-.gate-title{color:#d4ad55;font-size:10px;font-weight:700;letter-spacing:1.4px;margin-bottom:10px}
-.question{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.3;margin-bottom:12px}
-#answer{
-  width:100%;border:1px solid rgba(255,255,255,.28);
-  background:rgba(255,255,255,.07);color:#fff;padding:10px 11px;
-  outline:none;border-radius:0;font-size:16px
-}
-#checkButton{
-  width:100%;margin-top:10px;padding:11px;border:1px solid #c9a557;
-  background:#b58b34;color:#080b0c;font-weight:800;font-size:10px;letter-spacing:1px
-}
-#error{
-  display:none;margin-top:9px;padding:8px 9px;border-left:2px solid #a8453e;
-  background:rgba(80,8,8,.24);color:#d9b1a8;font-size:9px;
-  line-height:1.5;letter-spacing:.35px
+
+.gate-title{
+  color:#d4ad55;font-size:10px;font-weight:700;
+  letter-spacing:1.4px;margin-bottom:10px
 }
 
+.question{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px;line-height:1.3;margin-bottom:12px
+}
+
+#answer{
+  width:100%;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.07);
+  color:#fff;padding:10px 11px;
+  outline:none;border-radius:0;font-size:16px
+}
+
+#checkButton{
+  width:100%;margin-top:10px;padding:11px;
+  border:1px solid #c9a557;
+  background:#b58b34;color:#080b0c;
+  font-weight:800;font-size:10px;letter-spacing:1px
+}
+
+#error{
+  display:none;margin-top:9px;
+  padding:8px 9px;
+  border-left:2px solid #a8453e;
+  background:rgba(80,8,8,.24);
+  color:#d9b1a8;
+  font-size:9px;
+  line-height:1.5;
+  letter-spacing:.35px
+}
+
+/* =========================
+   SICHERHEITSPROTOKOLL F-7
+   ========================= */
+
 #securityLock{
-  display:none;position:fixed;inset:0;z-index:500;background:rgba(38,0,0,.94);
-  align-items:center;justify-content:center;text-align:center;padding:28px
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(38,0,0,.94);
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:28px
 }
+
 #securityLock.active{display:flex}
+
 .security-box{
-  width:min(92vw,460px);padding:24px 18px;border:1px solid rgba(230,70,60,.68);
-  background:rgba(7,4,4,.90);box-shadow:0 0 42px rgba(180,0,0,.28)
+  width:min(92vw,460px);
+  padding:24px 18px;
+  border:1px solid rgba(230,70,60,.68);
+  background:rgba(7,4,4,.90);
+  box-shadow:0 0 42px rgba(180,0,0,.28)
 }
-.security-protocol{color:#ff736a;font-size:10px;font-weight:900;letter-spacing:1.5px}
-.security-title{margin-top:11px;font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.25}
-.security-dry{margin-top:15px;color:#d7b7b4;font-size:10px;line-height:1.45}
-#securityCountdown{margin-top:23px;color:#fff;font-size:12px;font-weight:800;letter-spacing:1.5px}
-#securityLock.alarm-flash{animation:alarmFlash .20s linear 5}
+
+.security-protocol{
+  color:#ff736a;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px
+}
+
+.security-title{
+  margin-top:11px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  line-height:1.25
+}
+
+.security-dry{
+  margin-top:15px;
+  color:#d7b7b4;
+  font-size:10px;
+  line-height:1.45
+}
+
+#securityCountdown{
+  margin-top:23px;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.5px
+}
+
+#securityLock.alarm-flash{
+  animation:alarmFlash .20s linear 5
+}
+
 @keyframes alarmFlash{
   0%,100%{background:rgba(38,0,0,.94)}
   50%{background:rgba(115,0,0,.97)}
 }
 
 .footer{
-  position:absolute;left:6%;right:6%;bottom:max(3%,env(safe-area-inset-bottom));
-  color:rgba(255,255,255,.62);font-size:7px;line-height:1.6;letter-spacing:.7px
+  position:absolute;
+  left:6%;right:6%;
+  bottom:max(3%,env(safe-area-inset-bottom));
+  color:rgba(255,255,255,.62);
+  font-size:7px;line-height:1.6;letter-spacing:.7px
 }
+
+/* =========================
+   AUSWAHL
+   ========================= */
 
 #selection{
   display:none;position:absolute;inset:0;
-  padding:max(8vh,env(safe-area-inset-top)) 7% max(5vh,env(safe-area-inset-bottom));
+  padding:max(8vh,env(safe-area-inset-top)) 7%
+          max(5vh,env(safe-area-inset-bottom));
   background:rgba(2,7,9,.42)
 }
+
 .confirmed{
-  margin-top:7vh;padding:12px 13px;border-left:3px solid #c79b3c;
+  margin-top:7vh;padding:12px 13px;
+  border-left:3px solid #c79b3c;
   background:rgba(4,10,12,.76)
 }
-.confirmed .small{color:#d4ad55;font-size:9px;font-weight:700;letter-spacing:1.3px}
-.confirmed .big{margin-top:4px;font-family:Georgia,"Times New Roman",serif;font-size:18px}
-.cards{margin-top:20px;display:flex;flex-direction:column;gap:12px}
-.agent-card{
-  position:relative;width:100%;padding:16px 14px;text-align:left;
-  border:1px solid rgba(201,165,87,.46);background:rgba(4,10,12,.83);color:#fff
+
+.confirmed .small{
+  color:#d4ad55;font-size:9px;font-weight:700;
+  letter-spacing:1.3px
 }
-.agent-code{color:#d4ad55;font-size:10px;font-weight:800;letter-spacing:1.4px}
-.agent-name{margin-top:5px;font-family:Georgia,"Times New Roman",serif;font-size:21px}
-.agent-division{margin-top:4px;color:#aaa;font-size:8px;letter-spacing:.9px}
+
+.confirmed .big{
+  margin-top:4px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px
+}
+
+.cards{
+  margin-top:20px;
+  display:flex;flex-direction:column;gap:12px
+}
+
+.agent-card{
+  position:relative;
+  width:100%;padding:16px 14px;text-align:left;
+  border:1px solid rgba(201,165,87,.46);
+  background:rgba(4,10,12,.83);color:#fff
+}
+
+.agent-code{
+  color:#d4ad55;font-size:10px;font-weight:800;
+  letter-spacing:1.4px
+}
+
+.agent-name{
+  margin-top:5px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:21px
+}
+
+.agent-division{
+  margin-top:4px;color:#aaa;
+  font-size:8px;letter-spacing:.9px
+}
 
 #newTransmissionBadge{
-  display:none;position:absolute;right:11px;top:11px;color:#ff5b52;
-  font-size:8px;font-weight:900;letter-spacing:.7px;
+  display:none;
+  position:absolute;
+  right:11px;
+  top:11px;
+  color:#ff5b52;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.7px;
   animation:transmissionPulse 1.1s ease-in-out infinite
 }
-@keyframes transmissionPulse{0%,100%{opacity:1}50%{opacity:.28}}
 
-#northwindViewer,#greyfoxViewer{
-  display:none;position:fixed;inset:0;z-index:50;overflow:hidden;background:#050b0e
+@keyframes transmissionPulse{
+  0%,100%{opacity:1}
+  50%{opacity:.28}
 }
 
-#dossierUnit,#greyfoxDossierUnit{
-  position:absolute;width:92vw;height:92vh;left:38%;top:50%;
+/* =========================
+   AKTEN
+   ========================= */
+
+#northwindViewer,
+#greyfoxViewer{
+  display:none;
+  position:fixed;inset:0;z-index:50;
+  overflow:hidden;background:#050b0e
+}
+
+#dossierUnit,
+#greyfoxDossierUnit{
+  position:absolute;
+  width:92vw;
+  height:92vh;
+  left:38%;
+  top:50%;
   transform:translate(-50%,-50%)
 }
 
 .folder{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
-  pointer-events:none;user-select:none
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  pointer-events:none;
+  user-select:none
 }
 
 .paperbox{
-  position:absolute;left:36.77734375%;top:22.48697917%;
-  width:54.08203125%;height:62.890625%;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5
+  position:absolute;
+  left:36.77734375%;
+  top:22.48697917%;
+  width:54.08203125%;
+  height:62.890625%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:5
 }
 
 .paper{
-  display:block;max-width:100%;max-height:100%;width:auto;height:auto;
-  object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
-  pointer-events:none;user-select:none
+  display:block;
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
+  pointer-events:none;
+  user-select:none
 }
+
+/* =========================
+   FUNKFELD
+   ========================= */
 
 .paper-transmission{
-  display:none;position:absolute;z-index:12;left:10%;right:10%;top:19%;bottom:12%;
-  overflow:auto;padding:9px;background:rgba(239,232,211,.95);color:#171512;
-  border:1px solid rgba(72,58,40,.38);box-shadow:0 2px 5px rgba(0,0,0,.20);
+  display:none;
+  position:absolute;
+  z-index:12;
+  left:10%;
+  right:10%;
+  top:19%;
+  bottom:12%;
+  overflow:auto;
+  padding:9px;
+  background:rgba(239,232,211,.95);
+  color:#171512;
+  border:1px solid rgba(72,58,40,.38);
+  box-shadow:0 2px 5px rgba(0,0,0,.20);
   cursor:default
 }
+
 .paper-transmission.active{display:block}
 
-.transmission-title{color:#741d19;font-size:7px;font-weight:900;letter-spacing:.8px;margin-bottom:5px}
-.transmission-route{color:#5c554a;font-size:5.5px;font-weight:700;letter-spacing:.4px;margin-bottom:7px}
+.transmission-title{
+  color:#741d19;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.8px;
+  margin-bottom:5px
+}
+
+.transmission-route{
+  color:#5c554a;
+  font-size:5.5px;
+  font-weight:700;
+  letter-spacing:.4px;
+  margin-bottom:7px
+}
+
 .transmission-text{
-  white-space:pre-wrap;font-family:Georgia,"Times New Roman",serif;
-  color:#171512;font-size:8px;line-height:1.35
+  white-space:pre-wrap;
+  font-family:Georgia,"Times New Roman",serif;
+  color:#171512;
+  font-size:8px;
+  line-height:1.35
 }
+
 .transmission-input{
-  display:block;width:100%;min-height:68px;resize:none;
-  border:1px solid rgba(62,51,38,.48);background:rgba(255,255,255,.65);
-  color:#171512;padding:6px;outline:none;font-size:8px;line-height:1.35
+  display:block;
+  width:100%;
+  min-height:68px;
+  resize:none;
+  border:1px solid rgba(62,51,38,.48);
+  background:rgba(255,255,255,.65);
+  color:#171512;
+  padding:6px;
+  outline:none;
+  font-size:8px;
+  line-height:1.35
 }
+
 .transmission-button{
-  display:block;width:100%;margin-top:7px;padding:7px 4px;
-  border:1px solid #705a35;background:#26221b;color:#f2eee4;
-  font-size:6.5px;font-weight:900;letter-spacing:.55px
+  display:block;
+  width:100%;
+  margin-top:7px;
+  padding:7px 4px;
+  border:1px solid #705a35;
+  background:#26221b;
+  color:#f2eee4;
+  font-size:6.5px;
+  font-weight:900;
+  letter-spacing:.55px
 }
 
-/* NEU: Ausgang aus Seite 3 */
-.transmission-back{
-  display:block;width:100%;margin-top:7px;padding:6px 4px;
-  border:1px solid rgba(112,90,53,.65);
-  background:transparent;color:#443a2c;
-  font-size:6px;font-weight:900;letter-spacing:.55px
+.transmission-close{
+  display:block;
+  width:100%;
+  margin-top:7px;
+  padding:6px 4px;
+  border:1px solid rgba(112,90,53,.7);
+  background:transparent;
+  color:#4b3d2c;
+  font-size:6px;
+  font-weight:900;
+  letter-spacing:.55px
 }
 
-.transmission-status{min-height:9px;margin-top:5px;color:#67563b;font-size:5.5px;line-height:1.3}
+.transmission-status{
+  min-height:9px;
+  margin-top:5px;
+  color:#67563b;
+  font-size:5.5px;
+  line-height:1.3
+}
 
 .file-label{
-  position:fixed;z-index:80;top:max(12px,env(safe-area-inset-top));
-  left:max(12px,env(safe-area-inset-left));padding:7px 9px;
-  border-left:2px solid #d8aa43;background:rgba(2,8,12,.76);
-  color:#d8aa43;font-size:8px;font-weight:700;letter-spacing:1px;white-space:nowrap
+  position:fixed;
+  z-index:80;
+  top:max(12px,env(safe-area-inset-top));
+  left:max(12px,env(safe-area-inset-left));
+  padding:7px 9px;
+  border-left:2px solid #d8aa43;
+  background:rgba(2,8,12,.76);
+  color:#d8aa43;
+  font-size:8px;font-weight:700;
+  letter-spacing:1px;
+  white-space:nowrap
 }
+
 .close-file{
-  position:fixed;z-index:80;top:max(12px,env(safe-area-inset-top));
-  right:max(12px,env(safe-area-inset-right));width:auto;padding:7px 9px;
-  border:1px solid rgba(255,255,255,.45);background:rgba(2,8,12,.86);
-  color:#fff;font-size:8px;font-weight:700;letter-spacing:.8px;white-space:nowrap
+  position:fixed;
+  z-index:80;
+  top:max(12px,env(safe-area-inset-top));
+  right:max(12px,env(safe-area-inset-right));
+  width:auto;
+  padding:7px 9px;
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(2,8,12,.86);
+  color:#fff;
+  font-size:8px;font-weight:700;
+  letter-spacing:.8px;
+  white-space:nowrap
 }
+
 .page-indicator{
-  position:fixed;z-index:80;left:50%;bottom:max(13px,env(safe-area-inset-bottom));
-  transform:translateX(-50%);padding:6px 9px;background:rgba(2,8,12,.75);
-  color:#ddd;font-size:7px;letter-spacing:.8px;white-space:nowrap
+  position:fixed;
+  z-index:80;
+  left:50%;
+  bottom:max(13px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  padding:6px 9px;
+  background:rgba(2,8,12,.75);
+  color:#ddd;
+  font-size:7px;letter-spacing:.8px;
+  white-space:nowrap
 }
+
+/* =========================
+   LESEMODUS
+   ========================= */
 
 #reader{
-  display:none;position:fixed;z-index:200;inset:0;background:rgba(2,7,10,.98);
-  align-items:center;justify-content:center;padding:62px 10px 14px
-}
-#reader.open{display:flex}
-#readerImage{
-  display:block;max-width:96vw;max-height:calc(100dvh - 82px);
-  width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 5px 18px #000)
-}
-#readerClose{
-  position:fixed;z-index:300;top:max(12px,env(safe-area-inset-top));
-  right:max(12px,env(safe-area-inset-right));width:auto;padding:9px 11px;
-  border:1px solid rgba(255,255,255,.5);background:#071015;color:#fff;
-  font-size:9px;font-weight:800;letter-spacing:.8px;white-space:nowrap
+  display:none;
+  position:fixed;
+  z-index:200;
+  inset:0;
+  background:rgba(2,7,10,.98);
+  align-items:center;
+  justify-content:center;
+  padding:62px 10px 14px
 }
 
-.lock-bump{animation:lockBump .18s ease-in-out 2}
+#reader.open{display:flex}
+
+#readerImage{
+  display:block;
+  max-width:96vw;
+  max-height:calc(100dvh - 82px);
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 5px 18px #000)
+}
+
+#readerClose{
+  position:fixed;
+  z-index:300;
+  top:max(12px,env(safe-area-inset-top));
+  right:max(12px,env(safe-area-inset-right));
+  width:auto;
+  padding:9px 11px;
+  border:1px solid rgba(255,255,255,.5);
+  background:#071015;
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.8px;
+  white-space:nowrap
+}
+
+/* =========================
+   SITZUNGSENDE
+   ========================= */
+
+#sessionEnd{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:800;
+  background:#020506;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px
+}
+
+#sessionEnd.active{
+  display:flex
+}
+
+.session-box{
+  width:min(88vw,430px);
+  padding:25px 18px;
+  border:1px solid rgba(201,165,87,.46);
+  background:rgba(5,10,12,.96);
+  opacity:0;
+  transform:scale(.97);
+  animation:sessionReveal .7s ease forwards
+}
+
+@keyframes sessionReveal{
+  to{
+    opacity:1;
+    transform:scale(1)
+  }
+}
+
+.session-kicker{
+  color:#d4ad55;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.4px
+}
+
+.session-title{
+  margin-top:10px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:21px;
+  line-height:1.25
+}
+
+.session-line{
+  margin-top:8px;
+  color:#aaa;
+  font-size:8px;
+  letter-spacing:1px
+}
+
+.session-message{
+  margin-top:22px;
+  color:#d4d4d4;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:11px;
+  line-height:1.55
+}
+
+#systemExit{
+  width:100%;
+  margin-top:24px;
+  padding:11px;
+  border:1px solid #c9a557;
+  background:#b58b34;
+  color:#080b0c;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1px
+}
+
+/* =========================
+   CHANNEL CLOSED
+   ========================= */
+
+#channelClosed{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:900;
+  background:#000;
+  align-items:center;
+  justify-content:center;
+  text-align:center
+}
+
+#channelClosed.active{
+  display:flex
+}
+
+.closed-mark{
+  color:#b58b34;
+  font-size:26px;
+  margin-bottom:16px
+}
+
+.closed-title{
+  color:#aaa;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:2px
+}
+
+.closed-code{
+  margin-top:7px;
+  color:#444;
+  font-size:7px;
+  letter-spacing:1px
+}
+
+.lock-bump{
+  animation:lockBump .18s ease-in-out 2
+}
+
 @keyframes lockBump{
   0%{transform:translate(-50%,-50%)}
   50%{transform:translate(calc(-50% - 7px),-50%)}
@@ -217,7 +609,11 @@ button,input,textarea{font:inherit}
 
   <div class="top-panel" id="topPanel">
     <div class="kicker">ZENTRALSTELLE FÜR BESONDERE LAGEN</div>
-    <div class="agency">REFERAT F – BESONDERE ERMITTLUNGEN</div>
+
+    <div class="agency">
+      REFERAT F – BESONDERE ERMITTLUNGEN
+    </div>
+
     <div class="intro">
       Eine neue Übertragung wurde registriert.
       Identitätsprüfung erforderlich.
@@ -227,32 +623,49 @@ button,input,textarea{font:inherit}
   </div>
 
   <div id="gate">
+
     <div class="gate-title">IDENTITY VERIFICATION</div>
+
     <div class="question">
       Welche Wesen wurden in der Berliner Außenstelle
       zuletzt auf Kaffee eingestellt?
     </div>
 
-    <input id="answer" type="text" autocomplete="off" autocapitalize="none"
-      spellcheck="false" placeholder="Antwort eingeben">
+    <input
+      id="answer"
+      type="text"
+      autocomplete="off"
+      autocapitalize="none"
+      spellcheck="false"
+      placeholder="Antwort eingeben"
+    >
 
-    <button id="checkButton">ZUGANG PRÜFEN</button>
+    <button id="checkButton">
+      ZUGANG PRÜFEN
+    </button>
 
     <div id="error">
       IDENTITÄT NICHT BESTÄTIGT //
       ERNEUTE PRÜFUNG ERFORDERLICH
     </div>
+
   </div>
 
   <div id="selection">
+
     <div class="confirmed">
       <div class="small">IDENTITÄT BESTÄTIGT</div>
       <div class="big">AKTENZUGRIFF FREIGEGEBEN</div>
     </div>
 
     <div class="cards">
+
       <button class="agent-card" id="northwindCard">
-        <div id="newTransmissionBadge">● NEUE ÜBERTRAGUNG</div>
+
+        <div id="newTransmissionBadge">
+          ● NEUE ÜBERTRAGUNG
+        </div>
+
         <div class="agent-code">F-01</div>
         <div class="agent-name">NORTHWIND</div>
         <div class="agent-division">BERLIN DIVISION</div>
@@ -263,141 +676,298 @@ button,input,textarea{font:inherit}
         <div class="agent-name">GREYFOX</div>
         <div class="agent-division">RHINELAND DIVISION</div>
       </button>
+
     </div>
+
   </div>
 
   <div class="footer">
     FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
     CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
   </div>
+
 </div>
 
+
+<!-- SICHERHEIT -->
+
 <div id="securityLock">
+
   <div class="security-box">
-    <div class="security-protocol">SICHERHEITSPROTOKOLL F-7 AKTIVIERT</div>
-    <div class="security-title">UNAUTORISIERTER ZUGRIFF REGISTRIERT</div>
+
+    <div class="security-protocol">
+      SICHERHEITSPROTOKOLL F-7 AKTIVIERT
+    </div>
+
+    <div class="security-title">
+      UNAUTORISIERTER ZUGRIFF REGISTRIERT
+    </div>
+
     <div class="security-dry">
       Die zuständige Dienststelle wurde informiert.
       Vermutlich.
     </div>
-    <div id="securityCountdown">SYSTEMSPERRE // 00:05</div>
+
+    <div id="securityCountdown">
+      SYSTEMSPERRE // 00:05
+    </div>
+
   </div>
+
 </div>
+
 
 <!-- NORTHWIND -->
 
 <div id="northwindViewer">
 
-  <div class="file-label">F-01 // NORTHWIND</div>
-  <button class="close-file" id="closeFile">AKTE SCHLIESSEN</button>
+  <div class="file-label">
+    F-01 // NORTHWIND
+  </div>
+
+  <button class="close-file" id="closeFile">
+    SITZUNG BEENDEN
+  </button>
 
   <div id="dossierUnit">
 
-    <img id="folderImage" class="folder"
-      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png" alt="">
+    <img
+      id="folderImage"
+      class="folder"
+      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
+      alt=""
+    >
 
     <div class="paperbox" id="paperBox">
 
-      <img id="paperImage" class="paper"
+      <img
+        id="paperImage"
+        class="paper"
         src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
-        alt="NORTHWIND Dokument">
+        alt="NORTHWIND Dokument"
+      >
 
-      <div id="northwindTransmission" class="paper-transmission">
+      <div
+        id="northwindTransmission"
+        class="paper-transmission"
+      >
 
-        <div class="transmission-title">EINGEGANGENE ÜBERTRAGUNG</div>
+        <div class="transmission-title">
+          EINGEGANGENE ÜBERTRAGUNG
+        </div>
 
         <div class="transmission-route">
           TJ-01 // GREYFOX → F-01 // NORTHWIND
         </div>
 
-        <div id="northwindMessage" class="transmission-text">
+        <div
+          id="northwindMessage"
+          class="transmission-text"
+        >
           Keine aktuelle Übertragung.
         </div>
 
-        <button id="northwindReplyButton" class="transmission-button">
+        <button
+          id="northwindReplyButton"
+          class="transmission-button"
+        >
           ANTWORTEN
         </button>
 
-        <div id="northwindReplyArea" style="display:none">
+        <div
+          id="northwindReplyArea"
+          style="display:none"
+        >
 
-          <textarea id="northwindReply" class="transmission-input"
-            placeholder="Antwort an TJ-01 eingeben"></textarea>
+          <textarea
+            id="northwindReply"
+            class="transmission-input"
+            placeholder="Antwort an TJ-01 eingeben"
+          ></textarea>
 
-          <button id="sendWhatsApp" class="transmission-button">
+          <button
+            id="sendWhatsApp"
+            class="transmission-button"
+          >
             ÜBERTRAGUNG SENDEN
           </button>
 
         </div>
 
-        <!-- NEU -->
-        <button id="northwindBack" class="transmission-back">
-          ZURÜCK ZUR AKTE
+        <button
+          id="northwindCloseTransmission"
+          class="transmission-close"
+        >
+          ÜBERTRAGUNG SCHLIESSEN
         </button>
 
       </div>
+
     </div>
+
   </div>
 
-  <div class="page-indicator" id="pageIndicator">SEITE 1 / 4</div>
+  <div class="page-indicator" id="pageIndicator">
+    SEITE 1 / 4
+  </div>
+
 </div>
+
 
 <!-- GREYFOX -->
 
 <div id="greyfoxViewer">
 
-  <div class="file-label">TJ-01 // GREYFOX</div>
-  <button class="close-file" id="greyfoxCloseFile">AKTE SCHLIESSEN</button>
+  <div class="file-label">
+    TJ-01 // GREYFOX
+  </div>
+
+  <button class="close-file" id="greyfoxCloseFile">
+    SITZUNG BEENDEN
+  </button>
 
   <div id="greyfoxDossierUnit">
 
-    <img id="greyfoxFolderImage" class="folder"
-      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png" alt="">
+    <img
+      id="greyfoxFolderImage"
+      class="folder"
+      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
+      alt=""
+    >
 
     <div class="paperbox" id="greyfoxPaperBox">
 
-      <img id="greyfoxPaperImage" class="paper"
+      <img
+        id="greyfoxPaperImage"
+        class="paper"
         src="EBD36AE0-7449-444F-9933-7DE66BB943F5.png"
-        alt="GREYFOX Dokument">
+        alt="GREYFOX Dokument"
+      >
 
-      <div id="greyfoxTransmission" class="paper-transmission">
+      <div
+        id="greyfoxTransmission"
+        class="paper-transmission"
+      >
 
-        <div class="transmission-title">NEUE ÜBERTRAGUNG AN F-01</div>
+        <div class="transmission-title">
+          NEUE ÜBERTRAGUNG AN F-01
+        </div>
 
         <div class="transmission-route">
           TJ-01 // GREYFOX → F-01 // NORTHWIND
         </div>
 
-        <textarea id="greyfoxMessageInput" class="transmission-input"
-          placeholder="Übertragung eingeben..."></textarea>
+        <textarea
+          id="greyfoxMessageInput"
+          class="transmission-input"
+          placeholder="Übertragung eingeben..."
+        ></textarea>
 
-        <button id="sendTransmission" class="transmission-button">
+        <button
+          id="sendTransmission"
+          class="transmission-button"
+        >
           ÜBERTRAGUNG FREIGEBEN
         </button>
 
-        <div id="greyfoxTransmissionStatus" class="transmission-status"></div>
+        <div
+          id="greyfoxTransmissionStatus"
+          class="transmission-status"
+        ></div>
 
-        <!-- NEU -->
-        <button id="greyfoxBack" class="transmission-back">
-          ZURÜCK ZUR AKTE
+        <button
+          id="greyfoxCloseTransmission"
+          class="transmission-close"
+        >
+          ÜBERTRAGUNG SCHLIESSEN
         </button>
 
       </div>
+
     </div>
+
   </div>
 
-  <div class="page-indicator" id="greyfoxPageIndicator">SEITE 1 / 4</div>
+  <div class="page-indicator" id="greyfoxPageIndicator">
+    SEITE 1 / 4
+  </div>
+
 </div>
+
 
 <!-- LESEMODUS -->
 
 <div id="reader">
-  <button id="readerClose">ZURÜCK ZUR AKTE</button>
-  <img id="readerImage" src="" alt="Dokument Lesemodus">
+
+  <button id="readerClose">
+    ZURÜCK ZUR AKTE
+  </button>
+
+  <img
+    id="readerImage"
+    src=""
+    alt="Dokument Lesemodus"
+  >
+
 </div>
+
+
+<!-- SITZUNGSENDE -->
+
+<div id="sessionEnd">
+
+  <div class="session-box">
+
+    <div class="session-kicker">
+      REFERAT F // SITZUNGSPROTOKOLL
+    </div>
+
+    <div class="session-title">
+      ÜBERTRAGUNG ABGESCHLOSSEN
+    </div>
+
+    <div class="session-line">
+      VERBINDUNG NW-GF/01 GETRENNT
+    </div>
+
+    <div class="session-message">
+      Keine weiteren Maßnahmen erforderlich.<br>
+      Außer möglicherweise Kaffee.
+    </div>
+
+    <button id="systemExit">
+      SYSTEM VERLASSEN
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ENDBILDSCHIRM -->
+
+<div id="channelClosed">
+
+  <div>
+    <div class="closed-mark">△</div>
+
+    <div class="closed-title">
+      CHANNEL CLOSED
+    </div>
+
+    <div class="closed-code">
+      NW-GF/01 // SESSION TERMINATED
+    </div>
+  </div>
+
+</div>
+
 
 <script>
 
-/* FIREBASE */
+/* ==========================================================
+   FIREBASE
+   ========================================================== */
 
 const DATABASE_URL=
   "https://northwind-greyfox-default-rtdb.europe-west1.firebasedatabase.app";
@@ -407,8 +977,11 @@ const MESSAGE_URL=
 
 let currentTransmission=null;
 
+
 async function loadTransmission(){
+
   try{
+
     const response=await fetch(
       MESSAGE_URL+"?t="+Date.now(),
       {cache:"no-store"}
@@ -418,13 +991,21 @@ async function loadTransmission(){
       throw new Error("Firebase nicht erreichbar");
     }
 
-    currentTransmission=await response.json();
+    currentTransmission=
+      await response.json();
+
     updateTransmissionDisplay();
 
   }catch(err){
-    console.log("Übertragung konnte nicht geladen werden.",err);
+
+    console.log(
+      "Übertragung konnte nicht geladen werden.",
+      err
+    );
+
   }
 }
+
 
 async function saveTransmission(text){
 
@@ -439,7 +1020,9 @@ async function saveTransmission(text){
     MESSAGE_URL,
     {
       method:"PUT",
-      headers:{"Content-Type":"application/json"},
+      headers:{
+        "Content-Type":"application/json"
+      },
       body:JSON.stringify(transmission)
     }
   );
@@ -449,31 +1032,55 @@ async function saveTransmission(text){
   }
 
   currentTransmission=transmission;
+
   updateTransmissionDisplay();
 }
 
+
 function updateTransmissionDisplay(){
 
-  const badge=document.getElementById("newTransmissionBadge");
-  const message=document.getElementById("northwindMessage");
+  const badge=
+    document.getElementById(
+      "newTransmissionBadge"
+    );
 
-  if(currentTransmission && currentTransmission.text){
-    message.textContent=currentTransmission.text;
+  const message=
+    document.getElementById(
+      "northwindMessage"
+    );
+
+  if(
+    currentTransmission &&
+    currentTransmission.text
+  ){
+
+    message.textContent=
+      currentTransmission.text;
+
     badge.style.display="block";
+
   }else{
-    message.textContent="Keine aktuelle Übertragung.";
+
+    message.textContent=
+      "Keine aktuelle Übertragung.";
+
     badge.style.display="none";
+
   }
 }
 
 
-/* AUDIO – UNVERÄNDERT */
+/* ==========================================================
+   AUDIO
+   ========================================================== */
 
 let audioCtx=null;
 
 async function ensureAudio(){
 
-  const AudioContext=window.AudioContext||window.webkitAudioContext;
+  const AudioContext=
+    window.AudioContext||
+    window.webkitAudioContext;
 
   if(!AudioContext)return false;
 
@@ -482,11 +1089,14 @@ async function ensureAudio(){
   }
 
   if(audioCtx.state==="suspended"){
-    try{await audioCtx.resume();}catch(e){}
+    try{
+      await audioCtx.resume();
+    }catch(e){}
   }
 
   return audioCtx.state==="running";
 }
+
 
 function keyClick(){
 
@@ -497,6 +1107,7 @@ function keyClick(){
   const gain=audioCtx.createGain();
 
   osc.type="square";
+
   osc.frequency.setValueAtTime(850,now);
   osc.frequency.exponentialRampToValueAtTime(500,now+.03);
 
@@ -510,6 +1121,7 @@ function keyClick(){
   osc.stop(now+.03);
 }
 
+
 function buttonClick(){
 
   if(!audioCtx || audioCtx.state!=="running")return;
@@ -519,6 +1131,7 @@ function buttonClick(){
   const gain=audioCtx.createGain();
 
   osc.type="square";
+
   osc.frequency.setValueAtTime(230,now);
   osc.frequency.exponentialRampToValueAtTime(120,now+.075);
 
@@ -531,6 +1144,7 @@ function buttonClick(){
   osc.start(now);
   osc.stop(now+.075);
 }
+
 
 function grantedSound(){
 
@@ -557,8 +1171,10 @@ function grantedSound(){
 
     osc.start(start);
     osc.stop(start+.17);
+
   });
 }
+
 
 function pageSound(){
 
@@ -576,15 +1192,21 @@ function pageSound(){
   const data=buffer.getChannelData(0);
 
   for(let i=0;i<data.length;i++){
+
     const t=i/data.length;
     const envelope=Math.sin(Math.PI*t);
-    data[i]=(Math.random()*2-1)*envelope*.5;
+
+    data[i]=
+      (Math.random()*2-1)*
+      envelope*
+      .5;
   }
 
   const source=audioCtx.createBufferSource();
   source.buffer=buffer;
 
   const filter=audioCtx.createBiquadFilter();
+
   filter.type="bandpass";
   filter.frequency.value=1500;
   filter.Q.value=.55;
@@ -599,6 +1221,7 @@ function pageSound(){
   source.start();
 }
 
+
 function lockedSound(){
 
   if(!audioCtx || audioCtx.state!=="running")return;
@@ -608,6 +1231,7 @@ function lockedSound(){
   const gain=audioCtx.createGain();
 
   osc.type="sawtooth";
+
   osc.frequency.setValueAtTime(125,now);
   osc.frequency.exponentialRampToValueAtTime(65,now+.17);
 
@@ -620,6 +1244,7 @@ function lockedSound(){
   osc.start(now);
   osc.stop(now+.17);
 }
+
 
 function securityAlarmSound(){
 
@@ -634,23 +1259,44 @@ function securityAlarmSound(){
 
     osc.type="sawtooth";
 
-    osc.frequency.setValueAtTime(145,now+delay);
-    osc.frequency.exponentialRampToValueAtTime(92,now+delay+.22);
+    osc.frequency.setValueAtTime(
+      145,
+      now+delay
+    );
 
-    gain.gain.setValueAtTime(.001,now+delay);
-    gain.gain.exponentialRampToValueAtTime(.11,now+delay+.025);
-    gain.gain.exponentialRampToValueAtTime(.001,now+delay+.24);
+    osc.frequency.exponentialRampToValueAtTime(
+      92,
+      now+delay+.22
+    );
+
+    gain.gain.setValueAtTime(
+      .001,
+      now+delay
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .11,
+      now+delay+.025
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      now+delay+.24
+    );
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
 
     osc.start(now+delay);
     osc.stop(now+delay+.25);
+
   });
 }
 
 
-/* ELEMENTE */
+/* =========================
+   ELEMENTE
+   ========================= */
 
 const gate=document.getElementById("gate");
 const selection=document.getElementById("selection");
@@ -659,11 +1305,26 @@ const answer=document.getElementById("answer");
 const checkButton=document.getElementById("checkButton");
 const error=document.getElementById("error");
 
-const northwindCard=document.getElementById("northwindCard");
-const greyfoxCard=document.getElementById("greyfoxCard");
+const northwindCard=
+  document.getElementById("northwindCard");
 
-const securityLock=document.getElementById("securityLock");
-const securityCountdown=document.getElementById("securityCountdown");
+const greyfoxCard=
+  document.getElementById("greyfoxCard");
+
+const securityLock=
+  document.getElementById("securityLock");
+
+const securityCountdown=
+  document.getElementById("securityCountdown");
+
+const sessionEnd=
+  document.getElementById("sessionEnd");
+
+const systemExit=
+  document.getElementById("systemExit");
+
+const channelClosed=
+  document.getElementById("channelClosed");
 
 let failedAttempts=0;
 let securityTimer=null;
@@ -671,32 +1332,70 @@ let securityTimer=null;
 
 /* NORTHWIND */
 
-const northwindViewer=document.getElementById("northwindViewer");
-const closeFile=document.getElementById("closeFile");
-const dossierUnit=document.getElementById("dossierUnit");
-const folderImage=document.getElementById("folderImage");
-const paperBox=document.getElementById("paperBox");
-const paperImage=document.getElementById("paperImage");
-const pageIndicator=document.getElementById("pageIndicator");
-const northwindTransmission=document.getElementById("northwindTransmission");
+const northwindViewer=
+  document.getElementById("northwindViewer");
 
-/* NEU */
-const northwindBack=document.getElementById("northwindBack");
+const closeFile=
+  document.getElementById("closeFile");
+
+const dossierUnit=
+  document.getElementById("dossierUnit");
+
+const folderImage=
+  document.getElementById("folderImage");
+
+const paperBox=
+  document.getElementById("paperBox");
+
+const paperImage=
+  document.getElementById("paperImage");
+
+const pageIndicator=
+  document.getElementById("pageIndicator");
+
+const northwindTransmission=
+  document.getElementById(
+    "northwindTransmission"
+  );
+
+const northwindCloseTransmission=
+  document.getElementById(
+    "northwindCloseTransmission"
+  );
 
 
 /* GREYFOX */
 
-const greyfoxViewer=document.getElementById("greyfoxViewer");
-const greyfoxCloseFile=document.getElementById("greyfoxCloseFile");
-const greyfoxDossierUnit=document.getElementById("greyfoxDossierUnit");
-const greyfoxFolderImage=document.getElementById("greyfoxFolderImage");
-const greyfoxPaperBox=document.getElementById("greyfoxPaperBox");
-const greyfoxPaperImage=document.getElementById("greyfoxPaperImage");
-const greyfoxPageIndicator=document.getElementById("greyfoxPageIndicator");
-const greyfoxTransmission=document.getElementById("greyfoxTransmission");
+const greyfoxViewer=
+  document.getElementById("greyfoxViewer");
 
-/* NEU */
-const greyfoxBack=document.getElementById("greyfoxBack");
+const greyfoxCloseFile=
+  document.getElementById("greyfoxCloseFile");
+
+const greyfoxDossierUnit=
+  document.getElementById("greyfoxDossierUnit");
+
+const greyfoxFolderImage=
+  document.getElementById("greyfoxFolderImage");
+
+const greyfoxPaperBox=
+  document.getElementById("greyfoxPaperBox");
+
+const greyfoxPaperImage=
+  document.getElementById("greyfoxPaperImage");
+
+const greyfoxPageIndicator=
+  document.getElementById("greyfoxPageIndicator");
+
+const greyfoxTransmission=
+  document.getElementById(
+    "greyfoxTransmission"
+  );
+
+const greyfoxCloseTransmission=
+  document.getElementById(
+    "greyfoxCloseTransmission"
+  );
 
 
 /* LESEMODUS */
@@ -706,21 +1405,35 @@ const readerImage=document.getElementById("readerImage");
 const readerClose=document.getElementById("readerClose");
 
 
-/* SEITEN */
+/* =========================
+   SEITEN
+   ========================= */
 
 const pages=[
+
   "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
+
   "728EE74F-078F-40C9-A363-05238EAAFCDB.png",
+
   "CFB497BF-B1ED-4D66-87B3-EA1BC446E78F.png",
+
   "DE9C9AAE-6122-4768-B61A-549A3AFD9F70.png"
+
 ];
 
+
 const greyfoxPages=[
+
   "EBD36AE0-7449-444F-9933-7DE66BB943F5.png",
+
   "8353B741-2D29-46C7-9323-B59D82AD7B5B.png",
+
   "6C6AEFC4-8F3A-40AB-992E-48B198968C95.png",
+
   "72740470-9FAA-4965-916B-ECEE77E74675.png"
+
 ];
+
 
 const folderPage1=
   "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
@@ -728,11 +1441,17 @@ const folderPage1=
 const folderTurned=
   "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
 
+
 let currentPage=0;
 let greyfoxCurrentPage=0;
 
+let northwindTransmissionHidden=false;
+let greyfoxTransmissionHidden=false;
 
-/* AUDIO ENTSPERREN */
+
+/* =========================
+   AUDIO ENTSPERREN
+   ========================= */
 
 document.addEventListener(
   "touchstart",
@@ -747,11 +1466,15 @@ document.addEventListener(
 );
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+   ========================= */
 
 answer.addEventListener(
   "focus",
-  async()=>{await ensureAudio();}
+  async()=>{
+    await ensureAudio();
+  }
 );
 
 answer.addEventListener(
@@ -773,7 +1496,9 @@ answer.addEventListener(
 
 checkButton.addEventListener(
   "touchstart",
-  ()=>{ensureAudio();},
+  ()=>{
+    ensureAudio();
+  },
   {passive:true}
 );
 
@@ -782,22 +1507,29 @@ checkButton.addEventListener(
   checkAnswer
 );
 
+
 async function checkAnswer(){
 
   if(answer.disabled)return;
 
   await ensureAudio();
+
   buttonClick();
 
   const value=
-    answer.value.trim().toLocaleLowerCase("de-DE");
+    answer.value
+      .trim()
+      .toLocaleLowerCase("de-DE");
 
   if(value==="drachen"){
 
     failedAttempts=0;
+
     error.style.display="none";
 
-    setTimeout(()=>{grantedSound();},90);
+    setTimeout(()=>{
+      grantedSound();
+    },90);
 
     gate.style.display="none";
     topPanel.style.display="none";
@@ -826,27 +1558,36 @@ async function checkAnswer(){
       error.style.display="block";
 
     }else{
+
       activateSecurityProtocol();
+
     }
   }
 }
 
 
-/* SICHERHEIT F-7 */
+/* =========================
+   SICHERHEIT F-7
+   ========================= */
 
 async function activateSecurityProtocol(){
 
   await ensureAudio();
 
   failedAttempts=0;
+
   error.style.display="none";
 
   answer.disabled=true;
   checkButton.disabled=true;
 
-  securityCountdown.textContent="SYSTEMSPERRE // 00:05";
+  securityCountdown.textContent=
+    "SYSTEMSPERRE // 00:05";
 
-  securityLock.classList.add("active","alarm-flash");
+  securityLock.classList.add(
+    "active",
+    "alarm-flash"
+  );
 
   securityAlarmSound();
 
@@ -859,16 +1600,21 @@ async function activateSecurityProtocol(){
     seconds--;
 
     securityCountdown.textContent=
-      "SYSTEMSPERRE // 00:0"+Math.max(seconds,0);
+      "SYSTEMSPERRE // 00:0"+
+      Math.max(seconds,0);
 
     if(seconds<=0){
 
       clearInterval(securityTimer);
 
-      securityLock.classList.remove("active","alarm-flash");
+      securityLock.classList.remove(
+        "active",
+        "alarm-flash"
+      );
 
       answer.disabled=false;
       checkButton.disabled=false;
+
       answer.value="";
 
       error.innerHTML=
@@ -876,16 +1622,62 @@ async function activateSecurityProtocol(){
         "ERNEUTE PRÜFUNG ERFORDERLICH";
 
       answer.focus();
+
     }
+
   },1000);
 }
 
 
-/* NORTHWIND */
+/* ==========================================================
+   SITZUNG BEENDEN
+   ========================================================== */
+
+async function endSession(){
+
+  await ensureAudio();
+
+  buttonClick();
+
+  closeReader();
+
+  northwindViewer.style.display="none";
+  greyfoxViewer.style.display="none";
+
+  setTimeout(()=>{
+    sessionEnd.classList.add("active");
+    grantedSound();
+  },180);
+}
+
+
+systemExit.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    sessionEnd.classList.remove("active");
+
+    channelClosed.classList.add("active");
+  }
+);
+
+
+/* ==========================================================
+   NORTHWIND
+   ========================================================== */
 
 northwindCard.addEventListener(
   "touchstart",
-  ()=>{ensureAudio();},
+  ()=>{
+    ensureAudio();
+  },
   {passive:true}
 );
 
@@ -894,9 +1686,12 @@ northwindCard.addEventListener(
   async()=>{
 
     await ensureAudio();
+
     buttonClick();
 
     currentPage=0;
+    northwindTransmissionHidden=false;
+
     updatePage();
 
     northwindViewer.style.display="block";
@@ -905,11 +1700,6 @@ northwindCard.addEventListener(
   }
 );
 
-closeFile.addEventListener(
-  "touchstart",
-  ()=>{ensureAudio();},
-  {passive:true}
-);
 
 closeFile.addEventListener(
   "click",
@@ -918,18 +1708,15 @@ closeFile.addEventListener(
     e.preventDefault();
     e.stopPropagation();
 
-    await ensureAudio();
-    buttonClick();
-
-    closeReader();
-
-    northwindViewer.style.display="none";
+    await endSession();
   }
 );
 
+
 function updatePage(){
 
-  paperImage.src=pages[currentPage];
+  paperImage.src=
+    pages[currentPage];
 
   folderImage.src=
     currentPage===0
@@ -940,11 +1727,24 @@ function updatePage(){
     `SEITE ${currentPage+1} / 4`;
 
   if(currentPage===2){
-    northwindTransmission.classList.add("active");
+
+    if(!northwindTransmissionHidden){
+      northwindTransmission.classList.add(
+        "active"
+      );
+    }
+
   }else{
-    northwindTransmission.classList.remove("active");
+
+    northwindTransmission.classList.remove(
+      "active"
+    );
+
+    northwindTransmissionHidden=false;
+
   }
 }
+
 
 async function nextPage(){
 
@@ -954,9 +1754,15 @@ async function nextPage(){
 
     lockedSound();
 
-    dossierUnit.classList.remove("lock-bump");
+    dossierUnit.classList.remove(
+      "lock-bump"
+    );
+
     void dossierUnit.offsetWidth;
-    dossierUnit.classList.add("lock-bump");
+
+    dossierUnit.classList.add(
+      "lock-bump"
+    );
 
     return;
   }
@@ -964,23 +1770,30 @@ async function nextPage(){
   pageSound();
 
   currentPage++;
+
   updatePage();
 }
+
 
 async function previousPage(){
 
   await ensureAudio();
 
-  if(currentPage<=0)return;
+  if(currentPage<=0){
+    return;
+  }
 
   pageSound();
 
   currentPage--;
+
   updatePage();
 }
 
+
 let touchStartX=0;
 let touchStartY=0;
+
 
 northwindViewer.addEventListener(
   "touchstart",
@@ -988,7 +1801,9 @@ northwindViewer.addEventListener(
 
     await ensureAudio();
 
-    if(reader.classList.contains("open"))return;
+    if(reader.classList.contains("open")){
+      return;
+    }
 
     const t=e.changedTouches[0];
 
@@ -998,21 +1813,29 @@ northwindViewer.addEventListener(
   {passive:true}
 );
 
+
 northwindViewer.addEventListener(
   "touchend",
   e=>{
 
-    if(reader.classList.contains("open"))return;
+    if(reader.classList.contains("open")){
+      return;
+    }
 
     const t=e.changedTouches[0];
 
-    const dx=t.clientX-touchStartX;
-    const dy=t.clientY-touchStartY;
+    const dx=
+      t.clientX-touchStartX;
+
+    const dy=
+      t.clientY-touchStartY;
 
     if(
       Math.abs(dx)<45 ||
       Math.abs(dx)<Math.abs(dy)
-    )return;
+    ){
+      return;
+    }
 
     if(dx<0){
       nextPage();
@@ -1023,27 +1846,33 @@ northwindViewer.addEventListener(
   {passive:true}
 );
 
+
 paperBox.addEventListener(
   "click",
   async e=>{
 
-    if(currentPage===2)return;
+    if(currentPage===2){
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
-    readerImage.src=pages[currentPage];
+    readerImage.src=
+      pages[currentPage];
+
     reader.classList.add("open");
   }
 );
 
 
-/* NEU: NORTHWIND SEITE 3 → SEITE 2 */
+/* NORTHWIND: NUR FUNKFELD SCHLIESSEN */
 
-northwindBack.addEventListener(
+northwindCloseTransmission.addEventListener(
   "click",
   async e=>{
 
@@ -1051,25 +1880,29 @@ northwindBack.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
-    pageSound();
 
-    currentPage=1;
+    northwindTransmissionHidden=true;
 
-    /* Antwortfeld beim Verlassen wieder einklappen */
+    northwindTransmission.classList.remove(
+      "active"
+    );
+
     northwindReplyArea.style.display="none";
-    northwindReply.value="";
-
-    updatePage();
   }
 );
 
 
-/* GREYFOX */
+/* ==========================================================
+   GREYFOX
+   ========================================================== */
 
 greyfoxCard.addEventListener(
   "touchstart",
-  ()=>{ensureAudio();},
+  ()=>{
+    ensureAudio();
+  },
   {passive:true}
 );
 
@@ -1078,20 +1911,18 @@ greyfoxCard.addEventListener(
   async()=>{
 
     await ensureAudio();
+
     buttonClick();
 
     greyfoxCurrentPage=0;
+    greyfoxTransmissionHidden=false;
+
     updateGreyfoxPage();
 
     greyfoxViewer.style.display="block";
   }
 );
 
-greyfoxCloseFile.addEventListener(
-  "touchstart",
-  ()=>{ensureAudio();},
-  {passive:true}
-);
 
 greyfoxCloseFile.addEventListener(
   "click",
@@ -1100,14 +1931,10 @@ greyfoxCloseFile.addEventListener(
     e.preventDefault();
     e.stopPropagation();
 
-    await ensureAudio();
-    buttonClick();
-
-    closeReader();
-
-    greyfoxViewer.style.display="none";
+    await endSession();
   }
 );
+
 
 function updateGreyfoxPage(){
 
@@ -1123,23 +1950,45 @@ function updateGreyfoxPage(){
     `SEITE ${greyfoxCurrentPage+1} / 4`;
 
   if(greyfoxCurrentPage===2){
-    greyfoxTransmission.classList.add("active");
+
+    if(!greyfoxTransmissionHidden){
+      greyfoxTransmission.classList.add(
+        "active"
+      );
+    }
+
   }else{
-    greyfoxTransmission.classList.remove("active");
+
+    greyfoxTransmission.classList.remove(
+      "active"
+    );
+
+    greyfoxTransmissionHidden=false;
+
   }
 }
+
 
 async function nextGreyfoxPage(){
 
   await ensureAudio();
 
-  if(greyfoxCurrentPage>=greyfoxPages.length-1){
+  if(
+    greyfoxCurrentPage>=
+    greyfoxPages.length-1
+  ){
 
     lockedSound();
 
-    greyfoxDossierUnit.classList.remove("lock-bump");
+    greyfoxDossierUnit.classList.remove(
+      "lock-bump"
+    );
+
     void greyfoxDossierUnit.offsetWidth;
-    greyfoxDossierUnit.classList.add("lock-bump");
+
+    greyfoxDossierUnit.classList.add(
+      "lock-bump"
+    );
 
     return;
   }
@@ -1147,23 +1996,30 @@ async function nextGreyfoxPage(){
   pageSound();
 
   greyfoxCurrentPage++;
+
   updateGreyfoxPage();
 }
+
 
 async function previousGreyfoxPage(){
 
   await ensureAudio();
 
-  if(greyfoxCurrentPage<=0)return;
+  if(greyfoxCurrentPage<=0){
+    return;
+  }
 
   pageSound();
 
   greyfoxCurrentPage--;
+
   updateGreyfoxPage();
 }
 
+
 let greyfoxTouchStartX=0;
 let greyfoxTouchStartY=0;
+
 
 greyfoxViewer.addEventListener(
   "touchstart",
@@ -1171,7 +2027,9 @@ greyfoxViewer.addEventListener(
 
     await ensureAudio();
 
-    if(reader.classList.contains("open"))return;
+    if(reader.classList.contains("open")){
+      return;
+    }
 
     const t=e.changedTouches[0];
 
@@ -1181,21 +2039,29 @@ greyfoxViewer.addEventListener(
   {passive:true}
 );
 
+
 greyfoxViewer.addEventListener(
   "touchend",
   e=>{
 
-    if(reader.classList.contains("open"))return;
+    if(reader.classList.contains("open")){
+      return;
+    }
 
     const t=e.changedTouches[0];
 
-    const dx=t.clientX-greyfoxTouchStartX;
-    const dy=t.clientY-greyfoxTouchStartY;
+    const dx=
+      t.clientX-greyfoxTouchStartX;
+
+    const dy=
+      t.clientY-greyfoxTouchStartY;
 
     if(
       Math.abs(dx)<45 ||
       Math.abs(dx)<Math.abs(dy)
-    )return;
+    ){
+      return;
+    }
 
     if(dx<0){
       nextGreyfoxPage();
@@ -1206,27 +2072,33 @@ greyfoxViewer.addEventListener(
   {passive:true}
 );
 
+
 greyfoxPaperBox.addEventListener(
   "click",
   async e=>{
 
-    if(greyfoxCurrentPage===2)return;
+    if(greyfoxCurrentPage===2){
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
-    readerImage.src=greyfoxPages[greyfoxCurrentPage];
+    readerImage.src=
+      greyfoxPages[greyfoxCurrentPage];
+
     reader.classList.add("open");
   }
 );
 
 
-/* NEU: GREYFOX SEITE 3 → SEITE 2 */
+/* GREYFOX: NUR FUNKFELD SCHLIESSEN */
 
-greyfoxBack.addEventListener(
+greyfoxCloseTransmission.addEventListener(
   "click",
   async e=>{
 
@@ -1234,43 +2106,61 @@ greyfoxBack.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
-    pageSound();
 
-    greyfoxCurrentPage=1;
+    greyfoxTransmissionHidden=true;
 
-    updateGreyfoxPage();
+    greyfoxTransmission.classList.remove(
+      "active"
+    );
   }
 );
 
 
-/* GREYFOX → FIREBASE */
+/* ==========================================================
+   GREYFOX → FIREBASE
+   ========================================================== */
 
 const greyfoxMessageInput=
-  document.getElementById("greyfoxMessageInput");
+  document.getElementById(
+    "greyfoxMessageInput"
+  );
 
 const sendTransmission=
-  document.getElementById("sendTransmission");
+  document.getElementById(
+    "sendTransmission"
+  );
 
 const greyfoxTransmissionStatus=
-  document.getElementById("greyfoxTransmissionStatus");
+  document.getElementById(
+    "greyfoxTransmissionStatus"
+  );
+
 
 greyfoxTransmission.addEventListener(
   "touchstart",
-  e=>{e.stopPropagation();},
+  e=>{
+    e.stopPropagation();
+  },
   {passive:true}
 );
 
 greyfoxTransmission.addEventListener(
   "touchend",
-  e=>{e.stopPropagation();},
+  e=>{
+    e.stopPropagation();
+  },
   {passive:true}
 );
 
 greyfoxTransmission.addEventListener(
   "click",
-  e=>{e.stopPropagation();}
+  e=>{
+    e.stopPropagation();
+  }
 );
+
 
 sendTransmission.addEventListener(
   "click",
@@ -1280,6 +2170,7 @@ sendTransmission.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
     const text=
@@ -1313,41 +2204,60 @@ sendTransmission.addEventListener(
     }finally{
 
       sendTransmission.disabled=false;
+
     }
   }
 );
 
 
-/* NORTHWIND → WHATSAPP */
+/* ==========================================================
+   NORTHWIND → WHATSAPP
+   ========================================================== */
 
 const northwindReplyButton=
-  document.getElementById("northwindReplyButton");
+  document.getElementById(
+    "northwindReplyButton"
+  );
 
 const northwindReplyArea=
-  document.getElementById("northwindReplyArea");
+  document.getElementById(
+    "northwindReplyArea"
+  );
 
 const northwindReply=
-  document.getElementById("northwindReply");
+  document.getElementById(
+    "northwindReply"
+  );
 
 const sendWhatsApp=
-  document.getElementById("sendWhatsApp");
+  document.getElementById(
+    "sendWhatsApp"
+  );
+
 
 northwindTransmission.addEventListener(
   "touchstart",
-  e=>{e.stopPropagation();},
+  e=>{
+    e.stopPropagation();
+  },
   {passive:true}
 );
 
 northwindTransmission.addEventListener(
   "touchend",
-  e=>{e.stopPropagation();},
+  e=>{
+    e.stopPropagation();
+  },
   {passive:true}
 );
 
 northwindTransmission.addEventListener(
   "click",
-  e=>{e.stopPropagation();}
+  e=>{
+    e.stopPropagation();
+  }
 );
+
 
 northwindReplyButton.addEventListener(
   "click",
@@ -1357,12 +2267,16 @@ northwindReplyButton.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
-    northwindReplyArea.style.display="block";
+    northwindReplyArea.style.display=
+      "block";
+
     northwindReply.focus();
   }
 );
+
 
 sendWhatsApp.addEventListener(
   "click",
@@ -1372,12 +2286,15 @@ sendWhatsApp.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
     const reply=
       northwindReply.value.trim();
 
-    if(!reply)return;
+    if(!reply){
+      return;
+    }
 
     const whatsappText=
       "F-01 // NORTHWIND\n\n"+
@@ -1387,12 +2304,15 @@ sendWhatsApp.addEventListener(
       "https://wa.me/4915141204440?text="+
       encodeURIComponent(whatsappText);
 
-    window.location.href=whatsappURL;
+    window.location.href=
+      whatsappURL;
   }
 );
 
 
-/* LESEMODUS */
+/* ==========================================================
+   GEMEINSAMER LESEMODUS
+   ========================================================== */
 
 readerClose.addEventListener(
   "touchstart",
@@ -1403,6 +2323,7 @@ readerClose.addEventListener(
   {passive:true}
 );
 
+
 readerClose.addEventListener(
   "click",
   async e=>{
@@ -1411,19 +2332,25 @@ readerClose.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
     closeReader();
   }
 );
 
+
 function closeReader(){
+
   reader.classList.remove("open");
+
 }
+
 
 reader.addEventListener(
   "click",
   e=>{
+
     if(e.target===reader){
       closeReader();
     }
@@ -1431,10 +2358,13 @@ reader.addEventListener(
 );
 
 
-/* FIREBASE EINMAL LADEN */
+/* =========================
+   FIREBASE EINMAL LADEN
+   ========================= */
 
 loadTransmission();
 
 </script>
+
 </body>
 </html>
