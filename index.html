@@ -86,7 +86,79 @@ button,input{font:inherit}
 
 #error{
   display:none;margin-top:9px;
-  color:#d9b1a8;font-size:9px
+  padding:8px 9px;
+  border-left:2px solid #a8453e;
+  background:rgba(80,8,8,.24);
+  color:#d9b1a8;
+  font-size:9px;
+  line-height:1.5;
+  letter-spacing:.35px
+}
+
+/* =========================
+   SICHERHEITSPROTOKOLL F-7
+   ========================= */
+
+#securityLock{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(38,0,0,.94);
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:28px
+}
+
+#securityLock.active{
+  display:flex
+}
+
+.security-box{
+  width:min(92vw,460px);
+  padding:24px 18px;
+  border:1px solid rgba(230,70,60,.68);
+  background:rgba(7,4,4,.90);
+  box-shadow:0 0 42px rgba(180,0,0,.28)
+}
+
+.security-protocol{
+  color:#ff736a;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px
+}
+
+.security-title{
+  margin-top:11px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  line-height:1.25
+}
+
+.security-dry{
+  margin-top:15px;
+  color:#d7b7b4;
+  font-size:10px;
+  line-height:1.45
+}
+
+#securityCountdown{
+  margin-top:23px;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.5px
+}
+
+#securityLock.alarm-flash{
+  animation:alarmFlash .20s linear 5
+}
+
+@keyframes alarmFlash{
+  0%,100%{background:rgba(38,0,0,.94)}
+  50%{background:rgba(115,0,0,.97)}
 }
 
 .footer{
@@ -386,6 +458,36 @@ button,input{font:inherit}
 
 
 <!-- ========================================================
+     SICHERHEITSPROTOKOLL F-7
+     ======================================================== -->
+
+<div id="securityLock">
+
+  <div class="security-box">
+
+    <div class="security-protocol">
+      SICHERHEITSPROTOKOLL F-7 AKTIVIERT
+    </div>
+
+    <div class="security-title">
+      UNAUTORISIERTER ZUGRIFF REGISTRIERT
+    </div>
+
+    <div class="security-dry">
+      Die zuständige Dienststelle wurde informiert.
+      Vermutlich.
+    </div>
+
+    <div id="securityCountdown">
+      SYSTEMSPERRE // 00:05
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================================================
      NORTHWIND
      ORIGINALER FUNKTIONIERENDER BLOCK
      ======================================================== -->
@@ -671,6 +773,58 @@ function lockedSound(){
 }
 
 
+/* ==========================================================
+   NEU: ALARMTON FÜR SICHERHEITSPROTOKOLL F-7
+   ========================================================== */
+
+function securityAlarmSound(){
+
+  if(!audioCtx || audioCtx.state!=="running")return;
+
+  const now=audioCtx.currentTime;
+
+  [0,.34].forEach(delay=>{
+
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
+
+    osc.type="sawtooth";
+
+    osc.frequency.setValueAtTime(
+      145,
+      now+delay
+    );
+
+    osc.frequency.exponentialRampToValueAtTime(
+      92,
+      now+delay+.22
+    );
+
+    gain.gain.setValueAtTime(
+      .001,
+      now+delay
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .11,
+      now+delay+.025
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      now+delay+.24
+    );
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now+delay);
+    osc.stop(now+delay+.25);
+
+  });
+}
+
+
 /* =========================
    STARTSEITE
    ========================= */
@@ -698,6 +852,20 @@ const northwindCard=
 
 const greyfoxCard=
   document.getElementById("greyfoxCard");
+
+
+/* =========================
+   NEU: SICHERHEIT F-7
+   ========================= */
+
+const securityLock=
+  document.getElementById("securityLock");
+
+const securityCountdown=
+  document.getElementById("securityCountdown");
+
+let failedAttempts=0;
+let securityTimer=null;
 
 
 /* =========================
@@ -786,7 +954,6 @@ const pages=[
 
 /* =========================
    GREYFOX-SEITEN
-   EINZIGER INHALTLICHER TAUSCH
    ========================= */
 
 const greyfoxPages=[
@@ -878,6 +1045,8 @@ checkButton.addEventListener(
 
 async function checkAnswer(){
 
+  if(answer.disabled)return;
+
   await ensureAudio();
 
   buttonClick();
@@ -888,6 +1057,8 @@ async function checkAnswer(){
       .toLocaleLowerCase("de-DE");
 
   if(value==="drachen"){
+
+    failedAttempts=0;
 
     error.style.display="none";
 
@@ -901,9 +1072,93 @@ async function checkAnswer(){
 
   }else{
 
-    error.style.display="block";
+    failedAttempts++;
 
+    if(failedAttempts===1){
+
+      error.innerHTML=
+        "<strong>ZUGRIFF VERWEIGERT</strong><br>"+
+        "IDENTITÄT NICHT BESTÄTIGT";
+
+      error.style.display="block";
+
+    }else if(failedAttempts===2){
+
+      error.innerHTML=
+        "<strong>WARNUNG</strong><br>"+
+        "ZWEITER FEHLVERSUCH REGISTRIERT";
+
+      error.style.display="block";
+
+    }else{
+
+      activateSecurityProtocol();
+
+    }
   }
+}
+
+
+/* ==========================================================
+   NEU: SICHERHEITSPROTOKOLL F-7
+   ========================================================== */
+
+async function activateSecurityProtocol(){
+
+  await ensureAudio();
+
+  failedAttempts=0;
+
+  error.style.display="none";
+
+  answer.disabled=true;
+  checkButton.disabled=true;
+
+  securityCountdown.textContent=
+    "SYSTEMSPERRE // 00:05";
+
+  securityLock.classList.add(
+    "active",
+    "alarm-flash"
+  );
+
+  securityAlarmSound();
+
+  let seconds=5;
+
+  clearInterval(securityTimer);
+
+  securityTimer=setInterval(()=>{
+
+    seconds--;
+
+    securityCountdown.textContent=
+      "SYSTEMSPERRE // 00:0"+
+      Math.max(seconds,0);
+
+    if(seconds<=0){
+
+      clearInterval(securityTimer);
+
+      securityLock.classList.remove(
+        "active",
+        "alarm-flash"
+      );
+
+      answer.disabled=false;
+      checkButton.disabled=false;
+
+      answer.value="";
+
+      error.innerHTML=
+        "IDENTITÄT NICHT BESTÄTIGT // "+
+        "ERNEUTE PRÜFUNG ERFORDERLICH";
+
+      answer.focus();
+
+    }
+
+  },1000);
 }
 
 
