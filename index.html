@@ -152,28 +152,18 @@ button,input{font:inherit}
   font-size:8px;letter-spacing:.9px
 }
 
-/* ==========================================================
-   NORTHWIND
-   TEST 5 MASTER
-   Diese Geometrie stammt DIREKT aus Test 5.
-   ========================================================== */
+/* =========================
+   AKTEN-VIEWER
+   NORTHWIND-MASTER
+   ========================= */
 
-#northwindViewer{
+.file-viewer{
   display:none;
   position:fixed;inset:0;z-index:50;
   overflow:hidden;background:#050b0e
 }
 
-/*
- TEST 5:
- .unit {
-   width:92vw;
-   height:92vh;
-   left:38%;
-   top:50%;
- }
-*/
-#dossierUnit{
+.dossier-unit{
   position:absolute;
   width:92vw;
   height:92vh;
@@ -190,21 +180,6 @@ button,input{font:inherit}
   user-select:none
 }
 
-/*
- TEST 5 ORIGINALWERTE:
-
- x0=351/1024
- y0=307/1536
- x1=956/1024
- y1=1350/1536
- pad=.025
-
- Daraus:
- left  = 36.77734375%
- top   = 22.48697917%
- width = 54.08203125%
- height= 62.890625%
-*/
 .paperbox{
   position:absolute;
   left:36.77734375%;
@@ -229,8 +204,6 @@ button,input{font:inherit}
   pointer-events:none;
   user-select:none
 }
-
-/* Bedienung UNABHÄNGIG von der Akte */
 
 .file-label{
   position:fixed;
@@ -275,7 +248,7 @@ button,input{font:inherit}
 }
 
 /* =========================
-   TEST 5 LESEMODUS
+   LESEMODUS
    ========================= */
 
 #reader{
@@ -289,9 +262,7 @@ button,input{font:inherit}
   padding:62px 10px 14px
 }
 
-#reader.open{
-  display:flex
-}
+#reader.open{display:flex}
 
 #readerImage{
   display:block;
@@ -303,10 +274,6 @@ button,input{font:inherit}
   filter:drop-shadow(0 5px 18px #000)
 }
 
-/*
- Eigenständiger Zurück-Button.
- Nicht Bestandteil des Bildes.
-*/
 #readerClose{
   position:fixed;
   z-index:300;
@@ -332,7 +299,6 @@ button,input{font:inherit}
   50%{transform:translate(calc(-50% - 7px),-50%)}
   100%{transform:translate(-50%,-50%)}
 }
-
 </style>
 </head>
 
@@ -388,7 +354,6 @@ button,input{font:inherit}
 
   </div>
 
-
   <div id="selection">
 
     <div class="confirmed">
@@ -423,7 +388,6 @@ button,input{font:inherit}
 
   </div>
 
-
   <div class="footer">
     FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
     CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
@@ -433,33 +397,32 @@ button,input{font:inherit}
 
 
 <!-- =========================
-     NORTHWIND VIEWER
+     NORTHWIND
      ========================= -->
 
-<div id="northwindViewer">
+<div id="northwindViewer" class="file-viewer">
 
   <div class="file-label">
     F-01 // NORTHWIND
   </div>
 
-  <button class="close-file" id="closeFile">
+  <button class="close-file" id="northwindClose">
     AKTE SCHLIESSEN
   </button>
 
-
-  <div id="dossierUnit">
+  <div id="northwindUnit" class="dossier-unit">
 
     <img
-      id="folderImage"
+      id="northwindFolder"
       class="folder"
       src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
       alt=""
     >
 
-    <div class="paperbox" id="paperBox">
+    <div class="paperbox" id="northwindPaperBox">
 
       <img
-        id="paperImage"
+        id="northwindPaper"
         class="paper"
         src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
         alt="NORTHWIND Dokument"
@@ -469,8 +432,50 @@ button,input{font:inherit}
 
   </div>
 
+  <div class="page-indicator" id="northwindIndicator">
+    SEITE 1 / 4
+  </div>
 
-  <div class="page-indicator" id="pageIndicator">
+</div>
+
+
+<!-- =========================
+     GREYFOX
+     ========================= -->
+
+<div id="greyfoxViewer" class="file-viewer">
+
+  <div class="file-label">
+    TJ-01 // GREYFOX
+  </div>
+
+  <button class="close-file" id="greyfoxClose">
+    AKTE SCHLIESSEN
+  </button>
+
+  <div id="greyfoxUnit" class="dossier-unit">
+
+    <img
+      id="greyfoxFolder"
+      class="folder"
+      src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
+      alt=""
+    >
+
+    <div class="paperbox" id="greyfoxPaperBox">
+
+      <img
+        id="greyfoxPaper"
+        class="paper"
+        src="EBD36AE0-7449-444F-9933-7DE66BB943F5.png"
+        alt="GREYFOX Dokument"
+      >
+
+    </div>
+
+  </div>
+
+  <div class="page-indicator" id="greyfoxIndicator">
     SEITE 1 / 4
   </div>
 
@@ -498,10 +503,9 @@ button,input{font:inherit}
 
 <script>
 
-/* ==========================================================
+/* =========================
    AUDIO
-   Der funktionierende Stand bleibt unverändert.
-   ========================================================== */
+   ========================= */
 
 let audioCtx=null;
 
@@ -539,16 +543,10 @@ function keyClick(){
   osc.type="square";
 
   osc.frequency.setValueAtTime(850,now);
-  osc.frequency.exponentialRampToValueAtTime(
-    500,
-    now+.03
-  );
+  osc.frequency.exponentialRampToValueAtTime(500,now+.03);
 
   gain.gain.setValueAtTime(.055,now);
-  gain.gain.exponentialRampToValueAtTime(
-    .001,
-    now+.03
-  );
+  gain.gain.exponentialRampToValueAtTime(.001,now+.03);
 
   osc.connect(gain);
   gain.connect(audioCtx.destination);
@@ -570,16 +568,10 @@ function buttonClick(){
   osc.type="square";
 
   osc.frequency.setValueAtTime(230,now);
-  osc.frequency.exponentialRampToValueAtTime(
-    120,
-    now+.075
-  );
+  osc.frequency.exponentialRampToValueAtTime(120,now+.075);
 
   gain.gain.setValueAtTime(.09,now);
-  gain.gain.exponentialRampToValueAtTime(
-    .001,
-    now+.075
-  );
+  gain.gain.exponentialRampToValueAtTime(.001,now+.075);
 
   osc.connect(gain);
   gain.connect(audioCtx.destination);
@@ -606,16 +598,8 @@ function grantedSound(){
     const start=now+(i*.11);
 
     gain.gain.setValueAtTime(.001,start);
-
-    gain.gain.exponentialRampToValueAtTime(
-      .075,
-      start+.015
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      .001,
-      start+.16
-    );
+    gain.gain.exponentialRampToValueAtTime(.075,start+.015);
+    gain.gain.exponentialRampToValueAtTime(.001,start+.16);
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
@@ -685,18 +669,10 @@ function lockedSound(){
   osc.type="sawtooth";
 
   osc.frequency.setValueAtTime(125,now);
-
-  osc.frequency.exponentialRampToValueAtTime(
-    65,
-    now+.17
-  );
+  osc.frequency.exponentialRampToValueAtTime(65,now+.17);
 
   gain.gain.setValueAtTime(.12,now);
-
-  gain.gain.exponentialRampToValueAtTime(
-    .001,
-    now+.17
-  );
+  gain.gain.exponentialRampToValueAtTime(.001,now+.17);
 
   osc.connect(gain);
   gain.connect(audioCtx.destination);
@@ -707,69 +683,40 @@ function lockedSound(){
 
 
 /* =========================
-   ELEMENTE
+   STARTSEITE
    ========================= */
 
-const gate=
-  document.getElementById("gate");
+const gate=document.getElementById("gate");
+const selection=document.getElementById("selection");
+const topPanel=document.getElementById("topPanel");
+const answer=document.getElementById("answer");
+const checkButton=document.getElementById("checkButton");
+const error=document.getElementById("error");
 
-const selection=
-  document.getElementById("selection");
+const northwindCard=document.getElementById("northwindCard");
+const greyfoxCard=document.getElementById("greyfoxCard");
 
-const topPanel=
-  document.getElementById("topPanel");
-
-const answer=
-  document.getElementById("answer");
-
-const checkButton=
-  document.getElementById("checkButton");
-
-const error=
-  document.getElementById("error");
-
-const northwindCard=
-  document.getElementById("northwindCard");
-
-const greyfoxCard=
-  document.getElementById("greyfoxCard");
-
-const northwindViewer=
-  document.getElementById("northwindViewer");
-
-const closeFile=
-  document.getElementById("closeFile");
-
-const dossierUnit=
-  document.getElementById("dossierUnit");
-
-const folderImage=
-  document.getElementById("folderImage");
-
-const paperBox=
-  document.getElementById("paperBox");
-
-const paperImage=
-  document.getElementById("paperImage");
-
-const pageIndicator=
-  document.getElementById("pageIndicator");
-
-const reader=
-  document.getElementById("reader");
-
-const readerImage=
-  document.getElementById("readerImage");
-
-const readerClose=
-  document.getElementById("readerClose");
+const reader=document.getElementById("reader");
+const readerImage=document.getElementById("readerImage");
+const readerClose=document.getElementById("readerClose");
 
 
 /* =========================
-   NORTHWIND-SEITEN
+   GEMEINSAME ORDNER
    ========================= */
 
-const pages=[
+const folderPage1=
+  "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
+
+const folderTurned=
+  "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
+
+
+/* =========================
+   NORTHWIND
+   ========================= */
+
+const northwindPages=[
 
   "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
 
@@ -781,13 +728,68 @@ const pages=[
 
 ];
 
-const folderPage1=
-  "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
+const northwindViewer=
+  document.getElementById("northwindViewer");
 
-const folderTurned=
-  "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
+const northwindClose=
+  document.getElementById("northwindClose");
 
-let currentPage=0;
+const northwindUnit=
+  document.getElementById("northwindUnit");
+
+const northwindFolder=
+  document.getElementById("northwindFolder");
+
+const northwindPaperBox=
+  document.getElementById("northwindPaperBox");
+
+const northwindPaper=
+  document.getElementById("northwindPaper");
+
+const northwindIndicator=
+  document.getElementById("northwindIndicator");
+
+let northwindPage=0;
+
+
+/* =========================
+   GREYFOX
+   ========================= */
+
+const greyfoxPages=[
+
+  "EBD36AE0-7449-444F-9933-7DE66BB943F5.png",
+
+  "8353B741-2D29-46C7-9323-B59D82AD7B5B.png",
+
+  "6C6AEFC4-8F3A-40AB-992E-48B198968C95.png",
+
+  "72740470-9FAA-4965-916B-ECEE77E74675.png"
+
+];
+
+const greyfoxViewer=
+  document.getElementById("greyfoxViewer");
+
+const greyfoxClose=
+  document.getElementById("greyfoxClose");
+
+const greyfoxUnit=
+  document.getElementById("greyfoxUnit");
+
+const greyfoxFolder=
+  document.getElementById("greyfoxFolder");
+
+const greyfoxPaperBox=
+  document.getElementById("greyfoxPaperBox");
+
+const greyfoxPaper=
+  document.getElementById("greyfoxPaper");
+
+const greyfoxIndicator=
+  document.getElementById("greyfoxIndicator");
+
+let greyfoxPage=0;
 
 
 /* =========================
@@ -885,7 +887,7 @@ async function checkAnswer(){
 
 
 /* =========================
-   AKTE ÖFFNEN
+   NORTHWIND ÖFFNEN
    ========================= */
 
 northwindCard.addEventListener(
@@ -901,12 +903,10 @@ northwindCard.addEventListener(
   async()=>{
 
     await ensureAudio();
-
     buttonClick();
 
-    currentPage=0;
-
-    updatePage();
+    northwindPage=0;
+    updateNorthwind();
 
     northwindViewer.style.display="block";
   }
@@ -914,10 +914,10 @@ northwindCard.addEventListener(
 
 
 /* =========================
-   AKTE SCHLIESSEN
+   GREYFOX ÖFFNEN
    ========================= */
 
-closeFile.addEventListener(
+greyfoxCard.addEventListener(
   "touchstart",
   ()=>{
     ensureAudio();
@@ -925,7 +925,34 @@ closeFile.addEventListener(
   {passive:true}
 );
 
-closeFile.addEventListener(
+greyfoxCard.addEventListener(
+  "click",
+  async()=>{
+
+    await ensureAudio();
+    buttonClick();
+
+    greyfoxPage=0;
+    updateGreyfox();
+
+    greyfoxViewer.style.display="block";
+  }
+);
+
+
+/* =========================
+   NORTHWIND SCHLIESSEN
+   ========================= */
+
+northwindClose.addEventListener(
+  "touchstart",
+  ()=>{
+    ensureAudio();
+  },
+  {passive:true}
+);
+
+northwindClose.addEventListener(
   "click",
   async e=>{
 
@@ -933,7 +960,6 @@ closeFile.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
-
     buttonClick();
 
     closeReader();
@@ -943,90 +969,165 @@ closeFile.addEventListener(
 );
 
 
-greyfoxCard.addEventListener(
+/* =========================
+   GREYFOX SCHLIESSEN
+   ========================= */
+
+greyfoxClose.addEventListener(
+  "touchstart",
+  ()=>{
+    ensureAudio();
+  },
+  {passive:true}
+);
+
+greyfoxClose.addEventListener(
   "click",
-  async()=>{
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
     await ensureAudio();
     buttonClick();
+
+    closeReader();
+
+    greyfoxViewer.style.display="none";
   }
 );
 
 
 /* =========================
-   SEITE AKTUALISIEREN
+   SEITEN AKTUALISIEREN
    ========================= */
 
-function updatePage(){
+function updateNorthwind(){
 
-  paperImage.src=
-    pages[currentPage];
+  northwindPaper.src=
+    northwindPages[northwindPage];
 
-  folderImage.src=
-    currentPage===0
+  northwindFolder.src=
+    northwindPage===0
       ? folderPage1
       : folderTurned;
 
-  pageIndicator.textContent=
-    `SEITE ${currentPage+1} / 4`;
+  northwindIndicator.textContent=
+    `SEITE ${northwindPage+1} / 4`;
+}
+
+
+function updateGreyfox(){
+
+  greyfoxPaper.src=
+    greyfoxPages[greyfoxPage];
+
+  greyfoxFolder.src=
+    greyfoxPage===0
+      ? folderPage1
+      : folderTurned;
+
+  greyfoxIndicator.textContent=
+    `SEITE ${greyfoxPage+1} / 4`;
 }
 
 
 /* =========================
-   BLÄTTERN
+   NORTHWIND BLÄTTERN
    ========================= */
 
-async function nextPage(){
+async function nextNorthwind(){
 
   await ensureAudio();
 
-  if(currentPage>=pages.length-1){
+  if(northwindPage>=northwindPages.length-1){
 
     lockedSound();
 
-    dossierUnit.classList.remove(
-      "lock-bump"
-    );
+    northwindUnit.classList.remove("lock-bump");
 
-    void dossierUnit.offsetWidth;
+    void northwindUnit.offsetWidth;
 
-    dossierUnit.classList.add(
-      "lock-bump"
-    );
+    northwindUnit.classList.add("lock-bump");
 
     return;
   }
 
   pageSound();
 
-  currentPage++;
+  northwindPage++;
 
-  updatePage();
+  updateNorthwind();
 }
 
 
-async function previousPage(){
+async function previousNorthwind(){
 
   await ensureAudio();
 
-  if(currentPage<=0){
+  if(northwindPage<=0){
     return;
   }
 
   pageSound();
 
-  currentPage--;
+  northwindPage--;
 
-  updatePage();
+  updateNorthwind();
 }
 
 
 /* =========================
-   SWIPE
+   GREYFOX BLÄTTERN
    ========================= */
 
-let touchStartX=0;
-let touchStartY=0;
+async function nextGreyfox(){
 
+  await ensureAudio();
+
+  if(greyfoxPage>=greyfoxPages.length-1){
+
+    lockedSound();
+
+    greyfoxUnit.classList.remove("lock-bump");
+
+    void greyfoxUnit.offsetWidth;
+
+    greyfoxUnit.classList.add("lock-bump");
+
+    return;
+  }
+
+  pageSound();
+
+  greyfoxPage++;
+
+  updateGreyfox();
+}
+
+
+async function previousGreyfox(){
+
+  await ensureAudio();
+
+  if(greyfoxPage<=0){
+    return;
+  }
+
+  pageSound();
+
+  greyfoxPage--;
+
+  updateGreyfox();
+}
+
+
+/* =========================
+   NORTHWIND SWIPE
+   ========================= */
+
+let northwindTouchX=0;
+let northwindTouchY=0;
 
 northwindViewer.addEventListener(
   "touchstart",
@@ -1040,12 +1141,11 @@ northwindViewer.addEventListener(
 
     const t=e.changedTouches[0];
 
-    touchStartX=t.clientX;
-    touchStartY=t.clientY;
+    northwindTouchX=t.clientX;
+    northwindTouchY=t.clientY;
   },
   {passive:true}
 );
-
 
 northwindViewer.addEventListener(
   "touchend",
@@ -1058,10 +1158,10 @@ northwindViewer.addEventListener(
     const t=e.changedTouches[0];
 
     const dx=
-      t.clientX-touchStartX;
+      t.clientX-northwindTouchX;
 
     const dy=
-      t.clientY-touchStartY;
+      t.clientY-northwindTouchY;
 
     if(
       Math.abs(dx)<45 ||
@@ -1071,21 +1171,78 @@ northwindViewer.addEventListener(
     }
 
     if(dx<0){
-      nextPage();
+      nextNorthwind();
     }else{
-      previousPage();
+      previousNorthwind();
     }
   },
   {passive:true}
 );
 
 
-/* ==========================================================
-   TEST-5-LESEMODUS
-   Dokument antippen -> groß
-   ========================================================== */
+/* =========================
+   GREYFOX SWIPE
+   ========================= */
 
-paperBox.addEventListener(
+let greyfoxTouchX=0;
+let greyfoxTouchY=0;
+
+greyfoxViewer.addEventListener(
+  "touchstart",
+  async e=>{
+
+    await ensureAudio();
+
+    if(reader.classList.contains("open")){
+      return;
+    }
+
+    const t=e.changedTouches[0];
+
+    greyfoxTouchX=t.clientX;
+    greyfoxTouchY=t.clientY;
+  },
+  {passive:true}
+);
+
+greyfoxViewer.addEventListener(
+  "touchend",
+  e=>{
+
+    if(reader.classList.contains("open")){
+      return;
+    }
+
+    const t=e.changedTouches[0];
+
+    const dx=
+      t.clientX-greyfoxTouchX;
+
+    const dy=
+      t.clientY-greyfoxTouchY;
+
+    if(
+      Math.abs(dx)<45 ||
+      Math.abs(dx)<Math.abs(dy)
+    ){
+      return;
+    }
+
+    if(dx<0){
+      nextGreyfox();
+    }else{
+      previousGreyfox();
+    }
+  },
+  {passive:true}
+);
+
+
+/* =========================
+   NORTHWIND LESEMODUS
+   ========================= */
+
+northwindPaperBox.addEventListener(
   "click",
   async e=>{
 
@@ -1097,17 +1254,39 @@ paperBox.addEventListener(
     buttonClick();
 
     readerImage.src=
-      pages[currentPage];
+      northwindPages[northwindPage];
 
     reader.classList.add("open");
   }
 );
 
 
-/* ==========================================================
-   ZURÜCK ZUR AKTE
-   Eigenständiger Button, unabhängig vom Bild
-   ========================================================== */
+/* =========================
+   GREYFOX LESEMODUS
+   ========================= */
+
+greyfoxPaperBox.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    readerImage.src=
+      greyfoxPages[greyfoxPage];
+
+    reader.classList.add("open");
+  }
+);
+
+
+/* =========================
+   LESEMODUS SCHLIESSEN
+   ========================= */
 
 readerClose.addEventListener(
   "touchstart",
@@ -1117,7 +1296,6 @@ readerClose.addEventListener(
   },
   {passive:true}
 );
-
 
 readerClose.addEventListener(
   "click",
@@ -1141,8 +1319,6 @@ function closeReader(){
 
 }
 
-
-/* Dunklen Hintergrund antippen = ebenfalls zurück */
 
 reader.addEventListener(
   "click",
