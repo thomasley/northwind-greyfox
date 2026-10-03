@@ -13,7 +13,7 @@ html,body{
   font-family:Arial,Helvetica,sans-serif
 }
 body{min-height:100dvh}
-button,input{font:inherit}
+button,input,textarea{font:inherit}
 
 /* =========================
    STARTSEITE
@@ -111,9 +111,7 @@ button,input{font:inherit}
   padding:28px
 }
 
-#securityLock.active{
-  display:flex
-}
+#securityLock.active{display:flex}
 
 .security-box{
   width:min(92vw,460px);
@@ -203,6 +201,7 @@ button,input{font:inherit}
 }
 
 .agent-card{
+  position:relative;
   width:100%;padding:16px 14px;text-align:left;
   border:1px solid rgba(201,165,87,.46);
   background:rgba(4,10,12,.83);color:#fff
@@ -224,9 +223,26 @@ button,input{font:inherit}
   font-size:8px;letter-spacing:.9px
 }
 
+#newTransmissionBadge{
+  display:none;
+  position:absolute;
+  right:11px;
+  top:11px;
+  color:#ff5b52;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.7px;
+  animation:transmissionPulse 1.1s ease-in-out infinite
+}
+
+@keyframes transmissionPulse{
+  0%,100%{opacity:1}
+  50%{opacity:.28}
+}
+
 /* ==========================================================
    NORTHWIND + GREYFOX
-   EXAKTE TEST-5-GEOMETRIE
+   ORIGINALGEOMETRIE
    ========================================================== */
 
 #northwindViewer,
@@ -277,6 +293,90 @@ button,input{font:inherit}
   filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));
   pointer-events:none;
   user-select:none
+}
+
+/* =========================
+   FUNKFELD DIREKT IM PAPIER
+   ========================= */
+
+.paper-transmission{
+  display:none;
+  position:absolute;
+  z-index:12;
+  left:10%;
+  right:10%;
+  top:19%;
+  bottom:12%;
+  overflow:auto;
+  padding:9px;
+  background:rgba(239,232,211,.95);
+  color:#171512;
+  border:1px solid rgba(72,58,40,.38);
+  box-shadow:0 2px 5px rgba(0,0,0,.20);
+  cursor:default
+}
+
+.paper-transmission.active{
+  display:block
+}
+
+.transmission-title{
+  color:#741d19;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.8px;
+  margin-bottom:5px
+}
+
+.transmission-route{
+  color:#5c554a;
+  font-size:5.5px;
+  font-weight:700;
+  letter-spacing:.4px;
+  margin-bottom:7px
+}
+
+.transmission-text{
+  white-space:pre-wrap;
+  font-family:Georgia,"Times New Roman",serif;
+  color:#171512;
+  font-size:8px;
+  line-height:1.35
+}
+
+.transmission-input{
+  display:block;
+  width:100%;
+  min-height:68px;
+  resize:none;
+  border:1px solid rgba(62,51,38,.48);
+  background:rgba(255,255,255,.65);
+  color:#171512;
+  padding:6px;
+  outline:none;
+  font-size:8px;
+  line-height:1.35
+}
+
+.transmission-button{
+  display:block;
+  width:100%;
+  margin-top:7px;
+  padding:7px 4px;
+  border:1px solid #705a35;
+  background:#26221b;
+  color:#f2eee4;
+  font-size:6.5px;
+  font-weight:900;
+  letter-spacing:.55px
+}
+
+.transmission-status{
+  min-height:9px;
+  margin-top:5px;
+  color:#67563b;
+  font-size:5.5px;
+  line-height:1.3
 }
 
 .file-label{
@@ -434,6 +534,11 @@ button,input{font:inherit}
     <div class="cards">
 
       <button class="agent-card" id="northwindCard">
+
+        <div id="newTransmissionBadge">
+          ● NEUE ÜBERTRAGUNG
+        </div>
+
         <div class="agent-code">F-01</div>
         <div class="agent-name">NORTHWIND</div>
         <div class="agent-division">BERLIN DIVISION</div>
@@ -457,9 +562,7 @@ button,input{font:inherit}
 </div>
 
 
-<!-- ========================================================
-     SICHERHEITSPROTOKOLL F-7
-     ======================================================== -->
+<!-- SICHERHEIT -->
 
 <div id="securityLock">
 
@@ -487,10 +590,7 @@ button,input{font:inherit}
 </div>
 
 
-<!-- ========================================================
-     NORTHWIND
-     ORIGINALER FUNKTIONIERENDER BLOCK
-     ======================================================== -->
+<!-- NORTHWIND -->
 
 <div id="northwindViewer">
 
@@ -520,6 +620,55 @@ button,input{font:inherit}
         alt="NORTHWIND Dokument"
       >
 
+      <div
+        id="northwindTransmission"
+        class="paper-transmission"
+      >
+
+        <div class="transmission-title">
+          EINGEGANGENE ÜBERTRAGUNG
+        </div>
+
+        <div class="transmission-route">
+          TJ-01 // GREYFOX → F-01 // NORTHWIND
+        </div>
+
+        <div
+          id="northwindMessage"
+          class="transmission-text"
+        >
+          Keine aktuelle Übertragung.
+        </div>
+
+        <button
+          id="northwindReplyButton"
+          class="transmission-button"
+        >
+          ANTWORTEN
+        </button>
+
+        <div
+          id="northwindReplyArea"
+          style="display:none"
+        >
+
+          <textarea
+            id="northwindReply"
+            class="transmission-input"
+            placeholder="Antwort an TJ-01 eingeben"
+          ></textarea>
+
+          <button
+            id="sendWhatsApp"
+            class="transmission-button"
+          >
+            ÜBERTRAGUNG SENDEN
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -531,11 +680,7 @@ button,input{font:inherit}
 </div>
 
 
-<!-- ========================================================
-     GREYFOX
-     KOPIE DES NORTHWIND-BLOCKS
-     NUR EIGENE IDs + TJ-01-BILDER
-     ======================================================== -->
+<!-- GREYFOX -->
 
 <div id="greyfoxViewer">
 
@@ -565,6 +710,39 @@ button,input{font:inherit}
         alt="GREYFOX Dokument"
       >
 
+      <div
+        id="greyfoxTransmission"
+        class="paper-transmission"
+      >
+
+        <div class="transmission-title">
+          NEUE ÜBERTRAGUNG AN F-01
+        </div>
+
+        <div class="transmission-route">
+          TJ-01 // GREYFOX → F-01 // NORTHWIND
+        </div>
+
+        <textarea
+          id="greyfoxMessageInput"
+          class="transmission-input"
+          placeholder="Übertragung eingeben..."
+        ></textarea>
+
+        <button
+          id="sendTransmission"
+          class="transmission-button"
+        >
+          ÜBERTRAGUNG FREIGEBEN
+        </button>
+
+        <div
+          id="greyfoxTransmissionStatus"
+          class="transmission-status"
+        ></div>
+
+      </div>
+
     </div>
 
   </div>
@@ -576,9 +754,7 @@ button,input{font:inherit}
 </div>
 
 
-<!-- =========================
-     GEMEINSAMER LESEMODUS
-     ========================= -->
+<!-- LESEMODUS -->
 
 <div id="reader">
 
@@ -596,6 +772,111 @@ button,input{font:inherit}
 
 
 <script>
+
+/* ==========================================================
+   FIREBASE REALTIME DATABASE
+   ========================================================== */
+
+const DATABASE_URL=
+  "https://northwind-greyfox-default-rtdb.europe-west1.firebasedatabase.app";
+
+const MESSAGE_URL=
+  DATABASE_URL+"/currentTransmission.json";
+
+let currentTransmission=null;
+
+
+async function loadTransmission(){
+
+  try{
+
+    const response=await fetch(
+      MESSAGE_URL+"?t="+Date.now(),
+      {cache:"no-store"}
+    );
+
+    if(!response.ok){
+      throw new Error("Firebase nicht erreichbar");
+    }
+
+    currentTransmission=
+      await response.json();
+
+    updateTransmissionDisplay();
+
+  }catch(err){
+
+    console.log(
+      "Übertragung konnte nicht geladen werden.",
+      err
+    );
+
+  }
+}
+
+
+async function saveTransmission(text){
+
+  const transmission={
+    text:text,
+    sender:"TJ-01 // GREYFOX",
+    recipient:"F-01 // NORTHWIND",
+    timestamp:Date.now()
+  };
+
+  const response=await fetch(
+    MESSAGE_URL,
+    {
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(transmission)
+    }
+  );
+
+  if(!response.ok){
+    throw new Error("Übertragung fehlgeschlagen");
+  }
+
+  currentTransmission=transmission;
+
+  updateTransmissionDisplay();
+}
+
+
+function updateTransmissionDisplay(){
+
+  const badge=
+    document.getElementById(
+      "newTransmissionBadge"
+    );
+
+  const message=
+    document.getElementById(
+      "northwindMessage"
+    );
+
+  if(
+    currentTransmission &&
+    currentTransmission.text
+  ){
+
+    message.textContent=
+      currentTransmission.text;
+
+    badge.style.display="block";
+
+  }else{
+
+    message.textContent=
+      "Keine aktuelle Übertragung.";
+
+    badge.style.display="none";
+
+  }
+}
+
 
 /* ==========================================================
    AUDIO – ORIGINAL
@@ -773,10 +1054,6 @@ function lockedSound(){
 }
 
 
-/* ==========================================================
-   NEU: ALARMTON FÜR SICHERHEITSPROTOKOLL F-7
-   ========================================================== */
-
 function securityAlarmSound(){
 
   if(!audioCtx || audioCtx.state!=="running")return;
@@ -826,37 +1103,21 @@ function securityAlarmSound(){
 
 
 /* =========================
-   STARTSEITE
+   ELEMENTE
    ========================= */
 
-const gate=
-  document.getElementById("gate");
-
-const selection=
-  document.getElementById("selection");
-
-const topPanel=
-  document.getElementById("topPanel");
-
-const answer=
-  document.getElementById("answer");
-
-const checkButton=
-  document.getElementById("checkButton");
-
-const error=
-  document.getElementById("error");
+const gate=document.getElementById("gate");
+const selection=document.getElementById("selection");
+const topPanel=document.getElementById("topPanel");
+const answer=document.getElementById("answer");
+const checkButton=document.getElementById("checkButton");
+const error=document.getElementById("error");
 
 const northwindCard=
   document.getElementById("northwindCard");
 
 const greyfoxCard=
   document.getElementById("greyfoxCard");
-
-
-/* =========================
-   NEU: SICHERHEIT F-7
-   ========================= */
 
 const securityLock=
   document.getElementById("securityLock");
@@ -868,9 +1129,7 @@ let failedAttempts=0;
 let securityTimer=null;
 
 
-/* =========================
-   NORTHWIND – ORIGINAL
-   ========================= */
+/* NORTHWIND */
 
 const northwindViewer=
   document.getElementById("northwindViewer");
@@ -893,10 +1152,13 @@ const paperImage=
 const pageIndicator=
   document.getElementById("pageIndicator");
 
+const northwindTransmission=
+  document.getElementById(
+    "northwindTransmission"
+  );
 
-/* =========================
-   GREYFOX – NORTHWIND-KOPIE
-   ========================= */
+
+/* GREYFOX */
 
 const greyfoxViewer=
   document.getElementById("greyfoxViewer");
@@ -919,24 +1181,21 @@ const greyfoxPaperImage=
 const greyfoxPageIndicator=
   document.getElementById("greyfoxPageIndicator");
 
+const greyfoxTransmission=
+  document.getElementById(
+    "greyfoxTransmission"
+  );
 
-/* =========================
-   LESEMODUS
-   ========================= */
 
-const reader=
-  document.getElementById("reader");
+/* LESEMODUS */
 
-const readerImage=
-  document.getElementById("readerImage");
-
-const readerClose=
-  document.getElementById("readerClose");
+const reader=document.getElementById("reader");
+const readerImage=document.getElementById("readerImage");
+const readerClose=document.getElementById("readerClose");
 
 
 /* =========================
-   NORTHWIND-SEITEN
-   ORIGINAL
+   SEITEN
    ========================= */
 
 const pages=[
@@ -951,10 +1210,6 @@ const pages=[
 
 ];
 
-
-/* =========================
-   GREYFOX-SEITEN
-   ========================= */
 
 const greyfoxPages=[
 
@@ -986,17 +1241,13 @@ let greyfoxCurrentPage=0;
 
 document.addEventListener(
   "touchstart",
-  ()=>{
-    ensureAudio();
-  },
+  ()=>{ensureAudio();},
   {passive:true}
 );
 
 document.addEventListener(
   "pointerdown",
-  ()=>{
-    ensureAudio();
-  },
+  ()=>{ensureAudio();},
   {passive:true}
 );
 
@@ -1070,6 +1321,8 @@ async function checkAnswer(){
     topPanel.style.display="none";
     selection.style.display="block";
 
+    loadTransmission();
+
   }else{
 
     failedAttempts++;
@@ -1099,9 +1352,9 @@ async function checkAnswer(){
 }
 
 
-/* ==========================================================
-   NEU: SICHERHEITSPROTOKOLL F-7
-   ========================================================== */
+/* =========================
+   SICHERHEIT F-7
+   ========================= */
 
 async function activateSecurityProtocol(){
 
@@ -1164,7 +1417,6 @@ async function activateSecurityProtocol(){
 
 /* ==========================================================
    NORTHWIND
-   ORIGINALER ABLAUF
    ========================================================== */
 
 northwindCard.addEventListener(
@@ -1188,6 +1440,8 @@ northwindCard.addEventListener(
     updatePage();
 
     northwindViewer.style.display="block";
+
+    loadTransmission();
   }
 );
 
@@ -1230,6 +1484,20 @@ function updatePage(){
 
   pageIndicator.textContent=
     `SEITE ${currentPage+1} / 4`;
+
+  if(currentPage===2){
+
+    northwindTransmission.classList.add(
+      "active"
+    );
+
+  }else{
+
+    northwindTransmission.classList.remove(
+      "active"
+    );
+
+  }
 }
 
 
@@ -1338,6 +1606,10 @@ paperBox.addEventListener(
   "click",
   async e=>{
 
+    if(currentPage===2){
+      return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
 
@@ -1355,7 +1627,6 @@ paperBox.addEventListener(
 
 /* ==========================================================
    GREYFOX
-   DIREKTE KOPIE DES NORTHWIND-ABLAUFS
    ========================================================== */
 
 greyfoxCard.addEventListener(
@@ -1421,6 +1692,20 @@ function updateGreyfoxPage(){
 
   greyfoxPageIndicator.textContent=
     `SEITE ${greyfoxCurrentPage+1} / 4`;
+
+  if(greyfoxCurrentPage===2){
+
+    greyfoxTransmission.classList.add(
+      "active"
+    );
+
+  }else{
+
+    greyfoxTransmission.classList.remove(
+      "active"
+    );
+
+  }
 }
 
 
@@ -1532,6 +1817,10 @@ greyfoxPaperBox.addEventListener(
   "click",
   async e=>{
 
+    if(greyfoxCurrentPage===2){
+      return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
 
@@ -1543,6 +1832,198 @@ greyfoxPaperBox.addEventListener(
       greyfoxPages[greyfoxCurrentPage];
 
     reader.classList.add("open");
+  }
+);
+
+
+/* ==========================================================
+   GREYFOX → FIREBASE
+   ========================================================== */
+
+const greyfoxMessageInput=
+  document.getElementById(
+    "greyfoxMessageInput"
+  );
+
+const sendTransmission=
+  document.getElementById(
+    "sendTransmission"
+  );
+
+const greyfoxTransmissionStatus=
+  document.getElementById(
+    "greyfoxTransmissionStatus"
+  );
+
+
+greyfoxTransmission.addEventListener(
+  "touchstart",
+  e=>{
+    e.stopPropagation();
+  },
+  {passive:true}
+);
+
+greyfoxTransmission.addEventListener(
+  "touchend",
+  e=>{
+    e.stopPropagation();
+  },
+  {passive:true}
+);
+
+greyfoxTransmission.addEventListener(
+  "click",
+  e=>{
+    e.stopPropagation();
+  }
+);
+
+
+sendTransmission.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    const text=
+      greyfoxMessageInput.value.trim();
+
+    if(!text){
+
+      greyfoxTransmissionStatus.textContent=
+        "KEINE ÜBERTRAGUNG EINGEGEBEN.";
+
+      return;
+    }
+
+    sendTransmission.disabled=true;
+
+    greyfoxTransmissionStatus.textContent=
+      "ÜBERTRAGUNG LÄUFT...";
+
+    try{
+
+      await saveTransmission(text);
+
+      greyfoxTransmissionStatus.textContent=
+        "ÜBERTRAGUNG AN F-01 FREIGEGEBEN.";
+
+    }catch(err){
+
+      greyfoxTransmissionStatus.textContent=
+        "ÜBERTRAGUNG FEHLGESCHLAGEN.";
+
+    }finally{
+
+      sendTransmission.disabled=false;
+
+    }
+  }
+);
+
+
+/* ==========================================================
+   NORTHWIND → WHATSAPP
+   ========================================================== */
+
+const northwindReplyButton=
+  document.getElementById(
+    "northwindReplyButton"
+  );
+
+const northwindReplyArea=
+  document.getElementById(
+    "northwindReplyArea"
+  );
+
+const northwindReply=
+  document.getElementById(
+    "northwindReply"
+  );
+
+const sendWhatsApp=
+  document.getElementById(
+    "sendWhatsApp"
+  );
+
+
+northwindTransmission.addEventListener(
+  "touchstart",
+  e=>{
+    e.stopPropagation();
+  },
+  {passive:true}
+);
+
+northwindTransmission.addEventListener(
+  "touchend",
+  e=>{
+    e.stopPropagation();
+  },
+  {passive:true}
+);
+
+northwindTransmission.addEventListener(
+  "click",
+  e=>{
+    e.stopPropagation();
+  }
+);
+
+
+northwindReplyButton.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    northwindReplyArea.style.display=
+      "block";
+
+    northwindReply.focus();
+  }
+);
+
+
+sendWhatsApp.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    const reply=
+      northwindReply.value.trim();
+
+    if(!reply){
+      return;
+    }
+
+    const whatsappText=
+      "F-01 // NORTHWIND\n\n"+
+      reply;
+
+    const whatsappURL=
+      "https://wa.me/4915141204440?text="+
+      encodeURIComponent(whatsappText);
+
+    window.location.href=
+      whatsappURL;
   }
 );
 
@@ -1593,6 +2074,13 @@ reader.addEventListener(
     }
   }
 );
+
+
+/* =========================
+   FIREBASE EINMAL LADEN
+   ========================= */
+
+loadTransmission();
 
 </script>
 
