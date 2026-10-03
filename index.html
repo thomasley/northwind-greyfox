@@ -152,18 +152,20 @@ button,input{font:inherit}
   font-size:8px;letter-spacing:.9px
 }
 
-/* =========================
-   AKTEN-VIEWER
-   NORTHWIND-MASTER
-   ========================= */
+/* ==========================================================
+   NORTHWIND + GREYFOX
+   EXAKTE TEST-5-GEOMETRIE
+   ========================================================== */
 
-.file-viewer{
+#northwindViewer,
+#greyfoxViewer{
   display:none;
   position:fixed;inset:0;z-index:50;
   overflow:hidden;background:#050b0e
 }
 
-.dossier-unit{
+#dossierUnit,
+#greyfoxDossierUnit{
   position:absolute;
   width:92vw;
   height:92vh;
@@ -307,9 +309,7 @@ button,input{font:inherit}
 <div id="mainScreen">
 
   <div class="top-panel" id="topPanel">
-    <div class="kicker">
-      ZENTRALSTELLE FÜR BESONDERE LAGEN
-    </div>
+    <div class="kicker">ZENTRALSTELLE FÜR BESONDERE LAGEN</div>
 
     <div class="agency">
       REFERAT F – BESONDERE ERMITTLUNGEN
@@ -325,9 +325,7 @@ button,input{font:inherit}
 
   <div id="gate">
 
-    <div class="gate-title">
-      IDENTITY VERIFICATION
-    </div>
+    <div class="gate-title">IDENTITY VERIFICATION</div>
 
     <div class="question">
       Welche Wesen wurden in der Berliner Außenstelle
@@ -357,13 +355,8 @@ button,input{font:inherit}
   <div id="selection">
 
     <div class="confirmed">
-      <div class="small">
-        IDENTITÄT BESTÄTIGT
-      </div>
-
-      <div class="big">
-        AKTENZUGRIFF FREIGEGEBEN
-      </div>
+      <div class="small">IDENTITÄT BESTÄTIGT</div>
+      <div class="big">AKTENZUGRIFF FREIGEGEBEN</div>
     </div>
 
     <div class="cards">
@@ -371,17 +364,13 @@ button,input{font:inherit}
       <button class="agent-card" id="northwindCard">
         <div class="agent-code">F-01</div>
         <div class="agent-name">NORTHWIND</div>
-        <div class="agent-division">
-          BERLIN DIVISION
-        </div>
+        <div class="agent-division">BERLIN DIVISION</div>
       </button>
 
       <button class="agent-card" id="greyfoxCard">
         <div class="agent-code">TJ-01</div>
         <div class="agent-name">GREYFOX</div>
-        <div class="agent-division">
-          RHINELAND DIVISION
-        </div>
+        <div class="agent-division">RHINELAND DIVISION</div>
       </button>
 
     </div>
@@ -396,33 +385,34 @@ button,input{font:inherit}
 </div>
 
 
-<!-- =========================
+<!-- ========================================================
      NORTHWIND
-     ========================= -->
+     ORIGINALER FUNKTIONIERENDER BLOCK
+     ======================================================== -->
 
-<div id="northwindViewer" class="file-viewer">
+<div id="northwindViewer">
 
   <div class="file-label">
     F-01 // NORTHWIND
   </div>
 
-  <button class="close-file" id="northwindClose">
+  <button class="close-file" id="closeFile">
     AKTE SCHLIESSEN
   </button>
 
-  <div id="northwindUnit" class="dossier-unit">
+  <div id="dossierUnit">
 
     <img
-      id="northwindFolder"
+      id="folderImage"
       class="folder"
       src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
       alt=""
     >
 
-    <div class="paperbox" id="northwindPaperBox">
+    <div class="paperbox" id="paperBox">
 
       <img
-        id="northwindPaper"
+        id="paperImage"
         class="paper"
         src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
         alt="NORTHWIND Dokument"
@@ -432,31 +422,33 @@ button,input{font:inherit}
 
   </div>
 
-  <div class="page-indicator" id="northwindIndicator">
+  <div class="page-indicator" id="pageIndicator">
     SEITE 1 / 4
   </div>
 
 </div>
 
 
-<!-- =========================
+<!-- ========================================================
      GREYFOX
-     ========================= -->
+     KOPIE DES NORTHWIND-BLOCKS
+     NUR EIGENE IDs + TJ-01-BILDER
+     ======================================================== -->
 
-<div id="greyfoxViewer" class="file-viewer">
+<div id="greyfoxViewer">
 
   <div class="file-label">
     TJ-01 // GREYFOX
   </div>
 
-  <button class="close-file" id="greyfoxClose">
+  <button class="close-file" id="greyfoxCloseFile">
     AKTE SCHLIESSEN
   </button>
 
-  <div id="greyfoxUnit" class="dossier-unit">
+  <div id="greyfoxDossierUnit">
 
     <img
-      id="greyfoxFolder"
+      id="greyfoxFolderImage"
       class="folder"
       src="4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png"
       alt=""
@@ -465,7 +457,7 @@ button,input{font:inherit}
     <div class="paperbox" id="greyfoxPaperBox">
 
       <img
-        id="greyfoxPaper"
+        id="greyfoxPaperImage"
         class="paper"
         src="EBD36AE0-7449-444F-9933-7DE66BB943F5.png"
         alt="GREYFOX Dokument"
@@ -475,7 +467,7 @@ button,input{font:inherit}
 
   </div>
 
-  <div class="page-indicator" id="greyfoxIndicator">
+  <div class="page-indicator" id="greyfoxPageIndicator">
     SEITE 1 / 4
   </div>
 
@@ -483,7 +475,7 @@ button,input{font:inherit}
 
 
 <!-- =========================
-     LESEMODUS
+     GEMEINSAMER LESEMODUS
      ========================= -->
 
 <div id="reader">
@@ -503,9 +495,9 @@ button,input{font:inherit}
 
 <script>
 
-/* =========================
-   AUDIO
-   ========================= */
+/* ==========================================================
+   AUDIO – ORIGINAL
+   ========================================================== */
 
 let audioCtx=null;
 
@@ -536,7 +528,6 @@ function keyClick(){
   if(!audioCtx || audioCtx.state!=="running")return;
 
   const now=audioCtx.currentTime;
-
   const osc=audioCtx.createOscillator();
   const gain=audioCtx.createGain();
 
@@ -561,7 +552,6 @@ function buttonClick(){
   if(!audioCtx || audioCtx.state!=="running")return;
 
   const now=audioCtx.currentTime;
-
   const osc=audioCtx.createOscillator();
   const gain=audioCtx.createGain();
 
@@ -662,7 +652,6 @@ function lockedSound(){
   if(!audioCtx || audioCtx.state!=="running")return;
 
   const now=audioCtx.currentTime;
-
   const osc=audioCtx.createOscillator();
   const gain=audioCtx.createGain();
 
@@ -686,37 +675,103 @@ function lockedSound(){
    STARTSEITE
    ========================= */
 
-const gate=document.getElementById("gate");
-const selection=document.getElementById("selection");
-const topPanel=document.getElementById("topPanel");
-const answer=document.getElementById("answer");
-const checkButton=document.getElementById("checkButton");
-const error=document.getElementById("error");
+const gate=
+  document.getElementById("gate");
 
-const northwindCard=document.getElementById("northwindCard");
-const greyfoxCard=document.getElementById("greyfoxCard");
+const selection=
+  document.getElementById("selection");
 
-const reader=document.getElementById("reader");
-const readerImage=document.getElementById("readerImage");
-const readerClose=document.getElementById("readerClose");
+const topPanel=
+  document.getElementById("topPanel");
+
+const answer=
+  document.getElementById("answer");
+
+const checkButton=
+  document.getElementById("checkButton");
+
+const error=
+  document.getElementById("error");
+
+const northwindCard=
+  document.getElementById("northwindCard");
+
+const greyfoxCard=
+  document.getElementById("greyfoxCard");
 
 
 /* =========================
-   GEMEINSAME ORDNER
+   NORTHWIND – ORIGINAL
    ========================= */
 
-const folderPage1=
-  "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
+const northwindViewer=
+  document.getElementById("northwindViewer");
 
-const folderTurned=
-  "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
+const closeFile=
+  document.getElementById("closeFile");
+
+const dossierUnit=
+  document.getElementById("dossierUnit");
+
+const folderImage=
+  document.getElementById("folderImage");
+
+const paperBox=
+  document.getElementById("paperBox");
+
+const paperImage=
+  document.getElementById("paperImage");
+
+const pageIndicator=
+  document.getElementById("pageIndicator");
 
 
 /* =========================
-   NORTHWIND
+   GREYFOX – NORTHWIND-KOPIE
    ========================= */
 
-const northwindPages=[
+const greyfoxViewer=
+  document.getElementById("greyfoxViewer");
+
+const greyfoxCloseFile=
+  document.getElementById("greyfoxCloseFile");
+
+const greyfoxDossierUnit=
+  document.getElementById("greyfoxDossierUnit");
+
+const greyfoxFolderImage=
+  document.getElementById("greyfoxFolderImage");
+
+const greyfoxPaperBox=
+  document.getElementById("greyfoxPaperBox");
+
+const greyfoxPaperImage=
+  document.getElementById("greyfoxPaperImage");
+
+const greyfoxPageIndicator=
+  document.getElementById("greyfoxPageIndicator");
+
+
+/* =========================
+   LESEMODUS
+   ========================= */
+
+const reader=
+  document.getElementById("reader");
+
+const readerImage=
+  document.getElementById("readerImage");
+
+const readerClose=
+  document.getElementById("readerClose");
+
+
+/* =========================
+   NORTHWIND-SEITEN
+   ORIGINAL
+   ========================= */
+
+const pages=[
 
   "0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png",
 
@@ -728,32 +783,10 @@ const northwindPages=[
 
 ];
 
-const northwindViewer=
-  document.getElementById("northwindViewer");
-
-const northwindClose=
-  document.getElementById("northwindClose");
-
-const northwindUnit=
-  document.getElementById("northwindUnit");
-
-const northwindFolder=
-  document.getElementById("northwindFolder");
-
-const northwindPaperBox=
-  document.getElementById("northwindPaperBox");
-
-const northwindPaper=
-  document.getElementById("northwindPaper");
-
-const northwindIndicator=
-  document.getElementById("northwindIndicator");
-
-let northwindPage=0;
-
 
 /* =========================
-   GREYFOX
+   GREYFOX-SEITEN
+   EINZIGER INHALTLICHER TAUSCH
    ========================= */
 
 const greyfoxPages=[
@@ -768,28 +801,16 @@ const greyfoxPages=[
 
 ];
 
-const greyfoxViewer=
-  document.getElementById("greyfoxViewer");
 
-const greyfoxClose=
-  document.getElementById("greyfoxClose");
+const folderPage1=
+  "4AEB11EE-0F0C-4893-9580-A6D38261EDC3.png";
 
-const greyfoxUnit=
-  document.getElementById("greyfoxUnit");
+const folderTurned=
+  "CECEA182-A38A-46B1-B428-9AFDE31DA90F.png";
 
-const greyfoxFolder=
-  document.getElementById("greyfoxFolder");
 
-const greyfoxPaperBox=
-  document.getElementById("greyfoxPaperBox");
-
-const greyfoxPaper=
-  document.getElementById("greyfoxPaper");
-
-const greyfoxIndicator=
-  document.getElementById("greyfoxIndicator");
-
-let greyfoxPage=0;
+let currentPage=0;
+let greyfoxCurrentPage=0;
 
 
 /* =========================
@@ -886,9 +907,10 @@ async function checkAnswer(){
 }
 
 
-/* =========================
-   NORTHWIND ÖFFNEN
-   ========================= */
+/* ==========================================================
+   NORTHWIND
+   ORIGINALER ABLAUF
+   ========================================================== */
 
 northwindCard.addEventListener(
   "touchstart",
@@ -903,21 +925,19 @@ northwindCard.addEventListener(
   async()=>{
 
     await ensureAudio();
+
     buttonClick();
 
-    northwindPage=0;
-    updateNorthwind();
+    currentPage=0;
+
+    updatePage();
 
     northwindViewer.style.display="block";
   }
 );
 
 
-/* =========================
-   GREYFOX ÖFFNEN
-   ========================= */
-
-greyfoxCard.addEventListener(
+closeFile.addEventListener(
   "touchstart",
   ()=>{
     ensureAudio();
@@ -925,34 +945,7 @@ greyfoxCard.addEventListener(
   {passive:true}
 );
 
-greyfoxCard.addEventListener(
-  "click",
-  async()=>{
-
-    await ensureAudio();
-    buttonClick();
-
-    greyfoxPage=0;
-    updateGreyfox();
-
-    greyfoxViewer.style.display="block";
-  }
-);
-
-
-/* =========================
-   NORTHWIND SCHLIESSEN
-   ========================= */
-
-northwindClose.addEventListener(
-  "touchstart",
-  ()=>{
-    ensureAudio();
-  },
-  {passive:true}
-);
-
-northwindClose.addEventListener(
+closeFile.addEventListener(
   "click",
   async e=>{
 
@@ -960,6 +953,7 @@ northwindClose.addEventListener(
     e.stopPropagation();
 
     await ensureAudio();
+
     buttonClick();
 
     closeReader();
@@ -969,165 +963,69 @@ northwindClose.addEventListener(
 );
 
 
-/* =========================
-   GREYFOX SCHLIESSEN
-   ========================= */
+function updatePage(){
 
-greyfoxClose.addEventListener(
-  "touchstart",
-  ()=>{
-    ensureAudio();
-  },
-  {passive:true}
-);
+  paperImage.src=
+    pages[currentPage];
 
-greyfoxClose.addEventListener(
-  "click",
-  async e=>{
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    await ensureAudio();
-    buttonClick();
-
-    closeReader();
-
-    greyfoxViewer.style.display="none";
-  }
-);
-
-
-/* =========================
-   SEITEN AKTUALISIEREN
-   ========================= */
-
-function updateNorthwind(){
-
-  northwindPaper.src=
-    northwindPages[northwindPage];
-
-  northwindFolder.src=
-    northwindPage===0
+  folderImage.src=
+    currentPage===0
       ? folderPage1
       : folderTurned;
 
-  northwindIndicator.textContent=
-    `SEITE ${northwindPage+1} / 4`;
+  pageIndicator.textContent=
+    `SEITE ${currentPage+1} / 4`;
 }
 
 
-function updateGreyfox(){
-
-  greyfoxPaper.src=
-    greyfoxPages[greyfoxPage];
-
-  greyfoxFolder.src=
-    greyfoxPage===0
-      ? folderPage1
-      : folderTurned;
-
-  greyfoxIndicator.textContent=
-    `SEITE ${greyfoxPage+1} / 4`;
-}
-
-
-/* =========================
-   NORTHWIND BLÄTTERN
-   ========================= */
-
-async function nextNorthwind(){
+async function nextPage(){
 
   await ensureAudio();
 
-  if(northwindPage>=northwindPages.length-1){
+  if(currentPage>=pages.length-1){
 
     lockedSound();
 
-    northwindUnit.classList.remove("lock-bump");
+    dossierUnit.classList.remove(
+      "lock-bump"
+    );
 
-    void northwindUnit.offsetWidth;
+    void dossierUnit.offsetWidth;
 
-    northwindUnit.classList.add("lock-bump");
+    dossierUnit.classList.add(
+      "lock-bump"
+    );
 
     return;
   }
 
   pageSound();
 
-  northwindPage++;
+  currentPage++;
 
-  updateNorthwind();
+  updatePage();
 }
 
 
-async function previousNorthwind(){
+async function previousPage(){
 
   await ensureAudio();
 
-  if(northwindPage<=0){
+  if(currentPage<=0){
     return;
   }
 
   pageSound();
 
-  northwindPage--;
+  currentPage--;
 
-  updateNorthwind();
+  updatePage();
 }
 
 
-/* =========================
-   GREYFOX BLÄTTERN
-   ========================= */
+let touchStartX=0;
+let touchStartY=0;
 
-async function nextGreyfox(){
-
-  await ensureAudio();
-
-  if(greyfoxPage>=greyfoxPages.length-1){
-
-    lockedSound();
-
-    greyfoxUnit.classList.remove("lock-bump");
-
-    void greyfoxUnit.offsetWidth;
-
-    greyfoxUnit.classList.add("lock-bump");
-
-    return;
-  }
-
-  pageSound();
-
-  greyfoxPage++;
-
-  updateGreyfox();
-}
-
-
-async function previousGreyfox(){
-
-  await ensureAudio();
-
-  if(greyfoxPage<=0){
-    return;
-  }
-
-  pageSound();
-
-  greyfoxPage--;
-
-  updateGreyfox();
-}
-
-
-/* =========================
-   NORTHWIND SWIPE
-   ========================= */
-
-let northwindTouchX=0;
-let northwindTouchY=0;
 
 northwindViewer.addEventListener(
   "touchstart",
@@ -1141,11 +1039,12 @@ northwindViewer.addEventListener(
 
     const t=e.changedTouches[0];
 
-    northwindTouchX=t.clientX;
-    northwindTouchY=t.clientY;
+    touchStartX=t.clientX;
+    touchStartY=t.clientY;
   },
   {passive:true}
 );
+
 
 northwindViewer.addEventListener(
   "touchend",
@@ -1158,10 +1057,10 @@ northwindViewer.addEventListener(
     const t=e.changedTouches[0];
 
     const dx=
-      t.clientX-northwindTouchX;
+      t.clientX-touchStartX;
 
     const dy=
-      t.clientY-northwindTouchY;
+      t.clientY-touchStartY;
 
     if(
       Math.abs(dx)<45 ||
@@ -1171,78 +1070,16 @@ northwindViewer.addEventListener(
     }
 
     if(dx<0){
-      nextNorthwind();
+      nextPage();
     }else{
-      previousNorthwind();
+      previousPage();
     }
   },
   {passive:true}
 );
 
 
-/* =========================
-   GREYFOX SWIPE
-   ========================= */
-
-let greyfoxTouchX=0;
-let greyfoxTouchY=0;
-
-greyfoxViewer.addEventListener(
-  "touchstart",
-  async e=>{
-
-    await ensureAudio();
-
-    if(reader.classList.contains("open")){
-      return;
-    }
-
-    const t=e.changedTouches[0];
-
-    greyfoxTouchX=t.clientX;
-    greyfoxTouchY=t.clientY;
-  },
-  {passive:true}
-);
-
-greyfoxViewer.addEventListener(
-  "touchend",
-  e=>{
-
-    if(reader.classList.contains("open")){
-      return;
-    }
-
-    const t=e.changedTouches[0];
-
-    const dx=
-      t.clientX-greyfoxTouchX;
-
-    const dy=
-      t.clientY-greyfoxTouchY;
-
-    if(
-      Math.abs(dx)<45 ||
-      Math.abs(dx)<Math.abs(dy)
-    ){
-      return;
-    }
-
-    if(dx<0){
-      nextGreyfox();
-    }else{
-      previousGreyfox();
-    }
-  },
-  {passive:true}
-);
-
-
-/* =========================
-   NORTHWIND LESEMODUS
-   ========================= */
-
-northwindPaperBox.addEventListener(
+paperBox.addEventListener(
   "click",
   async e=>{
 
@@ -1254,16 +1091,187 @@ northwindPaperBox.addEventListener(
     buttonClick();
 
     readerImage.src=
-      northwindPages[northwindPage];
+      pages[currentPage];
 
     reader.classList.add("open");
   }
 );
 
 
-/* =========================
-   GREYFOX LESEMODUS
-   ========================= */
+/* ==========================================================
+   GREYFOX
+   DIREKTE KOPIE DES NORTHWIND-ABLAUFS
+   ========================================================== */
+
+greyfoxCard.addEventListener(
+  "touchstart",
+  ()=>{
+    ensureAudio();
+  },
+  {passive:true}
+);
+
+greyfoxCard.addEventListener(
+  "click",
+  async()=>{
+
+    await ensureAudio();
+
+    buttonClick();
+
+    greyfoxCurrentPage=0;
+
+    updateGreyfoxPage();
+
+    greyfoxViewer.style.display="block";
+  }
+);
+
+
+greyfoxCloseFile.addEventListener(
+  "touchstart",
+  ()=>{
+    ensureAudio();
+  },
+  {passive:true}
+);
+
+greyfoxCloseFile.addEventListener(
+  "click",
+  async e=>{
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    await ensureAudio();
+
+    buttonClick();
+
+    closeReader();
+
+    greyfoxViewer.style.display="none";
+  }
+);
+
+
+function updateGreyfoxPage(){
+
+  greyfoxPaperImage.src=
+    greyfoxPages[greyfoxCurrentPage];
+
+  greyfoxFolderImage.src=
+    greyfoxCurrentPage===0
+      ? folderPage1
+      : folderTurned;
+
+  greyfoxPageIndicator.textContent=
+    `SEITE ${greyfoxCurrentPage+1} / 4`;
+}
+
+
+async function nextGreyfoxPage(){
+
+  await ensureAudio();
+
+  if(
+    greyfoxCurrentPage>=
+    greyfoxPages.length-1
+  ){
+
+    lockedSound();
+
+    greyfoxDossierUnit.classList.remove(
+      "lock-bump"
+    );
+
+    void greyfoxDossierUnit.offsetWidth;
+
+    greyfoxDossierUnit.classList.add(
+      "lock-bump"
+    );
+
+    return;
+  }
+
+  pageSound();
+
+  greyfoxCurrentPage++;
+
+  updateGreyfoxPage();
+}
+
+
+async function previousGreyfoxPage(){
+
+  await ensureAudio();
+
+  if(greyfoxCurrentPage<=0){
+    return;
+  }
+
+  pageSound();
+
+  greyfoxCurrentPage--;
+
+  updateGreyfoxPage();
+}
+
+
+let greyfoxTouchStartX=0;
+let greyfoxTouchStartY=0;
+
+
+greyfoxViewer.addEventListener(
+  "touchstart",
+  async e=>{
+
+    await ensureAudio();
+
+    if(reader.classList.contains("open")){
+      return;
+    }
+
+    const t=e.changedTouches[0];
+
+    greyfoxTouchStartX=t.clientX;
+    greyfoxTouchStartY=t.clientY;
+  },
+  {passive:true}
+);
+
+
+greyfoxViewer.addEventListener(
+  "touchend",
+  e=>{
+
+    if(reader.classList.contains("open")){
+      return;
+    }
+
+    const t=e.changedTouches[0];
+
+    const dx=
+      t.clientX-greyfoxTouchStartX;
+
+    const dy=
+      t.clientY-greyfoxTouchStartY;
+
+    if(
+      Math.abs(dx)<45 ||
+      Math.abs(dx)<Math.abs(dy)
+    ){
+      return;
+    }
+
+    if(dx<0){
+      nextGreyfoxPage();
+    }else{
+      previousGreyfoxPage();
+    }
+  },
+  {passive:true}
+);
+
 
 greyfoxPaperBox.addEventListener(
   "click",
@@ -1277,16 +1285,16 @@ greyfoxPaperBox.addEventListener(
     buttonClick();
 
     readerImage.src=
-      greyfoxPages[greyfoxPage];
+      greyfoxPages[greyfoxCurrentPage];
 
     reader.classList.add("open");
   }
 );
 
 
-/* =========================
-   LESEMODUS SCHLIESSEN
-   ========================= */
+/* ==========================================================
+   GEMEINSAMER LESEMODUS
+   ========================================================== */
 
 readerClose.addEventListener(
   "touchstart",
@@ -1296,6 +1304,7 @@ readerClose.addEventListener(
   },
   {passive:true}
 );
+
 
 readerClose.addEventListener(
   "click",
