@@ -2456,11 +2456,24 @@ drawerHotspot.addEventListener("click",async()=>{
 
   drawerHotspot.style.display="none";
   archiveFilesHotspot.style.display="block";
-
+drawerCloseHotspot.style.display="block";
   archiveHint.textContent=
     "ARCHIV GEÖFFNET // AKTENBESTAND ANTIPPEN";
 });
+drawerCloseHotspot.addEventListener("click",async()=>{
+  await ensureAudio();
+  buttonClick();
 
+  archiveScreen.classList.remove("opened");
+  archiveScreen.classList.add("closed");
+
+  drawerCloseHotspot.style.display="none";
+  archiveFilesHotspot.style.display="none";
+  drawerHotspot.style.display="block";
+
+  archiveHint.textContent=
+    "ARCHIVZUGRIFF // SCHUBLADE NW-GF/01 ANTIPpen";
+});
 
 archiveFilesHotspot.addEventListener("click",async()=>{
 
