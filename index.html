@@ -1512,8 +1512,8 @@ const archiveDocumentText=document.getElementById("archiveDocumentText");
 const archiveDocumentBack=document.getElementById("archiveDocumentBack");
 
   const voiceCard=document.getElementById("voiceCard");
-
-
+const voiceScreen=document.getElementById("voiceScreen");
+const voiceBack=document.getElementById("voiceBack");
 /* SITZUNG */
 
 const centralEndSession=document.getElementById("centralEndSession");
@@ -2475,7 +2475,27 @@ reader.addEventListener("click",e=>{
   if(e.target===reader)closeReader();
 });
 
+/* ==========================================================
+   SPRACHKANAL
+   ========================================================== */
 
+voiceCard.addEventListener("click",async()=>{
+
+  await ensureAudio();
+  buttonClick();
+
+  selection.style.display="none";
+  voiceScreen.style.display="block";
+});
+
+voiceBack.addEventListener("click",async()=>{
+
+  await ensureAudio();
+  buttonClick();
+
+  voiceScreen.style.display="none";
+  selection.style.display="block";
+});
 /* ==========================================================
    ARCHIV
    ========================================================== */
