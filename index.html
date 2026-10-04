@@ -665,6 +665,54 @@ button{cursor:pointer}
     FIKTIVE SONDERAKTE // INTERNER GEBRAUCH<br>
     CHANNEL NW-GF/01 // CLEARANCE VS // NW-GF/7
   </div>
+</div> 
+
+  <!-- =========================================
+     SPRACHKANAL NW-GF/02
+========================================= -->
+
+<div id="voiceScreen">
+
+  <button id="voiceBack">← ZURÜCK ZUR ZENTRALE</button>
+
+  <div class="voiceHeader">
+    <div class="voiceEyebrow">NORTHWIND // GREYFOX</div>
+    <div class="voiceTitle">SPRACHKANAL // NW-GF/02</div>
+    <div class="voiceSub">GESICHERTE DIREKTÜBERTRAGUNG</div>
+  </div>
+
+  <div class="voiceRadio">
+
+    <div class="voiceFrequency">
+      NW-GF/02
+      <span id="voiceStatus">KANALSTATUS: BEREIT</span>
+    </div>
+
+    <div class="voiceMic">
+      <div class="voiceMicHead"></div>
+      <div class="voiceMicStem"></div>
+      <div class="voiceMicBase"></div>
+    </div>
+
+    <div id="voiceTimer">00:00</div>
+
+    <div class="voiceControls">
+      <button id="voiceRecord">● AUFNAHME</button>
+      <button id="voiceStop" disabled>■ STOPP</button>
+      <button id="voicePlay" disabled>▶ ABHÖREN</button>
+      <button id="voiceDelete" disabled>LÖSCHEN</button>
+      <button id="voiceSend" disabled>ÜBERTRAGEN</button>
+    </div>
+
+  </div>
+
+  <div class="voiceArchive">
+    <div class="voiceArchiveTitle">SPRACHÜBERTRAGUNGEN</div>
+    <div id="voiceArchiveList">
+      NOCH KEINE ÜBERTRAGUNGEN
+    </div>
+  </div>
+
 </div>
 
 
@@ -1462,6 +1510,8 @@ const archiveDocumentDate=document.getElementById("archiveDocumentDate");
 const archiveDocumentRoute=document.getElementById("archiveDocumentRoute");
 const archiveDocumentText=document.getElementById("archiveDocumentText");
 const archiveDocumentBack=document.getElementById("archiveDocumentBack");
+
+  const voiceCard=document.getElementById("voiceCard");
 
 
 /* SITZUNG */
