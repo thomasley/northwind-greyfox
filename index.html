@@ -148,11 +148,17 @@ button{cursor:pointer}
 .central-code{
   margin-top:6px;color:#aaa;font-size:7px;letter-spacing:1px
 }
+
+/* NORTHWIND + GREYFOX nebeneinander,
+   Archiv als schmale Leiste darunter */
 .cards{
-  margin-top:16px;display:flex;flex-direction:column;gap:10px
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:8px
 }
 .agent-card,.archive-card{
-  position:relative;width:100%;padding:14px;text-align:left;
+  position:relative;width:100%;padding:11px 10px;text-align:left;
   border:1px solid rgba(201,165,87,.46);
   background:rgba(4,10,12,.86);color:#fff
 }
@@ -162,18 +168,33 @@ button{cursor:pointer}
 .agent-name{
   margin-top:4px;font-family:Georgia,"Times New Roman",serif;font-size:20px
 }
+.agent-card .agent-name{
+  font-size:16px
+}
 .agent-division{
   margin-top:4px;color:#aaa;font-size:8px;letter-spacing:.9px
 }
+.agent-card .agent-division{
+  font-size:7px
+}
 .transmission-badge{
-  display:none;position:absolute;right:11px;top:11px;
-  color:#ff5b52;font-size:8px;font-weight:900;letter-spacing:.7px;
+  display:none;position:absolute;right:8px;top:8px;
+  color:#ff5b52;font-size:7px;font-weight:900;letter-spacing:.5px;
   animation:transmissionPulse 1.1s ease-in-out infinite
 }
 @keyframes transmissionPulse{
   0%,100%{opacity:1}50%{opacity:.28}
 }
-.archive-card .agent-name{font-size:17px}
+.archive-card{
+  grid-column:1 / -1;
+  padding:9px 11px
+}
+.archive-card .agent-name{
+  font-size:14px
+}
+.archive-card .agent-division{
+  margin-top:2px
+}
 #centralEndSession{
   width:100%;margin-top:14px;padding:11px;
   border:1px solid rgba(255,255,255,.35);
@@ -342,15 +363,17 @@ button{cursor:pointer}
   background:#05090b center/cover no-repeat;
   overflow:hidden
 }
+
+/* KORREKTE ZUORDNUNG */
 #archiveScreen.closed{
   background-image:
     linear-gradient(rgba(2,5,6,.08),rgba(2,5,6,.18)),
-    url("2B3DDAC4-0C64-4A35-A2AA-492137603B72.png")
+    url("DE4950B0-D64E-4B51-8EB9-62D6495E2168.png")
 }
 #archiveScreen.opened{
   background-image:
     linear-gradient(rgba(2,5,6,.08),rgba(2,5,6,.18)),
-    url("DE4950B0-D64E-4B51-8EB9-62D6495E2168.png")
+    url("2B3DDAC4-0C64-4A35-A2AA-492137603B72.png")
 }
 .archive-top{
   position:fixed;z-index:320;
@@ -676,57 +699,58 @@ button{cursor:pointer}
         src="0009B8BC-706C-413F-81EC-90BCEDAAAA8F.png"
         alt="NORTHWIND Dokument">
 
-      <div id="northwindTransmission" class="paper-transmission">
+    </div>
+  </div>
 
-        <div class="transmission-title" id="northwindTransmissionTitle">
-          ÜBERTRAGUNGSKANAL
-        </div>
+  <!-- Funkfenster absichtlich außerhalb des transformierten Dossiers -->
+  <div id="northwindTransmission" class="paper-transmission">
 
-        <div class="transmission-route" id="northwindRoute">
-          F-01 // NORTHWIND
-        </div>
+    <div class="transmission-title" id="northwindTransmissionTitle">
+      ÜBERTRAGUNGSKANAL
+    </div>
 
-        <div class="transmission-state" id="northwindState"></div>
+    <div class="transmission-route" id="northwindRoute">
+      F-01 // NORTHWIND
+    </div>
 
-        <div id="northwindMessage" class="transmission-text"></div>
+    <div class="transmission-state" id="northwindState"></div>
 
-        <button id="northwindReplyButton" class="transmission-button">
-          ANTWORTEN
-        </button>
+    <div id="northwindMessage" class="transmission-text"></div>
 
-        <button id="northwindNewButton" class="transmission-button">
-          NEUE ÜBERTRAGUNG VERFASSEN
-        </button>
+    <button id="northwindReplyButton" class="transmission-button">
+      ANTWORTEN
+    </button>
 
-        <button id="northwindArchiveButton"
-          class="transmission-button secondary">
-          INS ARCHIV
-        </button>
+    <button id="northwindNewButton" class="transmission-button">
+      NEUE ÜBERTRAGUNG VERFASSEN
+    </button>
 
-        <div id="northwindCompose" class="compose-area">
+    <button id="northwindArchiveButton"
+      class="transmission-button secondary">
+      INS ARCHIV
+    </button>
 
-          <textarea id="northwindInput" class="transmission-input"
-            placeholder="Übertragung an TJ-01 eingeben"></textarea>
+    <div id="northwindCompose" class="compose-area">
 
-          <button id="northwindSend" class="transmission-button">
-            SENDEN
-          </button>
+      <textarea id="northwindInput" class="transmission-input"
+        placeholder="Übertragung an TJ-01 eingeben"></textarea>
 
-          <button id="northwindCancel" class="transmission-close">
-            ABBRECHEN
-          </button>
+      <button id="northwindSend" class="transmission-button">
+        SENDEN
+      </button>
 
-        </div>
-
-        <div id="northwindStatus" class="transmission-status"></div>
-
-        <button id="northwindCloseTransmission" class="transmission-close">
-          ZURÜCK ZUR AKTE
-        </button>
-
-      </div>
+      <button id="northwindCancel" class="transmission-close">
+        ABBRECHEN
+      </button>
 
     </div>
+
+    <div id="northwindStatus" class="transmission-status"></div>
+
+    <button id="northwindCloseTransmission" class="transmission-close">
+      ZURÜCK ZUR AKTE
+    </button>
+
   </div>
 
   <div class="page-indicator" id="pageIndicator">SEITE 1 / 4</div>
@@ -756,57 +780,58 @@ button{cursor:pointer}
         src="EBD36AE0-7449-444F-9933-7DE66BB943F5.png"
         alt="GREYFOX Dokument">
 
-      <div id="greyfoxTransmission" class="paper-transmission">
+    </div>
+  </div>
 
-        <div class="transmission-title" id="greyfoxTransmissionTitle">
-          ÜBERTRAGUNGSKANAL
-        </div>
+  <!-- Funkfenster absichtlich außerhalb des transformierten Dossiers -->
+  <div id="greyfoxTransmission" class="paper-transmission">
 
-        <div class="transmission-route" id="greyfoxRoute">
-          TJ-01 // GREYFOX
-        </div>
+    <div class="transmission-title" id="greyfoxTransmissionTitle">
+      ÜBERTRAGUNGSKANAL
+    </div>
 
-        <div class="transmission-state" id="greyfoxState"></div>
+    <div class="transmission-route" id="greyfoxRoute">
+      TJ-01 // GREYFOX
+    </div>
 
-        <div id="greyfoxMessage" class="transmission-text"></div>
+    <div class="transmission-state" id="greyfoxState"></div>
 
-        <button id="greyfoxReplyButton" class="transmission-button">
-          ANTWORTEN
-        </button>
+    <div id="greyfoxMessage" class="transmission-text"></div>
 
-        <button id="greyfoxNewButton" class="transmission-button">
-          NEUE ÜBERTRAGUNG VERFASSEN
-        </button>
+    <button id="greyfoxReplyButton" class="transmission-button">
+      ANTWORTEN
+    </button>
 
-        <button id="greyfoxArchiveButton"
-          class="transmission-button secondary">
-          INS ARCHIV
-        </button>
+    <button id="greyfoxNewButton" class="transmission-button">
+      NEUE ÜBERTRAGUNG VERFASSEN
+    </button>
 
-        <div id="greyfoxCompose" class="compose-area">
+    <button id="greyfoxArchiveButton"
+      class="transmission-button secondary">
+      INS ARCHIV
+    </button>
 
-          <textarea id="greyfoxInput" class="transmission-input"
-            placeholder="Übertragung an F-01 eingeben"></textarea>
+    <div id="greyfoxCompose" class="compose-area">
 
-          <button id="greyfoxSend" class="transmission-button">
-            SENDEN
-          </button>
+      <textarea id="greyfoxInput" class="transmission-input"
+        placeholder="Übertragung an F-01 eingeben"></textarea>
 
-          <button id="greyfoxCancel" class="transmission-close">
-            ABBRECHEN
-          </button>
+      <button id="greyfoxSend" class="transmission-button">
+        SENDEN
+      </button>
 
-        </div>
-
-        <div id="greyfoxStatus" class="transmission-status"></div>
-
-        <button id="greyfoxCloseTransmission" class="transmission-close">
-          ZURÜCK ZUR AKTE
-        </button>
-
-      </div>
+      <button id="greyfoxCancel" class="transmission-close">
+        ABBRECHEN
+      </button>
 
     </div>
+
+    <div id="greyfoxStatus" class="transmission-status"></div>
+
+    <button id="greyfoxCloseTransmission" class="transmission-close">
+      ZURÜCK ZUR AKTE
+    </button>
+
   </div>
 
   <div class="page-indicator" id="greyfoxPageIndicator">SEITE 1 / 4</div>
