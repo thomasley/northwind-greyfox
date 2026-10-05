@@ -1026,12 +1026,521 @@ button{cursor:pointer}
 @keyframes closedFade{
   from{opacity:0;transform:scale(.8)}
   to{opacity:1;transform:scale(1)}
+} 
+  /* =========================================================
+   CINEMATIC INTRO // REFERAT F
+   AUSSEN → FLUR → IDENTITÄT → BRIEFING
+   ========================================================= */
+
+#cinematicIntro{
+  position:fixed;
+  inset:0;
+  z-index:1500;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
+
+.introStage{
+  position:relative;
+  width:min(100vw,66.6667dvh);
+  aspect-ratio:2/3;
+  max-height:100dvh;
+  background:#000;
+  overflow:hidden;
+}
+
+.introScene{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transform:scale(1);
+  transition:
+    opacity .75s ease,
+    transform 1.15s ease;
+}
+
+.introScene.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.introScene.zoomAway{
+  opacity:0;
+  transform:scale(1.075);
+}
+
+.introScene img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+  user-select:none;
+  -webkit-user-select:none;
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   ZUGANGSPUNKTE
+   ========================================================= */
+
+.introHotspot{
+  position:absolute;
+  z-index:20;
+  border:0;
+  padding:0;
+  margin:0;
+  background:transparent;
+  appearance:none;
+  -webkit-appearance:none;
+}
+
+/* Zugang außen */
+#introExteriorHotspot{
+  right:3%;
+  top:38%;
+  width:27%;
+  height:25%;
+}
+
+/* Zugang im Flur */
+#introCorridorHotspot{
+  right:0;
+  top:31%;
+  width:22%;
+  height:26%;
+}
+
+
+/* =========================================================
+   LEUCHTRINGE
+   ========================================================= */
+
+.introRing{
+  position:absolute;
+  z-index:15;
+  border:2px solid #f0a01d;
+  border-radius:50%;
+  box-shadow:
+    0 0 9px #ff9c00,
+    0 0 24px rgba(255,136,0,.78),
+    inset 0 0 10px rgba(255,152,0,.45);
+  pointer-events:none;
+  animation:introPulse 1.45s ease-in-out infinite;
+}
+
+/* Außenansicht */
+#exteriorRing{
+  right:8.1%;
+  top:47.7%;
+  width:5.2%;
+  aspect-ratio:1;
+}
+
+/* Flur */
+#corridorRing{
+  right:4.6%;
+  top:42.3%;
+  width:3.8%;
+  aspect-ratio:1;
+}
+
+@keyframes introPulse{
+  0%,100%{
+    opacity:.65;
+    transform:scale(.94);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.12);
+  }
+}
+
+.introRing.arrival{
+  animation:
+    ringArrival .95s ease-out 1,
+    introPulse 1.45s ease-in-out .95s infinite;
+}
+
+@keyframes ringArrival{
+  0%{
+    opacity:0;
+    transform:scale(.35);
+    box-shadow:
+      0 0 0 rgba(255,145,0,0);
+  }
+
+  45%{
+    opacity:1;
+    transform:scale(1.5);
+    box-shadow:
+      0 0 26px #ff9d00,
+      0 0 58px rgba(255,126,0,.9);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+.introRing.granted{
+  border-color:#66db88;
+  box-shadow:
+    0 0 12px #5aff82,
+    0 0 28px rgba(70,255,126,.72);
+  animation:none;
+}
+
+
+/* =========================================================
+   IDENTITÄTSPRÜFUNG IM FLUR
+   ========================================================= */
+
+/*
+   Während der Drachen-Abfrage bleibt das Flurbild sichtbar.
+   Dieser Layer dunkelt nur den Hintergrund etwas ab.
+*/
+
+#introIdentityShade{
+  position:absolute;
+  inset:0;
+  z-index:30;
+  background:rgba(0,0,0,.46);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+
+#introIdentityShade.active{
+  opacity:1;
+}
+
+
+/*
+   Die vorhandene Identitätsprüfung wird im Intro
+   über dem Flurbild eingeblendet.
+*/
+
+#cinematicIntro #introIdentityGate{
+  position:absolute;
+  z-index:40;
+  left:7%;
+  right:7%;
+  top:43%;
+
+  padding:16px 15px;
+
+  background:rgba(4,10,12,.90);
+
+  border:
+    1px solid rgba(201,165,87,.58);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.55);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transform:translateY(8px);
+
+  transition:
+    opacity .4s ease,
+    transform .4s ease,
+    visibility 0s linear .4s;
+}
+
+#cinematicIntro #introIdentityGate.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+
+  transform:translateY(0);
+
+  transition:
+    opacity .4s ease,
+    transform .4s ease;
+}
+
+#introIdentityGate .gate-title{
+  color:#d4ad55;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.4px;
+  margin-bottom:10px;
+}
+
+#introIdentityGate .question{
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:15px;
+  line-height:1.3;
+  margin-bottom:12px;
+}
+
+#introAnswer{
+  width:100%;
+
+  border:
+    1px solid rgba(255,255,255,.28);
+
+  background:
+    rgba(255,255,255,.07);
+
+  color:#fff;
+
+  padding:10px 11px;
+
+  outline:none;
+
+  border-radius:0;
+
+  font-size:16px;
+}
+
+#introCheckButton{
+  width:100%;
+
+  margin-top:10px;
+
+  padding:11px;
+
+  border:
+    1px solid #c9a557;
+
+  background:#b58b34;
+
+  color:#080b0c;
+
+  font-weight:800;
+
+  font-size:10px;
+
+  letter-spacing:1px;
+}
+
+#introError{
+  display:none;
+
+  margin-top:9px;
+
+  padding:8px 9px;
+
+  border-left:
+    2px solid #a8453e;
+
+  background:
+    rgba(80,8,8,.24);
+
+  color:#d9b1a8;
+
+  font-size:9px;
+
+  line-height:1.45;
+}
+
+
+/* =========================================================
+   BRIEFING / BÜRO
+   ========================================================= */
+
+#briefingContinue{
+  position:absolute;
+
+  left:50%;
+  bottom:7%;
+
+  transform:
+    translateX(-50%);
+
+  z-index:20;
+
+  width:74%;
+
+  padding:13px 12px;
+
+  border:
+    1px solid rgba(215,176,83,.75);
+
+  background:
+    rgba(3,8,10,.88);
+
+  color:#e1bc63;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:1.2px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity .55s ease;
+}
+
+#briefingContinue.ready{
+  opacity:1;
+  pointer-events:auto;
+}
+
+
+/* =========================================================
+   SICHERHEITSPROTOKOLL F-7
+   ========================================================= */
+
+/*
+   F-7 muss im Fehlerfall über dem gesamten Intro liegen.
+*/
+
+#securityLock{
+  z-index:2000;
+} 
 </style>
 </head>
 
 <body>
+<!-- =======================================================
+     CINEMATIC INTRO // REFERAT F
+     AUSSEN → FLUR → IDENTITÄT → BRIEFING
+     ======================================================= -->
 
+<div id="cinematicIntro">
+
+  <div class="introStage">
+
+
+    <!-- ===================================================
+         1 // AUSSENANSICHT
+         =================================================== -->
+
+    <div
+      id="introExterior"
+      class="introScene active">
+
+      <img
+        src="C1610675-9EA9-4342-B52D-C58224A41147.jpeg"
+        alt="Referat F Außenstelle">
+
+      <div
+        id="exteriorRing"
+        class="introRing">
+      </div>
+
+      <button
+        id="introExteriorHotspot"
+        class="introHotspot"
+        type="button"
+        aria-label="Zutritt erbitten">
+      </button>
+
+    </div>
+
+
+    <!-- ===================================================
+         2 // FLUR
+         =================================================== -->
+
+    <div
+      id="introCorridor"
+      class="introScene">
+
+      <img
+        src="FEDC96D6-6C03-481E-8941-1AFA73488756.jpeg"
+        alt="Referat F Korridor">
+
+      <div
+        id="corridorRing"
+        class="introRing">
+      </div>
+
+      <button
+        id="introCorridorHotspot"
+        class="introHotspot"
+        type="button"
+        aria-label="Identitätsprüfung starten">
+      </button>
+
+
+      <!-- Abdunklung hinter der Identitätsprüfung -->
+
+      <div id="introIdentityShade"></div>
+
+
+      <!-- ===============================================
+           IDENTITÄTSPRÜFUNG
+           bleibt optisch auf dem Flurbild
+           =============================================== -->
+
+      <div id="introIdentityGate">
+
+        <div class="gate-title">
+          IDENTITÄTSPRÜFUNG
+        </div>
+
+        <div class="question">
+          Welche Wesen wurden in der Berliner Außenstelle
+          zuletzt auf Kaffee eingestellt?
+        </div>
+
+        <input
+          id="introAnswer"
+          type="text"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="Antwort eingeben">
+
+        <button
+          id="introCheckButton"
+          type="button">
+          ZUGANG PRÜFEN
+        </button>
+
+        <div id="introError">
+          IDENTITÄT NICHT BESTÄTIGT //
+          ERNEUTE PRÜFUNG ERFORDERLICH
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         3 // BRIEFING / Büro
+    <div
+      id="introBriefing"
+      class="introScene">
+
+      <img
+        src="IMG_2696(1).jpeg"
+        alt="Northwind Greyfox Briefing">
+
+      <button
+        id="briefingContinue"
+        type="button">
+        ZUR ZENTRALE
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
 <!-- =======================================================
      START
      ======================================================= -->
@@ -7028,7 +7537,602 @@ setVoiceControls(
 loadTransmission();
 
 checkVoiceBadge();
+/* ==========================================================
+   CINEMATIC INTRO // STEUERUNG
+   AUSSEN → FLUR → IDENTITÄT → BRIEFING → ZENTRALE
+   ========================================================== */
 
+const cinematicIntro =
+  document.getElementById("cinematicIntro");
+
+const introExterior =
+  document.getElementById("introExterior");
+
+const introCorridor =
+  document.getElementById("introCorridor");
+
+const introBriefing =
+  document.getElementById("introBriefing");
+
+const introExteriorHotspot =
+  document.getElementById("introExteriorHotspot");
+
+const introCorridorHotspot =
+  document.getElementById("introCorridorHotspot");
+
+const exteriorRing =
+  document.getElementById("exteriorRing");
+
+const corridorRing =
+  document.getElementById("corridorRing");
+
+const introIdentityShade =
+  document.getElementById("introIdentityShade");
+
+const introIdentityGate =
+  document.getElementById("introIdentityGate");
+
+const introAnswer =
+  document.getElementById("introAnswer");
+
+const introCheckButton =
+  document.getElementById("introCheckButton");
+
+const introError =
+  document.getElementById("introError");
+
+const briefingContinue =
+  document.getElementById("briefingContinue");
+
+
+let introFailedAttempts = 0;
+
+
+/* ==========================================================
+   KLEINE INTRO-SOUNDS
+   ========================================================== */
+
+function introBeep(){
+
+  if(
+    !audioCtx ||
+    audioCtx.state !== "running"
+  ) return;
+
+  const now =
+    audioCtx.currentTime;
+
+  const osc =
+    audioCtx.createOscillator();
+
+  const gain =
+    audioCtx.createGain();
+
+  osc.type = "sine";
+
+  osc.frequency.setValueAtTime(
+    720,
+    now
+  );
+
+  gain.gain.setValueAtTime(
+    .0001,
+    now
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .10,
+    now + .01
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    now + .12
+  );
+
+  osc.connect(gain);
+
+  gain.connect(
+    audioCtx.destination
+  );
+
+  osc.start(now);
+
+  osc.stop(
+    now + .13
+  );
+}
+
+
+function introDoorSound(){
+
+  if(
+    !audioCtx ||
+    audioCtx.state !== "running"
+  ) return;
+
+  const now =
+    audioCtx.currentTime;
+
+  const osc =
+    audioCtx.createOscillator();
+
+  const gain =
+    audioCtx.createGain();
+
+  osc.type = "sawtooth";
+
+  osc.frequency.setValueAtTime(
+    82,
+    now
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    43,
+    now + .38
+  );
+
+  gain.gain.setValueAtTime(
+    .0001,
+    now
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .16,
+    now + .015
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    now + .42
+  );
+
+  osc.connect(gain);
+
+  gain.connect(
+    audioCtx.destination
+  );
+
+  osc.start(now);
+
+  osc.stop(
+    now + .45
+  );
+}
+
+
+/* ==========================================================
+   AUSSENANSICHT → FLUR
+   ========================================================== */
+
+introExteriorHotspot.addEventListener(
+  "touchstart",
+  ()=>ensureAudio(),
+  {passive:true}
+);
+
+
+introExteriorHotspot.addEventListener(
+  "click",
+  async()=>{
+
+    await ensureAudio();
+
+    introBeep();
+
+    setTimeout(
+      introDoorSound,
+      130
+    );
+
+    exteriorRing.classList.add(
+      "granted"
+    );
+
+    introExteriorHotspot.disabled =
+      true;
+
+    setTimeout(
+      ()=>{
+
+        introExterior.classList.add(
+          "zoomAway"
+        );
+
+      },
+      220
+    );
+
+    setTimeout(
+      ()=>{
+
+        introExterior.classList.remove(
+          "active"
+        );
+
+        introCorridor.classList.add(
+          "active"
+        );
+
+        corridorRing.classList.add(
+          "arrival"
+        );
+
+      },
+      850
+    );
+  }
+);
+
+
+/* ==========================================================
+   FLUR → IDENTITÄTSPRÜFUNG
+   ========================================================== */
+
+introCorridorHotspot.addEventListener(
+  "touchstart",
+  ()=>ensureAudio(),
+  {passive:true}
+);
+
+
+introCorridorHotspot.addEventListener(
+  "click",
+  async()=>{
+
+    await ensureAudio();
+
+    introBeep();
+
+    introCorridorHotspot.disabled =
+      true;
+
+    corridorRing.classList.remove(
+      "arrival"
+    );
+
+    introIdentityShade.classList.add(
+      "active"
+    );
+
+    introIdentityGate.classList.add(
+      "active"
+    );
+
+    setTimeout(
+      ()=>{
+        introAnswer.focus();
+      },
+      450
+    );
+  }
+);
+
+
+/* ==========================================================
+   IDENTITÄTSPRÜFUNG
+   ========================================================== */
+
+introAnswer.addEventListener(
+  "focus",
+  async()=>{
+
+    await ensureAudio();
+  }
+);
+
+
+introAnswer.addEventListener(
+  "input",
+  async()=>{
+
+    await ensureAudio();
+
+    keyClick();
+  }
+);
+
+
+introAnswer.addEventListener(
+  "keydown",
+  e=>{
+
+    if(
+      e.key === "Enter"
+    ){
+
+      checkIntroAnswer();
+    }
+  }
+);
+
+
+introCheckButton.addEventListener(
+  "touchstart",
+  ()=>ensureAudio(),
+  {passive:true}
+);
+
+
+introCheckButton.addEventListener(
+  "click",
+  checkIntroAnswer
+);
+
+
+async function checkIntroAnswer(){
+
+  if(
+    introAnswer.disabled
+  ) return;
+
+  await ensureAudio();
+
+  buttonClick();
+
+  const value =
+    introAnswer.value
+      .trim()
+      .toLocaleLowerCase(
+        "de-DE"
+      );
+
+
+  /* RICHTIGE ANTWORT */
+
+  if(
+    value === "drachen"
+  ){
+
+    introFailedAttempts = 0;
+
+    introError.style.display =
+      "none";
+
+    introAnswer.disabled =
+      true;
+
+    introCheckButton.disabled =
+      true;
+
+    corridorRing.classList.add(
+      "granted"
+    );
+
+    setTimeout(
+      ()=>{
+        grantedSound();
+      },
+      90
+    );
+
+    setTimeout(
+      ()=>{
+        introDoorSound();
+      },
+      300
+    );
+
+    setTimeout(
+      ()=>{
+
+        introIdentityGate.classList.remove(
+          "active"
+        );
+
+        introIdentityShade.classList.remove(
+          "active"
+        );
+
+      },
+      480
+    );
+
+    setTimeout(
+      ()=>{
+
+        introCorridor.classList.add(
+          "zoomAway"
+        );
+
+      },
+      650
+    );
+
+    setTimeout(
+      ()=>{
+
+        introCorridor.classList.remove(
+          "active"
+        );
+
+        introBriefing.classList.add(
+          "active"
+        );
+
+      },
+      1250
+    );
+
+    setTimeout(
+      ()=>{
+
+        briefingContinue.classList.add(
+          "ready"
+        );
+
+      },
+      2050
+    );
+
+    return;
+  }
+
+
+  /* ERSTER FEHLVERSUCH */
+
+  introFailedAttempts++;
+
+  if(
+    introFailedAttempts === 1
+  ){
+
+    introError.innerHTML =
+      "<strong>ZUGRIFF VERWEIGERT</strong><br>" +
+      "IDENTITÄT NICHT BESTÄTIGT";
+
+    introError.style.display =
+      "block";
+
+    return;
+  }
+
+
+  /* ZWEITER FEHLVERSUCH */
+
+  if(
+    introFailedAttempts === 2
+  ){
+
+    introError.innerHTML =
+      "<strong>WARNUNG</strong><br>" +
+      "ZWEITER FEHLVERSUCH REGISTRIERT";
+
+    introError.style.display =
+      "block";
+
+    return;
+  }
+
+
+  /* DRITTER FEHLVERSUCH → BESTEHENDES F-7 */
+
+  introFailedAttempts = 0;
+
+  introError.style.display =
+    "none";
+
+  introAnswer.disabled =
+    true;
+
+  introCheckButton.disabled =
+    true;
+
+  securityCountdown.textContent =
+    "SYSTEMSPERRE // 00:05";
+
+  securityLock.classList.add(
+    "active",
+    "alarm-flash"
+  );
+
+  securityAlarmSound();
+
+  let introSeconds = 5;
+
+  clearInterval(
+    securityTimer
+  );
+
+  securityTimer =
+    setInterval(
+      ()=>{
+
+        introSeconds--;
+
+        securityCountdown.textContent =
+          "SYSTEMSPERRE // 00:0" +
+          Math.max(
+            introSeconds,
+            0
+          );
+
+        if(
+          introSeconds <= 0
+        ){
+
+          clearInterval(
+            securityTimer
+          );
+
+          securityLock.classList.remove(
+            "active",
+            "alarm-flash"
+          );
+
+          introAnswer.disabled =
+            false;
+
+          introCheckButton.disabled =
+            false;
+
+          introAnswer.value =
+            "";
+
+          introError.innerHTML =
+            "IDENTITÄT NICHT BESTÄTIGT // " +
+            "ERNEUTE PRÜFUNG ERFORDERLICH";
+
+          introAnswer.focus();
+        }
+
+      },
+      1000
+    );
+}
+
+
+/* ==========================================================
+   BRIEFING → BESTEHENDE ZENTRALE
+   ========================================================== */
+
+briefingContinue.addEventListener(
+  "touchstart",
+  ()=>ensureAudio(),
+  {passive:true}
+);
+
+
+briefingContinue.addEventListener(
+  "click",
+  async()=>{
+
+    await ensureAudio();
+
+    buttonClick();
+
+    briefingContinue.disabled =
+      true;
+
+    introBriefing.classList.add(
+      "zoomAway"
+    );
+
+    setTimeout(
+      async()=>{
+
+        cinematicIntro.style.display =
+          "none";
+
+        /*
+          Die alte Login-Fläche wird übersprungen.
+          Danach übernimmt ausschließlich die bereits
+          vorhandene Zentrale.
+        */
+
+        gate.style.display =
+          "none";
+
+        topPanel.style.display =
+          "none";
+
+        await showCentral();
+
+      },
+      700
+    );
+  }
+);
 </script>
 </body>
 </html>
