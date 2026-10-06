@@ -123,7 +123,7 @@ button{cursor:pointer}
   left:8%;
   top:87.7%;
   width:84%;
-  padding:8px 4px;
+  padding:8px 4px 14px;
   background:#071013;
   color:#d4ad55;
   text-align:center;
@@ -7932,7 +7932,32 @@ function introDoorSound(){
   );
 }
 
+function vaultLockSound(){
+  if(!audioCtx || audioCtx.state !== "running") return;
 
+  const now = audioCtx.currentTime;
+
+  [0, .11, .24].forEach((delay, i)=>{
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = i === 1 ? "square" : "sawtooth";
+    osc.frequency.setValueAtTime(
+      i === 0 ? 145 : i === 1 ? 95 : 62,
+      now + delay
+    );
+
+    gain.gain.setValueAtTime(.0001, now + delay);
+    gain.gain.exponentialRampToValueAtTime(.22, now + delay + .008);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + delay + .12);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now + delay);
+    osc.stop(now + delay + .13);
+  });
+}
 /* ==========================================================
    AUSSENANSICHT → FLUR
    ========================================================== */
@@ -8140,7 +8165,7 @@ async function checkIntroAnswer(){
 
     setTimeout(
       ()=>{
-        introDoorSound();
+      vaultLockSound();
       },
       300
     );
