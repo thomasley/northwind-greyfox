@@ -1034,7 +1034,39 @@ button{cursor:pointer}
 /* =========================================================
    SYSTEMSTART // NORTHWIND + GREYFOX
    ========================================================= */
+#audioStartGate{
+  position:fixed;
+  inset:0;
+  z-index:1700;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
+#audioStartButton{
+  padding:14px 22px;
+  border:1px solid rgba(180,255,220,.65);
+  background:rgba(5,18,14,.92);
+  color:#c9ffe9;
+  font:700 12px/1.2 monospace;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:
+    0 0 12px rgba(80,255,180,.18),
+    inset 0 0 10px rgba(80,255,180,.08);
+}
+
+#audioStartButton:active{
+  transform:scale(.98);
+}
+
+#audioStartGate.off{
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+}
 #agentBoot{
   position:fixed;
   inset:0;
@@ -1483,6 +1515,11 @@ button{cursor:pointer}
 </head>
 
 <body> 
+  <div id="audioStartGate">
+  <button id="audioStartButton" type="button">
+    VERBINDUNG HERSTELLEN
+  </button>
+</div>
   <div id="agentBoot">
 
   <img
@@ -1577,8 +1614,8 @@ button{cursor:pointer}
         </div>
 
         <div class="question">
-          Welche Wesen wurden in der Berliner Außenstelle
-          zuletzt auf Kaffee eingestellt?
+          Welches Handyspiel spielen Thomas und Finja gemeinsam?
+        
         </div>
 
         <input
@@ -7737,7 +7774,26 @@ function runAgentBoot(){
 }
 
 
-runAgentBoot();
+const audioStartGate =
+  document.getElementById("audioStartGate");
+
+const audioStartButton =
+  document.getElementById("audioStartButton");
+
+audioStartButton.addEventListener("click", async()=>{
+
+  audioStartButton.disabled = true;
+
+  await ensureAudio();
+introBeep();
+  audioStartGate.classList.add("off");
+
+  setTimeout(()=>{
+    audioStartGate.style.display = "none";
+    runAgentBoot();
+  },250);
+
+});
 
 /* ==========================================================
    KLEINE INTRO-SOUNDS
@@ -8032,7 +8088,7 @@ async function checkIntroAnswer(){
   /* RICHTIGE ANTWORT */
 
   if(
-    value === "drachen"
+    value === "football rivals"
   ){
 
     introFailedAttempts = 0;
