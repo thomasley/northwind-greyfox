@@ -7654,7 +7654,9 @@ function escapeHtml(value){
 centralEndSession.addEventListener("click",async()=>{
 
   await ensureAudio();
-  buttonClick();
+  const outroMusic = new Audio("outro.mp3");
+outroMusic.volume = 1;
+outroMusic.play().catch(()=>{});
 
   selection.style.display="none";
 
@@ -7669,13 +7671,13 @@ centralEndSession.addEventListener("click",async()=>{
   sessionEnd.classList.add("active");
 
   setTimeout(()=>{
-    pageSound();
+  
     sessionSequenceLine.textContent=
       "ÜBERTRAGUNGSKANAL NW-GF/01 WIRD GETRENNT …";
   },1400);
 
   setTimeout(()=>{
-    buttonClick();
+
     sessionSequenceTitle.textContent=
       "IDENTITÄTSSCHLÜSSEL ENTFERNT";
     sessionSequenceLine.textContent=
@@ -7683,7 +7685,7 @@ centralEndSession.addEventListener("click",async()=>{
   },3000);
 
   setTimeout(()=>{
-    grantedSound();
+  
     sessionSequenceTitle.textContent=
       "SITZUNG ORDNUNGSGEMÄSS BEENDET";
     sessionSequenceLine.textContent=
@@ -7837,7 +7839,9 @@ audioStartButton.addEventListener("click", async()=>{
   audioStartButton.disabled = true;
 
   await ensureAudio();
-introBeep();
+const introMusic = new Audio("intro.mp3");
+introMusic.volume = 1;
+introMusic.play().catch(()=>{});
   audioStartGate.classList.add("off");
 
   setTimeout(()=>{
