@@ -7833,13 +7833,13 @@ const audioStartGate =
 
 const audioStartButton =
   document.getElementById("audioStartButton");
-
+let introMusic;
 audioStartButton.addEventListener("click", async()=>{
 
   audioStartButton.disabled = true;
 
   await ensureAudio();
-  let introMusic = new Audio("intro.mp3");
+introMusic = new Audio("intro.mp3");
 introMusic.volume = 1;
 introMusic.play().catch(()=>{});
   audioStartGate.classList.add("off");
