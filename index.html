@@ -1535,7 +1535,9 @@ button{cursor:pointer}
 #securityLock{
   z-index:2000;
 } 
-</style>
+</style> 
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-check-compat.js"></script>
 </head>
 
 <body> 
@@ -2263,6 +2265,26 @@ const DATABASE_URL=
   "https://northwind-greyfox-default-rtdb.europe-west1.firebasedatabase.app";
 const APP_CHECK_SITE_KEY=
   "6LfOt-EtAAAAAN4vNSHX1xX9_8ibG8QyNFFNEIcY";
+const firebaseConfig = {
+  apiKey: "AIzaSyAog4ukA5Yg8cXWGKmR2_VYdLcppnMjW-s",
+  authDomain: "northwind-greyfox.firebaseapp.com",
+  databaseURL: DATABASE_URL,
+  projectId: "northwind-greyfox",
+  storageBucket: "northwind-greyfox.firebasestorage.app",
+  messagingSenderId: "556184843895",
+  appId: "1:556184843895:web:4e4433ac8171ecda55b872",
+  measurementId: "G-XF9MV73P6F"
+};
+  const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+const appCheck = firebase.appCheck(firebaseApp);
+
+appCheck.activate(
+  new firebase.appCheck.ReCaptchaEnterpriseProvider(
+    APP_CHECK_SITE_KEY
+  ),
+  true
+);
 const MESSAGE_URL=DATABASE_URL+"/currentTransmission.json";
 const ARCHIVE_URL=DATABASE_URL+"/archive";
 
