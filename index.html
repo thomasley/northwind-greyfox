@@ -7839,7 +7839,7 @@ audioStartButton.addEventListener("click", async()=>{
   audioStartButton.disabled = true;
 
   await ensureAudio();
-const introMusic = new Audio("intro.mp3");
+  let introMusic = new Audio("intro.mp3");
 introMusic.volume = 1;
 introMusic.play().catch(()=>{});
   audioStartGate.classList.add("off");
@@ -8394,7 +8394,8 @@ briefingContinue.addEventListener(
   async()=>{
 
     await ensureAudio();
-
+introMusic.pause();
+introMusic.currentTime = 0;
     buttonClick();
 
     briefingContinue.disabled =
