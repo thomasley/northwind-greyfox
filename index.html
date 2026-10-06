@@ -8013,7 +8013,10 @@ introExteriorHotspot.addEventListener(
   async()=>{
 
     await ensureAudio();
-
+if(introMusic){
+  introMusic.pause();
+  introMusic.currentTime = 0;
+}
   
 
     setTimeout(
