@@ -1031,7 +1031,78 @@ button{cursor:pointer}
    CINEMATIC INTRO // REFERAT F
    AUSSEN → FLUR → IDENTITÄT → BRIEFING
    ========================================================= */
+/* =========================================================
+   SYSTEMSTART // NORTHWIND + GREYFOX
+   ========================================================= */
 
+#agentBoot{
+  position:fixed;
+  inset:0;
+  z-index:1600;
+  background:#000;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.bootAgent{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+  opacity:0;
+}
+
+#bootNorthwind.bootFlash{
+  animation:northwindBoot .82s linear forwards;
+}
+
+#bootGreyfox.bootFlash{
+  animation:greyfoxBoot .82s linear forwards;
+}
+
+#agentBoot::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.20;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.10) 0px,
+      rgba(255,255,255,.10) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+#agentBoot.bootOff{
+  animation:bootPowerOff .32s ease forwards;
+}
+
+@keyframes northwindBoot{
+  0%,12%{opacity:0}
+  13%,42%{opacity:1}
+  43%,51%{opacity:.08}
+  52%,68%{opacity:.75}
+  69%,100%{opacity:0}
+}
+
+@keyframes greyfoxBoot{
+  0%,15%{opacity:0}
+  16%,48%{opacity:1}
+  49%,58%{opacity:.06}
+  59%,76%{opacity:.8}
+  77%,100%{opacity:0}
+}
+
+@keyframes bootPowerOff{
+  0%{opacity:1}
+  55%{opacity:.35}
+  100%{opacity:0}
+}
 #cinematicIntro{
   position:fixed;
   inset:0;
@@ -1411,7 +1482,22 @@ button{cursor:pointer}
 </style>
 </head>
 
-<body>
+<body> 
+  <div id="agentBoot">
+
+  <img
+    id="bootNorthwind"
+    class="bootAgent"
+    src="94C4F2C0-5381-44BE-B5BB-34EA0C965B95.png"
+    alt="">
+
+  <img
+    id="bootGreyfox"
+    class="bootAgent"
+    src="15BAEEE9-4A06-42FB-B81A-7F5D10334B04.png"
+    alt="">
+
+</div>
 <!-- =======================================================
      CINEMATIC INTRO // REFERAT F
      AUSSEN → FLUR → IDENTITÄT → BRIEFING
@@ -7588,7 +7674,70 @@ const briefingContinue =
 
 
 let introFailedAttempts = 0;
+/* ==========================================================
+   SYSTEMSTART // NORTHWIND → GREYFOX → AUSSENSTELLE
+   ========================================================== */
 
+const agentBoot =
+  document.getElementById("agentBoot");
+
+const bootNorthwind =
+  document.getElementById("bootNorthwind");
+
+const bootGreyfox =
+  document.getElementById("bootGreyfox");
+
+
+function runAgentBoot(){
+
+  bootNorthwind.classList.add(
+    "bootFlash"
+  );
+
+  setTimeout(
+    ()=>{
+      bootGreyfox.classList.add(
+        "bootFlash"
+      );
+    },
+    720
+  );
+
+  setTimeout(
+    ()=>{
+      bootNorthwind.classList.remove(
+        "bootFlash"
+      );
+
+      void bootNorthwind.offsetWidth;
+
+      bootNorthwind.classList.add(
+        "bootFlash"
+      );
+    },
+    1450
+  );
+
+  setTimeout(
+    ()=>{
+      agentBoot.classList.add(
+        "bootOff"
+      );
+    },
+    2050
+  );
+
+  setTimeout(
+    ()=>{
+      agentBoot.style.display =
+        "none";
+    },
+    2380
+  );
+}
+
+
+runAgentBoot();
 
 /* ==========================================================
    KLEINE INTRO-SOUNDS
