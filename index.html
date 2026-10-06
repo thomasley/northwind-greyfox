@@ -117,7 +117,22 @@ button{cursor:pointer}
   -webkit-user-select:none;
   pointer-events:none
 }
-
+#voiceArchiveLabelOverlay{
+  position:absolute;
+  z-index:459;
+  left:8%;
+  top:83%;
+  width:84%;
+  padding:6px 4px;
+  background:#071013;
+  color:#d4ad55;
+  text-align:center;
+  font-family:"Courier New",monospace;
+  font-size:clamp(8px,2.4vw,14px);
+  font-weight:900;
+  letter-spacing:1px;
+  pointer-events:none;
+}
 .voiceHotspot{
   position:absolute;
   z-index:460;
@@ -1772,7 +1787,7 @@ button{cursor:pointer}
       id="voiceBackground"
       src="26B0C443-E84E-4784-86B7-3E6EB74B5B74.png"
       alt="SPRACHKANAL NW-GF/02">
-
+<div id="voiceArchiveLabelOverlay">SPRACHÜBERTRAGUNGEN // ARCHIV</div>
     <canvas id="voiceWaveCanvas"></canvas>
 
     <div id="voiceNeedle"></div>
@@ -5965,22 +5980,15 @@ voiceRecord.addEventListener(
 
       if(voiceMimeType){
 
-        voiceRecorder=
-          new MediaRecorder(
-            voiceStream,
-            {
-              mimeType:
-                voiceMimeType
-            }
-          );
-
-      }else{
-
-        voiceRecorder=
-          new MediaRecorder(
-            voiceStream
-          );
-      }
+      voiceRecorder = voiceMimeType
+  ? new MediaRecorder(
+      voiceStream,
+      { mimeType: voiceMimeType }
+    )
+  : new MediaRecorder(
+      voiceStream
+    );
+      
 
       voiceChunks=[];
 
@@ -7851,8 +7859,11 @@ function introBeep(){
   }
 
   boom(0, 92);
-  boom(.42, 82);
-  boom(.84, 70);
+boom(.42, 86);
+boom(.84, 80);
+boom(1.20, 74);
+boom(1.56, 68);
+boom(1.92, 62);
 }
 
 
