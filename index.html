@@ -2285,6 +2285,18 @@ appCheck.activate(
   ),
   true
 );
+
+async function firebaseFetch(url, options = {}){
+  const tokenResult = await firebase.appCheck().getToken(false);
+
+  const headers = new Headers(options.headers || {});
+  headers.set("X-Firebase-AppCheck", tokenResult.token);
+
+  return fetch(url, {
+    ...options,
+    headers
+  });
+}
 const MESSAGE_URL=DATABASE_URL+"/currentTransmission.json";
 const ARCHIVE_URL=DATABASE_URL+"/archive";
 
@@ -2312,7 +2324,7 @@ async function loadTransmission(){
 
   try{
 
-    const response=await fetch(
+    const response=await firebaseFetch(
       MESSAGE_URL+"?t="+Date.now(),
       {cache:"no-store"}
     );
@@ -2342,7 +2354,7 @@ async function saveTransmission(text,sender,recipient){
     timestamp:Date.now()
   };
 
-  const response=await fetch(
+  const response=await firebaseFetch(
     MESSAGE_URL,
     {
       method:"PUT",
@@ -2373,7 +2385,7 @@ async function storeInArchive(transmission){
     archivedAt:Date.now()
   };
 
-  const response=await fetch(
+  const response=await firebaseFetch(
     ARCHIVE_URL+".json",
     {
       method:"POST",
@@ -2390,7 +2402,7 @@ async function storeInArchive(transmission){
 
 async function deleteCurrentTransmission(){
 
-  const response=await fetch(
+  const response=await firebaseFetch(
     MESSAGE_URL,
     {method:"DELETE"}
   );
@@ -2439,7 +2451,7 @@ async function archiveAndReply(text,sender,recipient){
 
 async function loadArchive(){
 
-  const response=await fetch(
+  const response=await firebaseFetch(
     ARCHIVE_URL+".json?t="+Date.now(),
     {cache:"no-store"}
   );
@@ -6489,7 +6501,7 @@ voiceSend.addEventListener(
       };
 
       const metaResponse=
-        await fetch(
+        await firebaseFetch(
           VOICE_ARCHIVE_URL+
           ".json",
           {
@@ -6529,7 +6541,7 @@ voiceSend.addEventListener(
       }
 
       const audioResponse=
-        await fetch(
+        await firebaseFetch(
           VOICE_AUDIO_URL+
           "/"+
           encodeURIComponent(
@@ -6560,7 +6572,7 @@ voiceSend.addEventListener(
       }
 
       const latestResponse=
-        await fetch(
+        await firebaseFetch(
           VOICE_LATEST_URL,
           {
             method:"PUT",
@@ -6653,7 +6665,7 @@ voiceSend.addEventListener(
 
         try{
 
-          await fetch(
+          await firebaseFetch(
             VOICE_ARCHIVE_URL+
             "/"+
             encodeURIComponent(
@@ -6743,7 +6755,7 @@ async function loadVoiceArchive(){
   try{
 
     const response=
-      await fetch(
+      await firebaseFetch(
         VOICE_ARCHIVE_URL+
         ".json?t="+
         Date.now(),
@@ -6929,7 +6941,7 @@ async function playVoiceArchiveItem(
     */
 
     const response=
-      await fetch(
+      await firebaseFetch(
         VOICE_AUDIO_URL+
         "/"+
         encodeURIComponent(
@@ -7185,7 +7197,7 @@ async function checkVoiceBadge(){
   try{
 
     const response=
-      await fetch(
+      await firebaseFetch(
         VOICE_LATEST_URL+
         "?t="+
         Date.now(),
