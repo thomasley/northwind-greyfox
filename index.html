@@ -7806,48 +7806,53 @@ function introBeep(){
     audioCtx.state !== "running"
   ) return;
 
-  const now =
-    audioCtx.currentTime;
+  const now = audioCtx.currentTime;
 
-  const osc =
-    audioCtx.createOscillator();
+  function boom(delay, frequency){
 
-  const gain =
-    audioCtx.createGain();
+    const osc =
+      audioCtx.createOscillator();
 
-  osc.type = "sine";
+    const gain =
+      audioCtx.createGain();
 
-  osc.frequency.setValueAtTime(
-    720,
-    now
-  );
+    osc.type = "sine";
 
-  gain.gain.setValueAtTime(
-    .0001,
-    now
-  );
+    osc.frequency.setValueAtTime(
+      frequency,
+      now + delay
+    );
 
-  gain.gain.exponentialRampToValueAtTime(
-    .10,
-    now + .01
-  );
+    osc.frequency.exponentialRampToValueAtTime(
+      38,
+      now + delay + .28
+    );
 
-  gain.gain.exponentialRampToValueAtTime(
-    .0001,
-    now + .12
-  );
+    gain.gain.setValueAtTime(
+      .0001,
+      now + delay
+    );
 
-  osc.connect(gain);
+    gain.gain.exponentialRampToValueAtTime(
+      .75,
+      now + delay + .015
+    );
 
-  gain.connect(
-    audioCtx.destination
-  );
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      now + delay + .38
+    );
 
-  osc.start(now);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
 
-  osc.stop(
-    now + .13
-  );
+    osc.start(now + delay);
+    osc.stop(now + delay + .4);
+  }
+
+  boom(0, 92);
+  boom(.42, 82);
+  boom(.84, 70);
 }
 
 
