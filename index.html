@@ -121,7 +121,7 @@ button{cursor:pointer}
   position:absolute;
   z-index:459;
   left:8%;
-  top:87%;
+  top:88%;
   width:84%;
   padding:6px 4px;
   background:#071013;
@@ -230,13 +230,22 @@ button{cursor:pointer}
   transition:transform .06s linear;
   pointer-events:none
 }
-
+#voiceTimerCover{
+  position:absolute;
+  z-index:456;
+  left:35%;
+  top:61.0%;
+  width:30%;
+  height:4.2%;
+  background:#05090a;
+  pointer-events:none;
+}
 #voiceTimerOverlay{
   position:absolute;
   z-index:457;
-  left:38%;
-  top:64.0%;
-  width:24%;
+  left:35%;
+  top:61.5%;
+  width:30%;
   text-align:center;
   color:#d6b158;
   font-family:"Courier New",monospace;
@@ -1791,7 +1800,7 @@ button{cursor:pointer}
     <canvas id="voiceWaveCanvas"></canvas>
 
     <div id="voiceNeedle"></div>
-
+<div id="voiceTimerCover"></div>
     <div id="voiceTimerOverlay">00:00</div>
 
     <div id="voiceStatusOverlay">
@@ -7941,7 +7950,7 @@ introExteriorHotspot.addEventListener(
 
     await ensureAudio();
 
-    introBeep();
+  
 
     setTimeout(
       introDoorSound,
@@ -8005,7 +8014,7 @@ introCorridorHotspot.addEventListener(
 
     await ensureAudio();
 
-    introBeep();
+
 
     introCorridorHotspot.disabled =
       true;
